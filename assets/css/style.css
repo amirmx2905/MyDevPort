@@ -73,6 +73,8 @@ body {
 }
 
 .canvas__icon {
+	width: fit-content;
+	height: auto;
 	transition: 0.2s ease-in-out;
 	filter: drop-shadow(0 0 10px #fff);
 }
@@ -83,7 +85,7 @@ body {
 
 .canvas__separator {
 	display: block;
-	width: 50%;
+	width: 40%;
 	height: 1px;
     background-color: #fff;
     box-shadow: 0 0 5px #fff;
@@ -204,13 +206,21 @@ body {
     :root {
         font-size: 2rem; /* 32px para pantallas medianas */
     }
+
+	.canvas__horizontal-group {
+		gap: 0.7rem;
+	}
     
     .canvas__content {
         gap: 1rem;
     }
 
+	.canvas__icon {
+		transform: scale(0.8);
+	}
+
     .canvas__title {
-        font-size: 1.8rem; /* Reduce el tamaño de los títulos */
+        font-size: 1.5rem; /* Reduce el tamaño de los títulos */
     }
 
     .canvas__button {
@@ -219,19 +229,27 @@ body {
     }
 
     .canvas__separator {
-        width: 60%; /* Menor ancho en pantallas pequeñas */
+        width: 50%; /* Menor ancho en pantallas pequeñas */
     }
 }
 
 /* Para pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
     :root {
-        font-size: 1.75rem; /* 28px para pantallas muy pequeñas */
+        font-size: 1.5rem; /* 28px para pantallas muy pequeñas */
     }
 
+	.canvas__horizontal-group {
+		gap: 0.3rem;
+	}
+
     .canvas__content {
-        gap: 0.5rem;
+        gap: 1rem;
     }
+
+	.canvas__icon {
+		transform: scale(0.6);
+	}
 
     .canvas__title {
         font-size: 1.5rem; /* Títulos aún más pequeños */
@@ -243,6 +261,6 @@ body {
     }
 
     .canvas__separator {
-        width: 80%; /* Más ancho para pantallas pequeñas */
+        width: 50%; /* Más ancho para pantallas pequeñas */
     }
 }
