@@ -1,0 +1,293 @@
+:root {
+    --fade-duration: 3s; 
+}
+
+.canvas {
+	position: relative;
+	width: 100%;
+	background: #000;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+
+.canvas__animation {
+	position: absolute;
+	z-index: -1;
+}
+
+.canvas__content {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	color: #f9f1e9;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	z-index: 2;
+	position: relative;
+	animation: fadeInContent var(--fade-duration) ease-out forwards;
+}
+
+.canvas__horizontal-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.canvas__title {
+	transition: 0.2s ease-in-out;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	text-shadow: 0 0 5px #fff;
+	white-space: nowrap;
+}
+
+.canvas__title:hover{
+	transform: scale(1.05);
+}
+
+.canvas__icon {
+	width: fit-content;
+	height: auto;
+	transition: 0.2s ease-in-out;
+	filter: drop-shadow(0 0 10px #fff);
+}
+
+.canvas__icon:hover{
+	transform: scale(1.2);
+}
+
+.canvas__separator {
+	display: block;
+	width: 40%;
+	height: 1px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #fff;
+	will-change: opacity, transform;
+}
+
+.canvas__animation-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	opacity: 0;
+	visibility: hidden;
+	animation: fadeInAnimationGroup var(--fade-duration) ease-out forwards;
+	animation-delay: var(--fade-duration);
+}
+
+.canvas__text {
+    display: inline-block;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	text-shadow: 0 0 5px #fff;
+	white-space: nowrap;
+    height: 1rem;
+}
+
+.canvas__button__group {
+	margin-top: 100px;
+	box-sizing: border-box;
+	width: fit-content;
+	padding: 10px;
+	opacity: 0;
+	animation: fadeInButton var(--fade-duration) ease-out forwards;
+	animation-delay: 4s;
+}
+
+.canvas__button {
+	box-sizing: border-box;
+	width: fit-content;
+	white-space: nowrap;
+	padding: 10px;
+	font-size: 1rem;
+	font-family: JetBrainsMono;
+	border-radius: 30px;
+	box-shadow: 0 0 20px 0 #fff;
+	cursor: pointer;
+	border: none;
+	transition: all 0.2s ease-in-out;
+}
+
+.canvas__button__text {
+	color: #000;
+	font-weight: 900;
+}
+
+
+.canvas__button:hover {
+	transform: scale(1.15);
+	box-shadow: 0 0 50px 0 #fff; /* Aumenta el brillo del shadow */
+}
+
+.thin {
+	font-weight: 100;
+}
+
+.fade-in-only {
+	opacity: 0;
+	animation: fadeInOnly var(--fade-duration) ease-out forwards;
+	animation-delay: var(--fade-duration);
+}
+
+@media (max-width: 768px) {
+    :root {
+        font-size: 2rem; /* 32px para pantallas medianas */
+    }
+
+	.canvas__content {
+        gap: 1rem;
+    }
+
+	.canvas__horizontal-group {
+		gap: 0.7rem;
+	}
+
+	.canvas__title {
+        font-size: 1.5rem; /* Reduce el tamaño de los títulos */
+    }
+    
+	.canvas__icon {
+        transform: scale(0.8);
+        animation: floatingMobileMedium 3s ease-in-out infinite;
+    }
+
+	.canvas__button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+	.canvas__icon:hover {
+        transform: scale(0.8) !important; /* Mantiene el scale inicial */
+    }
+
+    .canvas__button:hover {
+        transform: none !important;
+        box-shadow: 0 0 20px 0 #fff !important; /* Mantiene el shadow inicial */
+    }
+
+    .canvas__separator {
+        width: 50%; /* Menor ancho en pantallas pequeñas */
+    }
+}
+
+/* Para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    :root {
+        font-size: 1.5rem; /* 28px para pantallas muy pequeñas */
+    }
+
+	.canvas__content {
+        gap: 1rem;
+    }
+
+	.canvas__horizontal-group {
+		gap: 0.3rem;
+	}
+
+	.canvas__title {
+        font-size: 1.5rem; /* Títulos aún más pequeños */
+    }
+
+	.canvas__icon {
+        transform: scale(0.6);
+        animation: floatingMobileSmall 3s ease-in-out infinite;
+    }
+
+	.canvas__icon:hover {
+        transform: scale(0.6) !important; /* Mantiene el scale inicial */
+    }
+
+    .canvas__button:hover {
+        transform: none !important;
+        box-shadow: 0 0 20px 0 #fff !important; /* Mantiene el shadow inicial */
+    }
+
+
+    .canvas__button {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .canvas__separator {
+        width: 50%; /* Más ancho para pantallas pequeñas */
+    }
+}
+
+@keyframes fadeInOnly {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+        transform: perspective(1000px) translateZ(-200px);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(1000px) translateZ(0);
+    }
+}
+
+@keyframes fadeInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(100px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInAnimationGroup {
+	0% {
+	opacity: 0;
+	visibility: hidden;
+	}
+	100% {
+	opacity: 1;
+	visibility: visible;
+	}
+}
+
+@keyframes floatingMobileMedium {
+	0% {
+		transform: translateY(0) scale(0.8);
+	}
+	50% {
+		transform: translateY(-5px) scale(0.8);
+	}
+	100% {
+		transform: translateY(0) scale(0.8);
+	}
+}
+
+@keyframes floatingMobileSmall {
+	0% {
+		transform: translateY(0) scale(0.6);
+	}
+	50% {
+		transform: translateY(-5px) scale(0.6);
+	}
+	100% {
+		transform: translateY(0) scale(0.6);
+	}
+}
