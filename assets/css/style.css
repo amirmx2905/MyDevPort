@@ -1,9 +1,3 @@
-@font-face {
-    font-family: "JetBrainsMono";
-    src: url("../fonts/JetBrainsMono-2.304/fonts/ttf/JetBrainsMono-Regular.ttf") format("truetype");
-    font-weight: 400;
-}
-
 :root {
     font-size: 36px;
     --fade-duration: 3s; 
@@ -151,7 +145,7 @@ body {
 }
 
 .thin {
-	font-weight: 200;
+	font-weight: 100;
 }
 
 .fade-in-only {
