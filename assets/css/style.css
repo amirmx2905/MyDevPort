@@ -50,6 +50,15 @@ nav a {
 	font-weight: 100;
 }
 
+nav a.pressed {
+    background-color: transparent;
+    box-shadow: inset 0 10px 40px #000;
+    color: #fff;
+    text-shadow: 0 0 4px #fff;
+    font-weight: 700;
+    transform: scale(1.1);
+}
+
 nav a:hover {
 	background-color: transparent;
 	box-shadow: inset 0 10px 40px #000;
