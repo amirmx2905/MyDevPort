@@ -355,3 +355,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, fadeDuration);
 });
+
+/**
+ * This timeout reestablishes the scrollbar after 5 seconds
+ */
+setTimeout(() => {
+    document.body.style.overflow = "auto";
+}, 5000);

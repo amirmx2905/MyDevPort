@@ -2,6 +2,10 @@
     --fade-duration: 3s; 
 }
 
+body{
+	overflow: hidden;
+}
+
 .canvas {
 	position: relative;
 	width: 100%;
