@@ -362,3 +362,11 @@ document.addEventListener('DOMContentLoaded', function() {
 setTimeout(() => {
     document.body.style.overflow = "auto";
 }, 5000);
+
+
+/**
+ * This code establishes the main view when you enter or refresh the page
+ */
+window.onbeforeunload = function() {
+    window.scrollTo(0, 0);
+}
