@@ -133,7 +133,15 @@ body{
         animation: floatingMobileMedium 3s ease-in-out infinite;
     }
 
-	.canvas__icon:hover {
+	.canvas__title:hover{
+		transform: none;
+	}
+
+	.canvas__title:active{
+		transform: scale(1.05);
+	}
+
+	.canvas__icon:active {
         transform: scale(0.8) !important; /* Mantiene el scale inicial */
     }
 
