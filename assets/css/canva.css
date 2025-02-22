@@ -97,41 +97,6 @@
     height: 1rem;
 }
 
-.canvas__button__group {
-	margin-top: 100px;
-	box-sizing: border-box;
-	width: fit-content;
-	padding: 10px;
-	opacity: 0;
-	animation: fadeInButton var(--fade-duration) ease-out forwards;
-	animation-delay: 4s;
-}
-
-.canvas__button {
-	box-sizing: border-box;
-	width: fit-content;
-	white-space: nowrap;
-	padding: 10px;
-	font-size: 1rem;
-	font-family: JetBrainsMono;
-	border-radius: 30px;
-	box-shadow: 0 0 20px 0 #fff;
-	cursor: pointer;
-	border: none;
-	transition: all 0.2s ease-in-out;
-}
-
-.canvas__button__text {
-	color: #000;
-	font-weight: 900;
-}
-
-
-.canvas__button:hover {
-	transform: scale(1.15);
-	box-shadow: 0 0 50px 0 #fff; /* Aumenta el brillo del shadow */
-}
-
 .thin {
 	font-weight: 100;
 }
@@ -142,9 +107,9 @@
 	animation-delay: var(--fade-duration);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 915px) {
     :root {
-        font-size: 2rem; /* 32px para pantallas medianas */
+        font-size: 1.5rem; /* 32px para pantallas medianas */
     }
 
 	.canvas__content {
@@ -164,18 +129,8 @@
         animation: floatingMobileMedium 3s ease-in-out infinite;
     }
 
-	.canvas__button {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-
 	.canvas__icon:hover {
         transform: scale(0.8) !important; /* Mantiene el scale inicial */
-    }
-
-    .canvas__button:hover {
-        transform: none !important;
-        box-shadow: 0 0 20px 0 #fff !important; /* Mantiene el shadow inicial */
     }
 
     .canvas__separator {
@@ -183,10 +138,9 @@
     }
 }
 
-/* Para pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
     :root {
-        font-size: 1.5rem; /* 28px para pantallas muy pequeñas */
+        font-size: 1.25rem; /* 28px para pantallas muy pequeñas */
     }
 
 	.canvas__content {
@@ -208,17 +162,6 @@
 
 	.canvas__icon:hover {
         transform: scale(0.6) !important; /* Mantiene el scale inicial */
-    }
-
-    .canvas__button:hover {
-        transform: none !important;
-        box-shadow: 0 0 20px 0 #fff !important; /* Mantiene el shadow inicial */
-    }
-
-
-    .canvas__button {
-        font-size: 0.85rem;
-        padding: 6px 12px;
     }
 
     .canvas__separator {
@@ -243,17 +186,6 @@
     100% {
         opacity: 1;
         transform: perspective(1000px) translateZ(0);
-    }
-}
-
-@keyframes fadeInButton {
-    0% {
-        opacity: 0;
-        transform: translateY(100px); 
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 
