@@ -19,6 +19,10 @@
     margin-top: 80px;
 }
 
+.last {
+    margin-bottom: 50px;
+}
+
 /* ANIMATED BOX */
 
 .content__container {
@@ -92,7 +96,6 @@
     flex-shrink: 0;
     transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
-
 
 .content__img:hover {
     transform: scale(1.05);
@@ -268,6 +271,18 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
 }
 
 /* 
+/*  AREAS OF INTEREST TO DEVELOP
+*/
+
+.interest__container {
+    width: 100% !important;
+}
+
+.interest__container::before {
+    display: none;
+}
+
+/* 
 /*  MEDIA QUERYS
 */
 
@@ -277,6 +292,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
         align-items: center;
         justify-content: space-evenly;
         gap: 50px;
+        animation: none;
     }
 
     .content__container, .scroll__container {
@@ -359,6 +375,10 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
 
     .skill__card .skill__card-inner.is-flipped {
         transform: rotateY(180deg);
+    }
+    
+    .interest__container .content__text {
+        font-size: 0.9rem;
     }
 }
 
