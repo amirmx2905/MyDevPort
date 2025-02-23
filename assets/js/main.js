@@ -57,3 +57,26 @@
         });
     });
 });*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.skill__card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Solo aplicar el toggle si la pantalla es menor a 915px
+            if (window.innerWidth <= 915) {
+                const cardInner = card.querySelector('.skill__card-inner');
+                cardInner.classList.toggle('is-flipped');
+            }
+        });
+    });
+
+    // Opcional: Remover la clase is-flipped cuando la pantalla se hace más grande
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 915) {
+            document.querySelectorAll('.skill__card-inner').forEach(cardInner => {
+                cardInner.classList.remove('is-flipped');
+            });
+        }
+    });
+});
