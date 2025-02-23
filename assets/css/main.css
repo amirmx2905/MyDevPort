@@ -89,7 +89,7 @@
     width: 30%;
     aspect-ratio: 1/1;
     background-color: #fff;
-    background-image: url('ruta-de-la-imagen');
+    background-image: url("../img/memoji.jpeg");
     background-size: cover;
     background-position: center;
     border-radius: 100%;
