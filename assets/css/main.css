@@ -1,0 +1,265 @@
+/* 
+/*  ABOUT ME SECTION
+*/
+
+.main__content__container {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 100%;
+}
+
+.below{
+    margin-top: 100px;
+}
+
+/* ANIMATED BOX */
+
+.content__container {
+    box-sizing: border-box;
+    padding: 10px;
+    background: #000;
+    border-radius: 30px;
+    width: 50%;
+    height: fit-content;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.content__container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 0 #fff;
+}
+
+.content__container::before {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    translate: -50% 50%;
+    width: 500%;
+    height: 170px;
+    background-color: #fff;
+    
+    animation: rotate 4s linear infinite;
+}
+
+.content__container::after {
+    content: '';
+    box-shadow: inset 0 0px 50px #000;
+    position: absolute;
+    inset: 5px;
+    background: linear-gradient(#333,#222);
+    border-radius: 30px;
+}
+
+/* CONTENT OF THE BOX */
+
+.content__subtitle {
+    position: relative;
+    text-align: center;
+    text-shadow: 0 0 10px #fff;
+    z-index: 2;
+}
+
+.content__text {
+    position: relative;
+    font-size: 0.65rem;
+    line-height: 1.2rem;
+    padding: 10px 20px;
+    text-align:center;
+    margin-top: 20px;
+    z-index: 2;
+}
+
+/* IMAGE */
+
+.content__img {
+    width: 30%;
+    aspect-ratio: 1/1;
+    background-color: #fff;
+    background-image: url('ruta-de-la-imagen');
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    flex-shrink: 0;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+
+.content__img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 0 #fff;
+}
+
+
+/* 
+/*  SCROLL DEVELOPMENT LANGUAGES
+*/
+
+
+.scroll__container {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    margin-right: 2%;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(#333,#222);
+    border-radius: 30px;
+    width: 70%;
+    height: 100px;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.scroll__container:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 10px 100px #000, 0 0 20px 0 #fff;
+}
+
+.scroll__content {
+    display: flex;
+    animation: scroll 20s linear infinite;
+    gap: 20px;
+}
+
+.scroll__container:hover .scroll__content {
+    animation-play-state: paused;
+}
+
+.scroll__img{
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+}
+
+.scroll__img:hover {
+    filter: drop-shadow(0 0 10px #fff);
+    transform: scale(1.1);
+}
+
+.scroll__container::before,
+.scroll__container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    z-index: 3; 
+    pointer-events: none;
+}
+
+.scroll__container::before {
+    left: 0;
+background: linear-gradient(to right, #222 10%, transparent 50%);
+}
+
+.scroll__container::after {
+    right: 0;
+    background: linear-gradient(to left, #222 10%, transparent 50%);
+}
+
+
+/* 
+/*  MEDIA QUERYS
+*/
+
+@media (max-width: 950px) {
+    .main__content__container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 50px;
+    }
+
+    .content__container, .scroll__container {
+            width: 100%;
+        }
+
+    .content__container:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .content__container:active {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 0 #fff;
+    }
+
+    .content__img:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .content__img:active {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 0 #fff;
+    }
+
+    .content__img {
+        width: 300px;
+    }
+
+    .content__text {
+        font-size: 0.9rem;
+    }
+
+    .scroll__container:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .scroll__container:active {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 0 #fff;
+    }
+
+    .scroll__img:hover {
+        transform: none;
+        filter: none;
+    }
+
+    .scroll__img:active {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px #fff);
+    }
+    
+    .scroll__container:hover .scroll__content {
+        animation-play-state: running;
+    }
+}
+
+@media (max-width: 480px) {
+    .content__text {
+        font-size: 1em;
+    }
+}
+
+/* 
+/*  ANIMATIONS
+*/
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+    
+}
+
+@keyframes scroll {
+    0% {
+    transform: translateX(0);
+    }
+    100% {
+    transform: translateX(-50%);
+    }
+}

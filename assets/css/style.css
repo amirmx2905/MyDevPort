@@ -1,5 +1,5 @@
 :root {
-    font-size: calc(16px + 1vw);
+    font-size: 36px;
 	font-family: JetBrainsMono;
 	background-color: #444;
 	color: #fff;
@@ -98,14 +98,14 @@ p{
 	text-align: center;
 	height: fit-content;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+	flex-direction: column;
+    justify-content: space-evenly;
 	opacity: 1;
     transform: translateY(0);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 	animation: appear 0.5s ease-in-out;
 	animation-timeline: view();
-	animation-range: entry 0 cover 15%;
+	animation-range: entry 0 cover 30%;
 }
 
 .main__content.fade-out {
@@ -117,11 +117,7 @@ p{
 	display: none;
 }
 
-@media (max-width: 915px) {
-
-	:root {
-		font-size: calc(14px + 1vw);
-	}
+@media (max-width: 950px) {
 
 	main {
 		position: relative;
@@ -151,10 +147,6 @@ p{
 		padding: 20px 30px;
 		margin: 20px auto;
 		font-size: 0.8rem;
-	}
-
-	p{
-		font-size: 0.7rem;
 	}
 	
 	.links {
@@ -238,9 +230,6 @@ p{
 }
 
 @media (max-width: 480px) {
-	:root {
-		font-size: calc(12px + 1vw);
-	}
 	
 	
 	nav a {
@@ -248,33 +237,11 @@ p{
 		width: 85%;
 		padding: 15px 20px; 
 	}
-	
-	p {
-		font-size: 0.8rem;
-	}
 
-	.main__content {
-		padding: 10px;
-        min-height: calc(100vh - 90px);
-    }
+
 	
 	.links {
 		width: 70%;
-	}
-}
-
-@media (max-width: 320px) {
-	:root {
-		font-size: calc(10px + 1vw);
-	}
-	
-	nav a {
-		width: 90%;
-		padding: 12px 15px;
-	}
-	
-	.links {
-		width: 85%;
 	}
 }
 

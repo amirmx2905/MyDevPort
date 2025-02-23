@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Content for each section
     const contentSections = {
         aboutMe: `
-            //texto
+            
         `,
         academics: `
             //texto
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         projects: `
             //texto
         `,
-        certificates: `
+        certifications: `
             //texto
         `,
         contact: `
@@ -56,4 +56,4 @@ document.addEventListener('DOMContentLoaded', function() {
             await loadContent(e.target.id);
         });
     });
-});
+});*/
