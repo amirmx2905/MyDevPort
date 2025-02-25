@@ -96,11 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 'mydevport',
             title: 'MyDevPort',
-            description: 'Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.',
+            description: 'Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.',
             image: 'assets/img/imgPortfolio.png',
             githubUrl: 'https://github.com/amirmx2905/MyDevPort'
         },
-        // Puedes añadir más proyectos aquí
+        // ADD more projects here
     ];
 
     const modal = document.getElementById('project-modal');
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Proyecto',
             description: 'Descripción del proyecto no disponible.',
             image: 'assets/img/imgPortfolio.png',
-            githubUrl: '#' // URL por defecto si no se encuentra el proyecto
+            githubUrl: '#'
         };
 
         modalTitle.textContent = project.title;
@@ -123,12 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
         modalImage.src = project.image;
         modalImage.alt = project.title;
         
-        // Guardar la URL de GitHub como atributo de datos para usarlo en el evento click
         githubBtn.setAttribute('data-url', project.githubUrl);
         
         modal.classList.add('show');
         
-        // Centrar la ventana modal en la pantalla
         setTimeout(() => {
             const modalContent = document.querySelector('.modal-content');
             if (modalContent) {
@@ -140,25 +138,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
             }
-        }, 10); // Reducido a 10ms para un centrado más rápido
+        }, 10); 
     }
 
     function closeProjectModal() {
-        modal.classList.remove('show');
+        modal.classList.add('hide');
         
         setTimeout(() => {
-            if (!modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            
+            setTimeout(() => {
                 modalTitle.textContent = '';
                 modalDescription.innerHTML = '';
                 modalImage.src = '';
-            }
-        }, 300);
+                modal.classList.remove('hide'); 
+            }, 50);
+            
+        }, 400);
     }
 
     const items = document.querySelectorAll('.item');
     items.forEach(item => {
         item.addEventListener('click', function() {
-            // Obtener el id del proyecto del subtítulo o de un atributo data-*
             const subtitle = item.querySelector('.item-subtitle');
             const projectId = subtitle ? 
                 subtitle.textContent.trim().toLowerCase().replace(/\s+/g, '') : 
@@ -168,26 +169,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Evento para abrir el repositorio de GitHub
     githubBtn.addEventListener('click', function() {
         const url = this.getAttribute('data-url');
         if (url && url !== '#') {
-            // Abrir en una nueva pestaña
             window.open(url, '_blank');
         }
     });
 
-    // Evento para cerrar el modal
     modalClose.addEventListener('click', closeProjectModal);
     
-    // Cerrar el modal si se hace clic fuera del contenido
     modal.addEventListener('click', function(event) {
         if (event.target === modal) {
             closeProjectModal();
         }
     });
     
-    // Cerrar el modal con la tecla ESC
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && modal.classList.contains('show')) {
             closeProjectModal();

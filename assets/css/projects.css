@@ -144,7 +144,9 @@
 /*  MODAL WINDOW */
 
 .project-modal {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -153,17 +155,20 @@
   z-index: 1000;
   overflow: visible;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  backdrop-filter: blur(3px);
+  transition: none; /* Quitamos la transición porque usaremos animación */
+  backdrop-filter: blur(0px);
   pointer-events: none;
+  visibility: hidden; /* Añadimos esta propiedad */
 }
 
 .project-modal.show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
+  animation: modalFadeIn 0.4s ease-out forwards;
   pointer-events: auto;
+  visibility: visible;
+}
+
+.project-modal.hide {
+  animation: modalFadeOut 0.4s ease-in forwards;
 }
 
 .modal-content {
@@ -175,8 +180,9 @@
   max-height: 80vh;
   overflow: auto;
   box-shadow: 0 0 20px #000, inset 0 0 40px #000;
-  transform: scale(0.9);
-  transition: transform 0.3s ease-in-out;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: none; /* Quitamos la transición porque usaremos animación */
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -185,7 +191,11 @@
 }
 
 .project-modal.show .modal-content {
-  transform: scale(1);
+  animation: contentZoomIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.project-modal.hide .modal-content {
+  animation: contentZoomOut 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
 }
 
 .modal-header {
@@ -403,6 +413,10 @@
   .item-subtitle {
     font-size: 1rem;
   }
+
+  .modal-content {
+    max-height: 70vh;
+  }
 }
 
 @keyframes slideFromLeft {
@@ -449,4 +463,48 @@
 @keyframes scaleIn {
   from { transform: scale(0.9); }
   to { transform: scale(1); }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(3px);
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(3px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes contentZoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes contentZoomOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.7);
+    opacity: 0;
+  }
 }
