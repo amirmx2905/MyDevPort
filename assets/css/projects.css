@@ -41,7 +41,9 @@
   grid-template-rows: repeat(3, 1fr);
   position: relative;
   will-change: transform;
+  perspective: 1000;
   -webkit-perspective: 1000;
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
@@ -53,7 +55,9 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   will-change: transform;
+  perspective: 1000;
   -webkit-perspective: 1000;
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
 }
