@@ -1,4 +1,4 @@
-.projects__wrapper {
+.grid__wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -27,7 +27,7 @@
   filter: drop-shadow(0 0 10px #fff);
 }
 
-.projects__container {
+.grid__container {
   box-sizing: border-box;
   background: linear-gradient(#333, #222);
   box-shadow: inset 0 0 10px #000;
@@ -40,14 +40,12 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   position: relative;
-  /* Optimización para hardware acceleration */
   will-change: transform;
   -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
 }
 
-/* Estilos base de los grupos de proyectos */
-.project-group {
+.item-group {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -60,38 +58,38 @@
   transform-style: preserve-3d;
 }
 
-.project-group.active {
+.item-group.active {
   transform: translateX(0);
   z-index: 2;
 }
 
-.project-group.next {
+.item-group.next {
   transform: translateX(100%);
   z-index: 1;
 }
 
-.project-group.prev {
+.item-group.prev {
   transform: translateX(-100%);
   z-index: 1;
 }
 
-.project-group.slide-from-left {
+.item-group.slide-from-left {
   animation: slideFromLeft 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.project-group.slide-to-right {
+.item-group.slide-to-right {
   animation: slideToRight 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.project-group.slide-from-right {
+.item-group.slide-from-right {
   animation: slideFromRight 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.project-group.slide-to-left {
+.item-group.slide-to-left {
   animation: slideToLeft 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.project-item {
+.item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,32 +101,31 @@
   cursor: pointer;
 }
 
-.project-item:hover {
+.item:hover {
   box-shadow: inset 0 0 50px #000;
   z-index: 1;
 }
 
-/* Media queries sin cambios */
 @media screen and (max-width: 1035px) {
-  .projects__container {
+  .grid__container {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
     min-height: 100vh;
   }
-  .project-group {
+  .item-group {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
 
-  .project-item {
+  .item {
     transition: all 0.1s ease-in-out;
   }
 
-  .project-item:hover {
+  .item:hover {
     box-shadow: none;
     z-index: 1;
   }
-  .project-item:active {
+  .item:active {
     box-shadow: inset 0 0 50px #000;
     z-index: 1;
   }
@@ -147,12 +144,12 @@
 }
 
 @media screen and (max-width: 800px) {
-  .projects__container {
+  .grid__container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
     min-height: 100vh;
   }
-  .project-group {
+  .item-group {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
   }
@@ -164,20 +161,37 @@
 }
 
 @media screen and (max-width: 480px) {
-  .projects__wrapper {
+  .grid__wrapper {
     justify-content: center;
   }
 
-  .projects__container {
+  .grid__container {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: auto;
     min-height: auto;
     max-height: 75vh;
     overflow-y: auto;
     display: block;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+    box-sizing: border-box;
+  }
+  
+  .grid__container::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .grid__container::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 10px 0;
+  }
+  
+  .grid__container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
   }
 
-  .project-group {
+  .item-group {
     position: relative;
     display: block;
     transform: none !important;
@@ -185,9 +199,9 @@
     z-index: 1 !important;
   }
 
-  .project-group.active,
-  .project-group.next,
-  .project-group.prev {
+  .item-group.active,
+  .item-group.next,
+  .item-group.prev {
     transform: none;
     z-index: 1;
   }
@@ -197,7 +211,7 @@
     display: none;
   }
 
-  .project-item {
+  .item {
     aspect-ratio: 1/1;
     margin-bottom: 10px;
   }

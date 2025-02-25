@@ -233,7 +233,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const prevArrow = document.querySelector('.prev-arrow');
     const nextArrow = document.querySelector('.next-arrow');
-    const groups = document.querySelectorAll('.project-group');
+    const groups = document.querySelectorAll('.item-group');
     let currentGroup = 0;
     const totalGroups = groups.length;
     let isAnimating = false;
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initGroups() {
         if (isMobileView()) {
             groups.forEach(group => {
-                group.className = 'project-group';
+                group.className = 'item-group';
             });
             return;
         }
@@ -253,16 +253,15 @@ document.addEventListener('DOMContentLoaded', function() {
         groups.forEach((group, index) => {
             group.classList.remove('slide-from-left', 'slide-to-right', 'slide-from-right', 'slide-to-left');
             if (index === currentGroup) {
-                group.className = 'project-group active';
+                group.className = 'item-group active';
             } else if (index === (currentGroup + 1) % totalGroups) {
-                group.className = 'project-group next';
+                group.className = 'item-group next';
             } else {
-                group.className = 'project-group prev';
+                group.className = 'item-group prev';
             }
         });
     }
     
-    // Inicializa los grupos y reconfigura cuando cambia el tamaño de la ventana
     initGroups();
     window.addEventListener('resize', initGroups);
     
@@ -296,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         isAnimating = true;
         const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
-        groups[prevGroup].className = 'project-group prev';
+        groups[prevGroup].className = 'item-group prev';
         void groups[prevGroup].offsetWidth;
         groups[prevGroup].classList.add('slide-from-left');
         groups[currentGroup].classList.add('slide-to-right');
@@ -313,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         isAnimating = true;
         const nextGroup = (currentGroup + 1) % totalGroups;
-        groups[nextGroup].className = 'project-group next';
+        groups[nextGroup].className = 'item-group next';
         void groups[nextGroup].offsetWidth;
         groups[nextGroup].classList.add('slide-from-right');
         groups[currentGroup].classList.add('slide-to-left');
