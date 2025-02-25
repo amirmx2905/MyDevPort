@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
@@ -227,5 +227,101 @@ document.addEventListener('DOMContentLoaded', function() {
                 cardInner.classList.remove('is-flipped');
             });
         }
+    });
+});*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    const prevArrow = document.querySelector('.prev-arrow');
+    const nextArrow = document.querySelector('.next-arrow');
+    const groups = document.querySelectorAll('.project-group');
+    let currentGroup = 0;
+    const totalGroups = groups.length;
+    let isAnimating = false;
+    
+    function isMobileView() {
+        return window.innerWidth <= 480;
+    }
+    
+    function initGroups() {
+        if (isMobileView()) {
+            groups.forEach(group => {
+                group.className = 'project-group';
+            });
+            return;
+        }
+    
+        groups.forEach((group, index) => {
+            group.classList.remove('slide-from-left', 'slide-to-right', 'slide-from-right', 'slide-to-left');
+            if (index === currentGroup) {
+                group.className = 'project-group active';
+            } else if (index === (currentGroup + 1) % totalGroups) {
+                group.className = 'project-group next';
+            } else {
+                group.className = 'project-group prev';
+            }
+        });
+    }
+    
+    // Inicializa los grupos y reconfigura cuando cambia el tamaño de la ventana
+    initGroups();
+    window.addEventListener('resize', initGroups);
+    
+    function onAnimationEnd(element, callback) {
+        if (isMobileView()) {
+            callback();
+            return;
+        }
+    
+        const animations = {
+            'animation': 'animationend',
+            'OAnimation': 'oAnimationEnd',
+            'MozAnimation': 'animationend',
+            'WebkitAnimation': 'webkitAnimationEnd'
+        };
+    
+        for (const t in animations) {
+            if (element.style[t] !== undefined) {
+                element.addEventListener(animations[t], function onEnd() {
+                element.removeEventListener(animations[t], onEnd);
+                callback();
+                });
+                return;
+            }
+        }
+        setTimeout(callback, 600);
+    }
+    
+    prevArrow.addEventListener('click', function() {
+        if (isMobileView() || isAnimating) return;
+
+        isAnimating = true;
+        const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
+        groups[prevGroup].className = 'project-group prev';
+        void groups[prevGroup].offsetWidth;
+        groups[prevGroup].classList.add('slide-from-left');
+        groups[currentGroup].classList.add('slide-to-right');
+    
+        onAnimationEnd(groups[currentGroup], function() {
+            currentGroup = prevGroup;
+            initGroups();
+            isAnimating = false;
+        });
+    });
+    
+    nextArrow.addEventListener('click', function() {
+        if (isMobileView() || isAnimating) return;
+        
+        isAnimating = true;
+        const nextGroup = (currentGroup + 1) % totalGroups;
+        groups[nextGroup].className = 'project-group next';
+        void groups[nextGroup].offsetWidth;
+        groups[nextGroup].classList.add('slide-from-right');
+        groups[currentGroup].classList.add('slide-to-left');
+    
+        onAnimationEnd(groups[currentGroup], function() {
+            currentGroup = nextGroup;
+            initGroups();
+            isAnimating = false;
+        });
     });
 });
