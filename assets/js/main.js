@@ -1,9 +1,20 @@
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
     
-    // Content for each section
+    const attachCardListeners = () => {
+        const cards = document.querySelectorAll('.skill__card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (window.innerWidth <= 915) {
+                    const cardInner = card.querySelector('.skill__card-inner');
+                    cardInner.classList.toggle('is-flipped');
+                }
+            });
+        });
+    };
+
     const contentSections = {
         aboutMe: `
             <div class="main__content__container"> 
@@ -15,7 +26,7 @@
                             and staying updated with industry trends. Strong collaborator with excellent communication skills.
                         </p>
                 </div>
-                <div class="content__img">
+                <div class="content__video">
                     <video class="center__video" autoplay muted loop playsinline>
                         <source src="assets/videos/memoji.mp4" type="video/mp4">
                         Your browser does not support the video tag
@@ -148,17 +159,33 @@
                 </div>
             </div>
         `,
-        academics: `
-            //texto
+        experience: `
+            <div class="main__content__container column start">
+                <div class="content__container__experience">
+                    <img class="content__img" src="assets/img/logoTeleperformance.png" alt="caritasWebsite">
+                    <h2 class="content__subtitle__experience">Retention Agent at Tele-Performance</h2>
+                    <h3 class="content__subtitle__experience no-shadow">May 2023 - July 2023</h3>
+                    <p class="content__text experience-text no-shadow">
+                        At Tele-Performance, I worked as a Retention Agent focused on maintaining the company's client base. I analyzed customer situations to understand their concerns about leaving the company and used effective communication skills to engage with them. By applying problem-solving and negotiation techniques, I created tailored offers that addressed their specific needs, contributing directly to successful client retention.                    </p>
+                </div>
+                <div class="content__container__experience">
+                    <img class="content__img" src="assets/img/caritasImage.png" alt="caritasWebsite">
+                    <h2 class="content__subtitle__experience">Web Developer at Cáritas de Guadalajara</h2>
+                    <h3 class="content__subtitle__experience no-shadow">Aug 2023 - May 2024</h3>
+                    <p class="content__text experience-text no-shadow">
+                        As a Web Developer at Cáritas de Guadalajara, I collaborated on developing a new interactive website that effectively communicated the organization's mission to all ages. Using Visual Studio, I implemented HTML for structure, CSS for styling, and JavaScript for interactive features. This project allowed me to apply my technical skills in a meaningful social context while strengthening my web development capabilities.
+                    </p>
+                </div>
+            </div>
         `,
         projects: `
-            //texto
+            Proyects
         `,
         certifications: `
-            //texto
+            Certifications
         `,
         contact: `
-            //texto
+            Contact
         `
     };
 
@@ -172,16 +199,15 @@
     const loadContent = async (sectionId) => {
         mainContent.classList.add('fade-out');
         
-        // Wait for fade out animation
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Update content
         mainContent.innerHTML = contentSections[sectionId];
+        
+        attachCardListeners();
         
         mainContent.classList.remove('fade-out');
     };
 
-    // Set initial content
     const aboutMeLink = document.getElementById('aboutMe');
     setActiveLink(aboutMeLink);
     loadContent('aboutMe');
@@ -189,29 +215,12 @@
     navLinks.forEach(link => {
         link.addEventListener('click', async (e) => {
             e.preventDefault();
-            
             checkbox.checked = false;
             setActiveLink(e.target);
-            
             await loadContent(e.target.id);
         });
     });
-}); */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.skill__card');
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Solo aplicar el toggle si la pantalla es menor a 915px
-            if (window.innerWidth <= 915) {
-                const cardInner = card.querySelector('.skill__card-inner');
-                cardInner.classList.toggle('is-flipped');
-            }
-        });
-    });
-
-    // Opcional: Remover la clase is-flipped cuando la pantalla se hace más grande
     window.addEventListener('resize', () => {
         if (window.innerWidth > 915) {
             document.querySelectorAll('.skill__card-inner').forEach(cardInner => {

@@ -111,7 +111,7 @@ body{
 	animation-delay: var(--fade-duration);
 }
 
-@media (max-width: 915px) {
+@media (max-width: 1035px) {
     :root {
         font-size: 1.5rem; /* 32px para pantallas medianas */
     }
