@@ -91,9 +91,11 @@
 
 .item {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  overflow: hidden;
   height: 100%;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
@@ -104,6 +106,31 @@
 .item:hover {
   box-shadow: inset 0 0 50px #000;
   z-index: 1;
+}
+
+.item-img {
+  width: 80%;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: all 0.2s ease-in-out;
+}
+
+.item-subtitle {
+  opacity: 0;
+  margin-top: 10px;
+  font-size: 0.7rem;
+  transform: translateY(10px);
+  transition: all 0.2s ease-in-out;
+}
+
+.item:hover .item-img {
+  transform: scale(1.05);
+}
+
+.item:hover .item-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+  text-shadow: 0 0 10px #fff;
 }
 
 @media screen and (max-width: 1035px) {
@@ -117,19 +144,6 @@
     grid-template-rows: repeat(4, 1fr);
   }
 
-  .item {
-    transition: all 0.1s ease-in-out;
-  }
-
-  .item:hover {
-    box-shadow: none;
-    z-index: 1;
-  }
-  .item:active {
-    box-shadow: inset 0 0 50px #000;
-    z-index: 1;
-  }
-
   .prev-arrow:hover,
   .next-arrow:hover {
     transform: none;
@@ -141,6 +155,24 @@
     transform: scale(1.1);
     filter: drop-shadow(0 0 10px #fff);
   }
+
+  .item-subtitle {
+    opacity: 1;
+    font-size: 0.6rem;
+    transform: translateY(0px);
+    transition: none;
+    transition: text-shadow 1s ease-in-out;
+    text-shadow: 0 0 7.5px #fff;
+  }
+
+  .item:hover .item-img {
+    transform: none;
+  }
+
+  .item:hover .item-subtitle {
+    opacity: none;
+    transform: none;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -150,6 +182,8 @@
     min-height: 100vh;
   }
   .item-group {
+    width: fit-content;
+    height: fit-content;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
   }
@@ -157,6 +191,18 @@
   .next-arrow {
     display: block;
     width: 40px;
+  }
+
+  .item-img {
+    margin-top: 20px;
+  }
+
+  .item-subtitle {
+    margin-bottom: 20px;
+  }
+
+  .item {
+    height: calc(fit-content + 40px);
   }
 }
 
@@ -176,16 +222,16 @@
     scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
     box-sizing: border-box;
   }
-  
+
   .grid__container::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   .grid__container::-webkit-scrollbar-track {
     background: transparent;
     margin: 10px 0;
   }
-  
+
   .grid__container::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -214,6 +260,10 @@
   .item {
     aspect-ratio: 1/1;
     margin-bottom: 10px;
+  }
+
+  .item-subtitle {
+    font-size: 1rem;
   }
 }
 
