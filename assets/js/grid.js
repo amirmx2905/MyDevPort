@@ -96,9 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 'mydevport',
             title: 'MyDevPort',
-            description: 'Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.Portafolio de desarrollo personalizado con características interactivas y diseño responsivo. Este proyecto fue creado utilizando HTML, CSS y JavaScript puro para mostrar mis habilidades y proyectos de manera atractiva.',
+            description: 'MyDevPort is my personal development portfolio showcasing my technical skills and projects through a responsive interface built with vanilla HTML, CSS, and JavaScript. The site features an interactive project gallery smooth animations, and project showcases. Visitors can explore my development journey through visual representations of my technical competencies, highlights of my work experience, and browse my professional certifications. A contact section provides multiple ways to reach me, including a validated form, social media links, and an email designed to demonstrate my proficiency in front-end fundamentals while maintaining cross-device compatibility.',
             image: 'assets/img/imgPortfolio.png',
-            githubUrl: 'https://github.com/amirmx2905/MyDevPort'
+            githubUrl: 'https://github.com/amirmx2905/MyDevPort',
+            technologies: ['html', 'css', 'javascript']
         },
         // ADD more projects here
     ];
@@ -110,12 +111,82 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalClose = document.getElementById('modal-close');
     const githubBtn = document.getElementById('github-btn');
     
+    // Check if modal content already has footer, if not add it
+    const modalContent = document.querySelector('.modal-content');
+    if (!modalContent.querySelector('.modal-footer')) {
+        const modalFooter = document.createElement('div');
+        modalFooter.className = 'modal-footer';
+        modalFooter.innerHTML = `
+            <h3 class="footer-title">Technologies Used</h3>
+            <div class="tech-logos"></div>
+        `;
+        modalContent.appendChild(modalFooter);
+        
+        // Add CSS for the modal footer if not already present
+        if (!document.querySelector('style#modal-footer-styles')) {
+            const styleTag = document.createElement('style');
+            styleTag.id = 'modal-footer-styles';
+            styleTag.textContent = `
+                .modal-footer {
+                    padding-top: 15px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                
+                .footer-title {
+                    font-size: 1.2rem;
+                    margin: 0;
+                    text-shadow: 0 0 5px #fff;
+                }
+                
+                .tech-logos {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+                
+                .tech-logo {
+                    width: 35px;
+                    height: 35px;
+                    transition: all 0.3s ease;
+                    filter: grayscale(0.5);
+                }
+                
+                .tech-logo:hover {
+                    transform: scale(1.2);
+                    filter: grayscale(0) drop-shadow(0 0 3px #fff);
+                }
+                
+                @media screen and (max-width: 600px) {
+                    .tech-logos {
+                        justify-content: center;
+                    }
+                    
+                    .tech-logo {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            `;
+            document.head.appendChild(styleTag);
+        }
+    }
+    
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
     function openProjectModal(projectId) {
         const project = projectsData.find(p => p.id === projectId) || {
             title: 'Proyecto',
             description: 'Descripción del proyecto no disponible.',
             image: 'assets/img/imgPortfolio.png',
-            githubUrl: '#'
+            githubUrl: '#',
+            technologies: []
         };
 
         modalTitle.textContent = project.title;
@@ -124,6 +195,22 @@ document.addEventListener('DOMContentLoaded', function() {
         modalImage.alt = project.title;
         
         githubBtn.setAttribute('data-url', project.githubUrl);
+        
+        // Update technology logos
+        const techLogos = document.querySelector('.tech-logos');
+        techLogos.innerHTML = '';
+        
+        if (project.technologies && project.technologies.length > 0) {
+            project.technologies.forEach(tech => {
+                const logoPath = `assets/img/icon${capitalizeFirstLetter(tech)}.svg`;
+                const logoImg = document.createElement('img');
+                logoImg.src = logoPath;
+                logoImg.alt = tech;
+                logoImg.title = capitalizeFirstLetter(tech);
+                logoImg.className = 'tech-logo';
+                techLogos.appendChild(logoImg);
+            });
+        }
         
         modal.classList.add('show');
         
