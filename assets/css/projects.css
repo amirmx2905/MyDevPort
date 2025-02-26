@@ -1,7 +1,20 @@
 /* 
-/*  PROJECTS SECTION
-*/
+ * PROJECT GRID AND MODAL CSS
+ * ==========================
+ * [GRID_WRAPPER] - Main grid container and navigation arrows
+ * [GRID_CONTAINER] - Project grid layout and visual styling
+ * [GRID_ITEMS] - Project item groups and animation classes
+ * [ITEM_STYLING] - Individual project item cards
+ * [MODAL] - Project modal window styling
+ * [MODAL_CONTENT] - Modal content container
+ * [MODAL_HEADER] - Modal header with title and buttons
+ * [MODAL_BODY] - Project image and description area
+ * [MODAL_FOOTER] - Technologies section and logos
+ * [RESPONSIVE] - Media queries for different screen sizes
+ * [ANIMATIONS] - Keyframe animations for transitions
+ */
 
+/* [GRID_WRAPPER] - Main grid container and navigation arrows */
 .grid__wrapper {
   width: 100%;
   height: 100%;
@@ -32,6 +45,7 @@
   filter: drop-shadow(0 0 5px #fff);
 }
 
+/* [GRID_CONTAINER] - Project grid layout and visual styling */
 .grid__container {
   box-sizing: border-box;
   background: linear-gradient(#333, #222);
@@ -52,6 +66,7 @@
   -webkit-backface-visibility: hidden;
 }
 
+/* [GRID_ITEMS] - Project item groups and animation classes */
 .item-group {
   position: absolute;
   width: 100%;
@@ -98,6 +113,7 @@
   animation: slideToLeft 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
+/* [ITEM_STYLING] - Individual project item cards */
 .item {
   display: flex;
   flex-direction: column;
@@ -142,8 +158,7 @@
   text-shadow: 0 0 10px #fff;
 }
 
-/*  MODAL WINDOW */
-
+/* [MODAL] - Project modal window styling */
 .project-modal {
   display: flex;
   justify-content: center;
@@ -172,6 +187,7 @@
   animation: modalFadeOut 0.4s ease-in forwards;
 }
 
+/* [MODAL_CONTENT] - Modal content container */
 .modal-content {
   background: linear-gradient(135deg, #333, #222);
   border-radius: 20px;
@@ -183,7 +199,7 @@
   box-shadow: 0 0 20px #000, inset 0 0 40px #000;
   transform: scale(0.7);
   opacity: 0;
-  transition: none; /* Quitamos la transición porque usaremos animación */
+  transition: none;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -199,6 +215,7 @@
   animation: contentZoomOut 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
 }
 
+/* [MODAL_HEADER] - Modal header with title and buttons */
 .modal-header {
   display: flex;
   align-items: center;
@@ -257,6 +274,7 @@
   height: 40px;
 }
 
+/* [MODAL_BODY] - Project image and description area */
 .modal-body {
   padding: 20px 0;
   display: flex;
@@ -282,6 +300,7 @@
   font-size: 1rem;
 }
 
+/* [MODAL_FOOTER] - Technologies section and logos */
 .modal-footer {
     padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -318,6 +337,7 @@
     filter: grayscale(0) drop-shadow(0 0 10px #fff);
 }
 
+/* [RESPONSIVE] - Media queries for different screen sizes */
 @media screen and (max-width: 1035px) {
   .grid__container {
     grid-template-columns: repeat(3, 1fr);
@@ -456,6 +476,7 @@
   }
 }
 
+/* [ANIMATIONS] - Keyframe animations for transitions */
 @keyframes slideFromLeft {
   from {
     transform: translate3d(-100%, 0, 0);

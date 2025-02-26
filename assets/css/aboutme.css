@@ -1,7 +1,23 @@
 /* 
-/*  ABOUT ME SECTION
-*/
+ * ABOUT ME SECTION STYLES
+ * ======================
+ * [CONTAINER] - Main container layout
+ * [SPACING] - Container spacing utilities
+ * [ANIMATED_BOX] - Animated box with glow effect
+ * [BOX_CONTENT] - Box content styling
+ * [PROFILE_VIDEO] - Profile video container and animation
+ * [SCROLL_CONTAINER] - Scrolling languages display
+ * [SCROLL_EFFECTS] - Scroll animation and hover effects
+ * [SKILLS_GRID] - Soft skills grid layout
+ * [SKILL_CARDS] - Skill cards with flip animation
+ * [CARD_FACES] - Front and back of skill cards
+ * [INTEREST] - Areas of interest section
+ * [RESPONSIVE_TABLET] - Tablet responsive styles
+ * [RESPONSIVE_MOBILE] - Mobile responsive styles
+ * [ANIMATIONS] - Keyframe animation definitions
+ */
 
+/* [CONTAINER] - Main container layout */
 .main__content__container {
     background-color: transparent;
     display: flex;
@@ -16,6 +32,7 @@
 	animation-range: entry 0 cover 15%;
 }
 
+/* [SPACING] - Container spacing utilities */
 .below{
     margin-top: 80px;
 }
@@ -24,8 +41,7 @@
     margin-bottom: 50px;
 }
 
-/* ANIMATED BOX */
-
+/* [ANIMATED_BOX] - Animated box with glow effect */
 .content__container {
     box-sizing: border-box;
     padding: 10px;
@@ -65,8 +81,7 @@
     border-radius: 30px;
 }
 
-/* CONTENT OF THE BOX */
-
+/* [BOX_CONTENT] - Box content styling */
 .content__subtitle {
     position: relative;
     text-align: center;
@@ -84,8 +99,7 @@
     z-index: 2;
 }
 
-/* IMAGE */
-
+/* [PROFILE_VIDEO] - Profile video container and animation */
 .content__video {
     text-align: start;
     width: 30%;
@@ -109,8 +123,7 @@
     box-shadow: 0 0 20px 0 #fff;
 }
 
-/* SCROLL DEVELOPMENT LANGUAGES */
-
+/* [SCROLL_CONTAINER] - Scrolling languages display */
 .scroll__container {
     box-sizing: border-box;
     position: relative;
@@ -132,6 +145,7 @@
     box-shadow: inset 0 10px 100px #000, 0 0 20px 0 #fff;
 }
 
+/* [SCROLL_EFFECTS] - Scroll animation and hover effects */
 .scroll__content {
     display: flex;
     animation: scroll 20s linear infinite;
@@ -166,7 +180,7 @@
 
 .scroll__container::before {
     left: 0;
-background: linear-gradient(to right, #222 10%, transparent 50%);
+    background: linear-gradient(to right, #222 10%, transparent 50%);
 }
 
 .scroll__container::after {
@@ -174,8 +188,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     background: linear-gradient(to left, #222 10%, transparent 50%);
 }
 
-/*  SOFT SKILLS */
-
+/* [SKILLS_GRID] - Soft skills grid layout */
 .skills__container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -184,6 +197,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     padding: 20px;
 }
 
+/* [SKILL_CARDS] - Skill cards with flip animation */
 .skill__card {
     perspective: 1000px;
     aspect-ratio: 1 / 1.5;
@@ -203,6 +217,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     transform: rotateY(180deg);
 }
 
+/* [CARD_FACES] - Front and back of skill cards */
 .skill__card-front, .skill__card-back {
     box-sizing: border-box;
     padding: 15px;
@@ -271,9 +286,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     padding: 0 10px;
 }
 
-
-/*  AREAS OF INTEREST TO DEVELOP */
-
+/* [INTEREST] - Areas of interest section */
 .interest__container {
     width: 100% !important;
 }
@@ -282,8 +295,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     display: none;
 }
 
-/*  MEDIA QUERYS */
-
+/* [RESPONSIVE_TABLET] - Tablet responsive styles */
 @media (max-width: 1035px) {
     .main__content__container {
         flex-direction: column;
@@ -381,6 +393,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     }
 }
 
+/* [RESPONSIVE_MOBILE] - Mobile responsive styles */
 @media (max-width: 480px) {
     .content__text {
         font-size: 1em;
@@ -402,8 +415,7 @@ background: linear-gradient(to right, #222 10%, transparent 50%);
     }
 }
 
-/*  ANIMATIONS */
-
+/* [ANIMATIONS] - Keyframe animation definitions */
 @keyframes rotate {
     from {
         transform: rotate(0deg);

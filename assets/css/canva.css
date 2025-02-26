@@ -1,3 +1,21 @@
+/* 
+ * CANVAS ANIMATION STYLES
+ * ======================
+ * [VARIABLES] - CSS variables and initial state
+ * [CANVAS_CONTAINER] - Canvas container and positioning
+ * [CANVAS_CONTENT] - Content layout within canvas
+ * [HORIZONTAL_GROUP] - Title and social icons row
+ * [TITLE] - Main title styling
+ * [ICONS] - Social media icon styling
+ * [SEPARATOR] - Horizontal divider line
+ * [ANIMATION_GROUP] - Typing animation container
+ * [UTILITIES] - Utility classes
+ * [RESPONSIVE_TABLET] - Tablet media queries
+ * [RESPONSIVE_MOBILE] - Mobile media queries
+ * [ANIMATIONS] - Keyframe animation definitions
+ */
+
+/* [VARIABLES] - CSS variables and initial state */
 :root {
     --fade-duration: 3s; 
 }
@@ -6,6 +24,7 @@ body{
 	overflow: hidden;
 }
 
+/* [CANVAS_CONTAINER] - Canvas container and positioning */
 .canvas {
 	position: relative;
 	width: 100%;
@@ -21,6 +40,7 @@ body{
 	z-index: -1;
 }
 
+/* [CANVAS_CONTENT] - Content layout within canvas */
 .canvas__content {
 	display: flex;
 	flex-direction: column;
@@ -37,6 +57,7 @@ body{
 	animation: fadeInContent var(--fade-duration) ease-out forwards;
 }
 
+/* [HORIZONTAL_GROUP] - Title and social icons row */
 .canvas__horizontal-group {
     display: flex;
     align-items: center;
@@ -44,6 +65,7 @@ body{
     gap: 1rem;
 }
 
+/* [TITLE] - Main title styling */
 .canvas__title {
 	transition: 0.2s ease-in-out;
 	-webkit-user-select: none;
@@ -58,6 +80,7 @@ body{
 	transform: scale(1.05);
 }
 
+/* [ICONS] - Social media icon styling */
 .canvas__icon {
 	width: fit-content;
 	height: auto;
@@ -69,6 +92,7 @@ body{
 	transform: scale(1.2);
 }
 
+/* [SEPARATOR] - Horizontal divider line */
 .canvas__separator {
 	display: block;
 	width: 40%;
@@ -78,6 +102,7 @@ body{
 	will-change: opacity, transform;
 }
 
+/* [ANIMATION_GROUP] - Typing animation container */
 .canvas__animation-group {
 	display: flex;
 	flex-direction: column;
@@ -101,6 +126,7 @@ body{
     height: 1rem;
 }
 
+/* [UTILITIES] - Utility classes */
 .thin {
 	font-weight: 100;
 }
@@ -111,6 +137,7 @@ body{
 	animation-delay: var(--fade-duration);
 }
 
+/* [RESPONSIVE_TABLET] - Tablet media queries */
 @media (max-width: 1035px) {
     :root {
         font-size: 1.5rem; /* 32px para pantallas medianas */
@@ -150,6 +177,7 @@ body{
     }
 }
 
+/* [RESPONSIVE_MOBILE] - Mobile media queries */
 @media (max-width: 480px) {
     :root {
         font-size: 1.25rem; /* 28px para pantallas muy pequeñas */
@@ -181,6 +209,7 @@ body{
     }
 }
 
+/* [ANIMATIONS] - Keyframe animation definitions */
 @keyframes fadeInOnly {
 	0% {
 		opacity: 0;

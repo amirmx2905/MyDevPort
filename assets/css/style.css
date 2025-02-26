@@ -1,3 +1,19 @@
+/* 
+ * MAIN STYLESHEET
+ * ==============
+ * [ROOT] - Root variables and base styles
+ * [RESET] - CSS reset
+ * [MAIN] - Main container styling
+ * [NAV] - Navigation bar styling
+ * [NAV_ITEMS] - Navigation link styling
+ * [LINKS] - Link container layout
+ * [SIDEBAR] - Sidebar toggle and mobile menu
+ * [CONTENT] - Main content container
+ * [RESPONSIVE_TABLET] - Tablet responsive styles (max-width: 1035px)
+ * [RESPONSIVE_MOBILE] - Mobile responsive styles (max-width: 480px)
+ */
+
+/* [ROOT] - Root variables and base styles */
 :root {
     font-size: 36px;
 	font-family: JetBrainsMono;
@@ -5,11 +21,13 @@
 	color: #fff;
 }
 
+/* [RESET] - CSS reset */
 * {
 	padding: 0;
 	margin: 0;
 }
 
+/* [MAIN] - Main container styling */
 main {
 	background-color: #444;
 	width: 100%;
@@ -18,6 +36,7 @@ main {
 	box-shadow: inset 0 0 40px #000;
 }
 
+/* [NAV] - Navigation bar styling */
 nav{
 	margin: 30px auto;
 	border-radius: 50px;
@@ -35,6 +54,7 @@ nav:hover {
 	transform: scale(1.005);
 }
 
+/* [NAV_ITEMS] - Navigation link styling */
 nav a {
 	height: 80%;
 	padding: 0px 20px;
@@ -76,6 +96,7 @@ p{
 	font-size: 0.7rem;
 }
 
+/* [LINKS] - Link container layout */
 .links {
 	height: 100%;
 	width: 100%;
@@ -85,11 +106,13 @@ p{
 	justify-content: space-evenly;
 }
 
+/* [SIDEBAR] - Sidebar toggle and mobile menu */
 .sidebar__toggle, .sidebar__untoggle {
 	padding: 0;
 	display: none;
 }
 
+/* [CONTENT] - Main content container */
 .main__content{
 	height: fit-content;
 	box-sizing: border-box;
@@ -114,6 +137,7 @@ p{
 	display: none;
 }
 
+/* [RESPONSIVE_TABLET] - Tablet responsive styles (max-width: 1035px) */
 @media (max-width: 1035px) {
 
 	main {
@@ -226,19 +250,16 @@ p{
 	}
 }
 
+/* [RESPONSIVE_MOBILE] - Mobile responsive styles (max-width: 480px) */
 @media (max-width: 480px) {
-	
 	
 	nav a {
 		font-size: 0.9rem;
 		width: 85%;
 		padding: 15px 20px; 
 	}
-
-
 	
 	.links {
 		width: 70%;
 	}
 }
-

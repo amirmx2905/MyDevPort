@@ -1,16 +1,23 @@
+/* 
+ * TRANSIENT CUBE STYLES
+ * =====================
+ * [CUBE_BASE] - Base cube element dimensions
+ * [CUBE_VARIANTS] - Color variants for different cube tones
+ */
+
+/* [CUBE_BASE] - Base cube element dimensions */
 .trasient__cube {
 	width: 100%;
 	height: 20px;
 }
 
+/* [CUBE_VARIANTS] - Color variants for different cube tones */
 .high {
 	background-color: #111;
 }
-
 .medium {
 	background-color: #222;
 }
-
 .light {
 	background-color: #333;
 }
