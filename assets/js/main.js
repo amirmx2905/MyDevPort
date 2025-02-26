@@ -1,4 +1,4 @@
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
@@ -12,6 +12,241 @@
                     cardInner.classList.toggle('is-flipped');
                 }
             });
+        });
+    };
+
+    // Project data
+    const projectsData = [
+        {
+            id: 'mydevport',
+            title: 'MyDevPort',
+            description: 'MyDevPort is my personal development portfolio showcasing my technical skills and projects through a responsive interface built with vanilla HTML, CSS, and JavaScript. The site features an interactive project gallery smooth animations, and project showcases. Visitors can explore my development journey through visual representations of my technical competencies, highlights of my work experience, and browse my professional certifications. A contact section provides multiple ways to reach me, including a validated form, social media links, and an email designed to demonstrate my proficiency in front-end fundamentals while maintaining cross-device compatibility.',
+            image: 'assets/img/imgPortfolio.png',
+            githubUrl: 'https://github.com/amirmx2905/MyDevPort',
+            technologies: ['html', 'css', 'javascript']
+        },
+        // ADD more projects here
+    ];
+
+    // Function to initialize the project grid
+    const initializeProjectGrid = () => {
+        const prevArrow = document.querySelector('.prev-arrow');
+        const nextArrow = document.querySelector('.next-arrow');
+        const groups = document.querySelectorAll('.item-group');
+        
+        if (!prevArrow || !nextArrow || groups.length === 0) return;
+        
+        let currentGroup = 0;
+        const totalGroups = groups.length;
+        let isAnimating = false;
+        
+        function isMobileView() {
+            return window.innerWidth <= 480;
+        }
+        
+        function initGroups() {
+            if (isMobileView()) {
+                groups.forEach(group => {
+                    group.className = 'item-group';
+                });
+                return;
+            }
+        
+            groups.forEach((group, index) => {
+                group.classList.remove('slide-from-left', 'slide-to-right', 'slide-from-right', 'slide-to-left');
+                if (index === currentGroup) {
+                    group.className = 'item-group active';
+                } else if (index === (currentGroup + 1) % totalGroups) {
+                    group.className = 'item-group next';
+                } else {
+                    group.className = 'item-group prev';
+                }
+            });
+        }
+        
+        initGroups();
+        
+        function onAnimationEnd(element, callback) {
+            if (isMobileView()) {
+                callback();
+                return;
+            }
+        
+            const animations = {
+                'animation': 'animationend',
+                'OAnimation': 'oAnimationEnd',
+                'MozAnimation': 'animationend',
+                'WebkitAnimation': 'webkitAnimationEnd'
+            };
+        
+            for (const t in animations) {
+                if (element.style[t] !== undefined) {
+                    element.addEventListener(animations[t], function onEnd() {
+                    element.removeEventListener(animations[t], onEnd);
+                    callback();
+                    });
+                    return;
+                }
+            }
+            setTimeout(callback, 600);
+        }
+        
+        prevArrow.addEventListener('click', function() {
+            if (isMobileView() || isAnimating) return;
+
+            isAnimating = true;
+            const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
+            groups[prevGroup].className = 'item-group prev';
+            void groups[prevGroup].offsetWidth;
+            groups[prevGroup].classList.add('slide-from-left');
+            groups[currentGroup].classList.add('slide-to-right');
+        
+            onAnimationEnd(groups[currentGroup], function() {
+                currentGroup = prevGroup;
+                initGroups();
+                isAnimating = false;
+            });
+        });
+        
+        nextArrow.addEventListener('click', function() {
+            if (isMobileView() || isAnimating) return;
+            
+            isAnimating = true;
+            const nextGroup = (currentGroup + 1) % totalGroups;
+            groups[nextGroup].className = 'item-group next';
+            void groups[nextGroup].offsetWidth;
+            groups[nextGroup].classList.add('slide-from-right');
+            groups[currentGroup].classList.add('slide-to-left');
+        
+            onAnimationEnd(groups[currentGroup], function() {
+                currentGroup = nextGroup;
+                initGroups();
+                isAnimating = false;
+            });
+        });
+    };
+
+    // Function to initialize the project modal
+    const initializeProjectModal = () => {
+        const modal = document.getElementById('project-modal');
+        if (!modal) return;
+        
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalImage = document.getElementById('modal-image');
+        const modalClose = document.getElementById('modal-close');
+        const githubBtn = document.getElementById('github-btn');
+        
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        
+        function openProjectModal(projectId) {
+            const project = projectsData.find(p => p.id === projectId) || {
+                title: 'Proyecto',
+                description: 'Descripción del proyecto no disponible.',
+                image: 'assets/img/imgPortfolio.png',
+                githubUrl: '#',
+                technologies: []
+            };
+
+            modalTitle.textContent = project.title;
+            modalDescription.innerHTML = `<p>${project.description}</p>`;
+            modalImage.src = project.image;
+            modalImage.alt = project.title;
+            
+            githubBtn.setAttribute('data-url', project.githubUrl);
+            
+            // Update technology logos
+            const techLogos = document.querySelector('.tech-logos');
+            if (techLogos) {
+                techLogos.innerHTML = '';
+                
+                if (project.technologies && project.technologies.length > 0) {
+                    project.technologies.forEach(tech => {
+                        const logoPath = `assets/img/icon${capitalizeFirstLetter(tech)}.svg`;
+                        const logoImg = document.createElement('img');
+                        logoImg.src = logoPath;
+                        logoImg.alt = tech;
+                        logoImg.title = capitalizeFirstLetter(tech);
+                        logoImg.className = 'tech-logo';
+                        techLogos.appendChild(logoImg);
+                    });
+                }
+            }
+            
+            modal.classList.add('show');
+            
+            setTimeout(() => {
+                const modalContent = document.querySelector('.modal-content');
+                if (modalContent) {
+                    const modalRect = modalContent.getBoundingClientRect();
+                    const scrollToY = window.scrollY + modalRect.top + (modalRect.height / 2) - (window.innerHeight / 2);
+                    
+                    window.scrollTo({
+                        top: scrollToY,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 10); 
+        }
+
+        function closeProjectModal() {
+            modal.classList.add('hide');
+            
+            setTimeout(() => {
+                modal.classList.remove('show');
+                
+                setTimeout(() => {
+                    modalTitle.textContent = '';
+                    modalDescription.innerHTML = '';
+                    modalImage.src = '';
+                    modal.classList.remove('hide'); 
+                }, 50);
+                
+            }, 400);
+        }
+
+        // Attach event listeners to project items
+        const items = document.querySelectorAll('.item');
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                const subtitle = item.querySelector('.item-subtitle');
+                const projectId = subtitle ? 
+                    subtitle.textContent.trim().toLowerCase().replace(/\s+/g, '') : 
+                    'project';
+                
+                openProjectModal(projectId);
+            });
+        });
+
+        // GitHub button click event
+        if (githubBtn) {
+            githubBtn.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                if (url && url !== '#') {
+                    window.open(url, '_blank');
+                }
+            });
+        }
+
+        // Modal close button click event
+        if (modalClose) {
+            modalClose.addEventListener('click', closeProjectModal);
+        }
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeProjectModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('show')) {
+                closeProjectModal();
+            }
         });
     };
 
@@ -179,7 +414,45 @@
             </div>
         `,
         projects: `
-            Proyects
+            <div class="main__content__container">
+                <div class="grid__wrapper">
+                    <img src="assets/img/leftArrow.svg" class="prev-arrow" alt="prev-arrow">
+                    <div class="grid__container">
+                        <div class="item-group active" id="group-1">
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgPortfolio.png" alt="imgPortfolio">
+                                <h2 class="item-subtitle">MyDevPort</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="assets/img/rightArrow.svg" class="next-arrow" alt="next-arrow">
+                </div>
+            </div>
+            <div class="project-modal" id="project-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="github-btn" id="github-btn">
+                            <img src="assets/img/iconGithub.svg" alt="GitHub">
+                        </div>
+                        <h2 class="modal-title" id="modal-title">Título del Proyecto</h2>
+                        <div class="close-btn" id="modal-close">
+                            <img src="assets/img/iconClose.svg" alt="Cerrar">
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="project-image">
+                            <img src="" alt="Imagen del proyecto" id="modal-image">
+                        </div>
+                        <div class="project-description" id="modal-description">
+                            <p>Descripción del proyecto...</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <h3 class="footer-title">Technologies Used</h3>
+                        <div class="tech-logos"></div>
+                    </div>
+                </div>
+            </div>
         `,
         certifications: `
             Certifications
@@ -203,7 +476,13 @@
         
         mainContent.innerHTML = contentSections[sectionId];
         
-        attachCardListeners();
+        // Initialize specific components for each section
+        if (sectionId === 'aboutMe') {
+            attachCardListeners();
+        } else if (sectionId === 'projects') {
+            initializeProjectGrid();
+            initializeProjectModal();
+        }
         
         mainContent.classList.remove('fade-out');
     };
@@ -228,4 +507,4 @@
             });
         }
     });
-});*/
+});
