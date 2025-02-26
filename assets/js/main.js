@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    // [PROJECTS_DATA] - Project data array containing all project information
+    // [DATA] - Project data array containing all project information
     const projectsData = [
         {
             id: 'mydevport',
@@ -65,15 +65,43 @@ document.addEventListener('DOMContentLoaded', function() {
             githubUrl: 'https://github.com/amirmx2905',
             technologies: ['android','kotlin','java','php', 'mysql']
         }
-        
         // ADD more projects here
+    ];
+    
+    // [DATA] - Certification data array containing all certification information
+    const certificationsData = [
+        {
+            id: 'devops',
+            title: 'DevOps',
+            description: 'Currently progressing through a comprehensive DevOps program where I\'m mastering CI/CD implementation, Git version control, and infrastructure automation using IaC tools with integrated security practices. Developing expertise in Kubernetes for containerized application orchestration and implementing monitoring solutions with Prometheus and Grafana for observability, with additional modules still to complete.',
+            image: 'assets/img/imgTecmilenio.jpg',
+            status: 'in-progress',
+            certUrl: '#'
+        },
+        {
+            id: 'appdevelop',
+            title: 'App Development',
+            description: 'Currently advancing through a mobile development program where I\'m getting a foundational understanding of mobile application architecture and design principles. Developed hands-on experience creating native Android applications using Java/Kotlin with Android Studio, implementing UI components, and managing application lifecycles. Also acquired skills in iOS development using Swift and Xcode, including interface design with UIKit/SwiftUI and implementing core iOS frameworks, with additional modules still to complete.',
+            image: 'assets/img/imgTecmilenio.jpg',
+            status: 'in-progress',
+            certUrl: '#'
+        },
+        {
+            id: 'bigdata',
+            title: 'Big Data',
+            description: 'Currently progressing through a Big Data program where I\'m establishing a strong programming fundamentals for data manipulation and analysis using Python and R. Developed expertise in data engineering principles including ETL processes, data warehousing, and working with structured/unstructured datasets. Gained practical knowledge of Big Data infrastructure deployment including Hadoop ecosystem, distributed computing frameworks, and cloud-based data solutions, with additional modules still to complete.',
+            image: 'assets/img/imgTecmilenio.jpg',
+            status: 'in-progress',
+            certUrl: '#'
+        }
+        // ADD more certifications as needed
     ];
 
     // [GRID] - Function to initialize the project grid with carousel functionality
     const initializeProjectGrid = () => {
-        const prevArrow = document.querySelector('.prev-arrow');
-        const nextArrow = document.querySelector('.next-arrow');
-        const groups = document.querySelectorAll('.item-group');
+        const prevArrow = document.querySelector('.projects .prev-arrow');
+        const nextArrow = document.querySelector('.projects .next-arrow');
+        const groups = document.querySelectorAll('.projects .item-group');
         
         if (!prevArrow || !nextArrow || groups.length === 0) return;
         
@@ -170,6 +198,113 @@ document.addEventListener('DOMContentLoaded', function() {
                 isAnimating = false;
             });
         });
+    };
+    
+    // [CERT_GRID] - Function to initialize the certifications grid
+    const initializeCertificationsGrid = () => {
+        const prevArrow = document.querySelector('.certifications .prev-arrow');
+        const nextArrow = document.querySelector('.certifications .next-arrow');
+        const groups = document.querySelectorAll('.certifications .item-group');
+        
+        if (!prevArrow || !nextArrow || groups.length === 0) return;
+        
+        let currentGroup = 0;
+        const totalGroups = groups.length;
+        let isAnimating = false;
+        
+        // [CERT_GRID_MOBILE] - Check if in mobile view
+        function isMobileView() {
+            return window.innerWidth <= 480;
+        }
+        
+        // [CERT_GRID_INIT] - Initialize group classes based on view
+        function initGroups() {
+            if (isMobileView()) {
+                groups.forEach(group => {
+                    group.className = 'item-group';
+                });
+                return;
+            }
+        
+            groups.forEach((group, index) => {
+                group.classList.remove('slide-from-left', 'slide-to-right', 'slide-from-right', 'slide-to-left');
+                if (index === currentGroup) {
+                    group.className = 'item-group active';
+                } else if (index === (currentGroup + 1) % totalGroups) {
+                    group.className = 'item-group next';
+                } else {
+                    group.className = 'item-group prev';
+                }
+            });
+        }
+        
+        initGroups();
+        
+        // [CERT_GRID_ANIMATION] - Handle animation end events
+        function onAnimationEnd(element, callback) {
+            if (isMobileView()) {
+                callback();
+                return;
+            }
+        
+            const animations = {
+                'animation': 'animationend',
+                'OAnimation': 'oAnimationEnd',
+                'MozAnimation': 'animationend',
+                'WebkitAnimation': 'webkitAnimationEnd'
+            };
+        
+            for (const t in animations) {
+                if (element.style[t] !== undefined) {
+                    element.addEventListener(animations[t], function onEnd() {
+                    element.removeEventListener(animations[t], onEnd);
+                    callback();
+                    });
+                    return;
+                }
+            }
+            setTimeout(callback, 600);
+        }
+        
+        // [CERT_GRID_PREV] - Previous arrow click handler
+        if (prevArrow) {
+            prevArrow.addEventListener('click', function() {
+                if (isMobileView() || isAnimating) return;
+
+                isAnimating = true;
+                const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
+                groups[prevGroup].className = 'item-group prev';
+                void groups[prevGroup].offsetWidth;
+                groups[prevGroup].classList.add('slide-from-left');
+                groups[currentGroup].classList.add('slide-to-right');
+            
+                onAnimationEnd(groups[currentGroup], function() {
+                    currentGroup = prevGroup;
+                    initGroups();
+                    isAnimating = false;
+                });
+            });
+        }
+        
+        // [CERT_GRID_NEXT] - Next arrow click handler
+        if (nextArrow) {
+            nextArrow.addEventListener('click', function() {
+                if (isMobileView() || isAnimating) return;
+                
+                isAnimating = true;
+                const nextGroup = (currentGroup + 1) % totalGroups;
+                groups[nextGroup].className = 'item-group next';
+                void groups[nextGroup].offsetWidth;
+                groups[nextGroup].classList.add('slide-from-right');
+                groups[currentGroup].classList.add('slide-to-left');
+            
+                onAnimationEnd(groups[currentGroup], function() {
+                    currentGroup = nextGroup;
+                    initGroups();
+                    isAnimating = false;
+                });
+            });
+        }
     };
 
     // [MODAL] - Function to initialize the project modal
@@ -271,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // [MODAL_ITEMS] - Attach event listeners to project items
-        const items = document.querySelectorAll('.item');
+        const items = document.querySelectorAll('.projects .item');
         items.forEach(item => {
             item.addEventListener('click', function() {
                 const subtitle = item.querySelector('.item-subtitle');
@@ -322,6 +457,157 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     };
+    
+    // [CERT_MODAL] - Function to initialize the certification modal
+    const initializeCertModal = () => {
+        const modal = document.getElementById('cert-modal');
+        if (!modal) return;
+        
+        const modalTitle = document.getElementById('cert-modal-title');
+        const modalDescription = document.getElementById('cert-modal-description');
+        const modalImage = document.getElementById('cert-modal-image');
+        const modalClose = document.getElementById('cert-modal-close');
+        const statusBtn = document.getElementById('cert-status-btn');
+        const statusIcon = document.getElementById('cert-status-icon');
+        const statusText = document.getElementById('cert-status-text');
+        
+        // [CERT_MODAL_OPEN] - Function to open certification modal
+        function openCertModal(certId) {
+            console.log("Opening modal for certification ID:", certId);
+            const cert = certificationsData.find(c => c.id === certId);
+            
+            if (!cert) {
+                console.error("Certification not found with ID:", certId);
+                
+                // [CERT_MODAL_FALLBACK] - Fallback certification data if not found
+                const fallbackCert = {
+                    title: 'Certification',
+                    description: 'Certification description not available.',
+                    image: 'assets/img/imgCertDefault.jpg',
+                    status: 'in-progress',
+                    certUrl: '#'
+                };
+                
+                modalTitle.textContent = fallbackCert.title;
+                modalDescription.innerHTML = `<p>${fallbackCert.description}</p>`;
+                modalImage.src = fallbackCert.image;
+                modalImage.alt = fallbackCert.title;
+                
+                // [CERT_MODAL_STATUS] - Configure status icon
+                if (fallbackCert.status === 'completed') {
+                    statusIcon.src = 'assets/img/iconCheck.svg';
+                    statusText.innerHTML = '<span class="status-completed">Completed</span>';
+                } else {
+                    statusIcon.src = 'assets/img/iconTime.svg';
+                    statusText.innerHTML = '<span class="status-in-progress">In Progress</span>';
+                }
+                
+                statusBtn.setAttribute('data-url', fallbackCert.certUrl);
+            } else {
+                modalTitle.textContent = cert.title;
+                modalDescription.innerHTML = `<p>${cert.description}</p>`;
+                modalImage.src = cert.image;
+                modalImage.alt = cert.title;
+                
+                // [CERT_MODAL_STATUS] - Configure status icon
+                if (cert.status === 'completed') {
+                    statusIcon.src = 'assets/img/iconCheck.svg';
+                    statusText.innerHTML = '<span class="status-completed">Completed</span>';
+                } else {
+                    statusIcon.src = 'assets/img/iconTime.svg';
+                    statusText.innerHTML = '<span class="status-in-progress">In Progress</span>';
+                }
+                
+                statusBtn.setAttribute('data-url', cert.certUrl);
+            }
+            
+            modal.classList.add('show');
+            
+            // [CERT_MODAL_SCROLL] - Scroll modal into view
+            setTimeout(() => {
+                const modalContent = modal.querySelector('.modal-content');
+                if (modalContent) {
+                    const modalRect = modalContent.getBoundingClientRect();
+                    const scrollToY = window.scrollY + modalRect.top + (modalRect.height / 2) - (window.innerHeight / 2);
+                    
+                    window.scrollTo({
+                        top: scrollToY,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 10); 
+        }
+    
+        // [CERT_MODAL_CLOSE] - Function to close certification modal
+        function closeCertModal() {
+            modal.classList.add('hide');
+            
+            setTimeout(() => {
+                modal.classList.remove('show');
+                
+                setTimeout(() => {
+                    modalTitle.textContent = '';
+                    modalDescription.innerHTML = '';
+                    modalImage.src = '';
+                    modal.classList.remove('hide'); 
+                }, 50);
+                
+            }, 400);
+        }
+    
+        // [CERT_MODAL_ITEMS] - Attach event listeners to certification items
+        const items = document.querySelectorAll('.certifications .item');
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                const subtitle = item.querySelector('.item-subtitle');
+                if (!subtitle) return;
+                
+                const certTitle = subtitle.textContent.trim();
+                console.log("Certification item clicked:", certTitle);
+                
+                // Look up the certification by title first, then fallback to ID generation
+                const cert = certificationsData.find(c => c.title === certTitle);
+                if (cert) {
+                    openCertModal(cert.id);
+                } else {
+                    // Fallback to generated ID
+                    const generatedId = certTitle.toLowerCase().replace(/\s+/g, '');
+                    console.log("Generated ID:", generatedId);
+                    openCertModal(generatedId);
+                }
+            });
+        });
+    
+        // [CERT_MODAL_STATUS_BTN] - Status button click event
+        if (statusBtn) {
+            statusBtn.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                if (url && url !== '#') {
+                    window.open(url, '_blank');
+                }
+            });
+        }
+    
+        // [CERT_MODAL_CLOSE_BTN] - Modal close button click event
+        if (modalClose) {
+            modalClose.addEventListener('click', closeCertModal);
+        }
+        
+        // [CERT_MODAL_OUTSIDE] - Close modal when clicking outside
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeCertModal();
+            }
+        });
+        
+        // [CERT_MODAL_ESC] - Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('show')) {
+                closeCertModal();
+            }
+        });
+    };
+    
 
     // [SECTIONS] - HTML content for each section
     const contentSections = {
@@ -545,7 +831,53 @@ document.addEventListener('DOMContentLoaded', function() {
         `,
         // [SECTION_CERTIFICATIONS] - Certifications section HTML
         certifications: `
-            Certifications
+            <div class="main__content__container">
+                <div class="grid__wrapper">
+                    <img src="assets/img/leftArrow.svg" class="prev-arrow" alt="prev-arrow">
+                    <div class="grid__container">
+                        <div class="item-group active" id="cert-group-1">
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgTecmilenio.jpg" alt="Devops">
+                                <h2 class="item-subtitle">DevOps</h2>
+                            </div>
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgTecmilenio.jpg" alt="App Development">
+                                <h2 class="item-subtitle">App Development</h2>
+                            </div>
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgTecmilenio.jpg" alt="Big Data">
+                                <h2 class="item-subtitle">Big Data</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="assets/img/rightArrow.svg" class="next-arrow" alt="next-arrow">
+                </div>
+            </div>
+            <div class="project-modal" id="cert-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="cert-status-btn" id="cert-status-btn">
+                            <img src="" alt="Status" id="cert-status-icon">
+                        </div>
+                        <h2 class="modal-title" id="cert-modal-title">Título del Certificado</h2>
+                        <div class="close-btn" id="cert-modal-close">
+                            <img src="assets/img/iconClose.svg" alt="Cerrar">
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="project-image">
+                            <img src="" alt="Imagen del certificado" id="cert-modal-image">
+                        </div>
+                        <div class="project-description" id="cert-modal-description">
+                            <p>Descripción del certificado...</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <h3 class="footer-title">Certification Status</h3>
+                        <div class="cert-status" id="cert-status-text"></div>
+                    </div>
+                </div>
+            </div>
         `,
         // [SECTION_CONTACT] - Contact section HTML
         contact: `
@@ -569,12 +901,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         mainContent.innerHTML = contentSections[sectionId];
         
+        // Add appropriate classes to sections for targeting in CSS and JS
+        if (sectionId === 'projects') {
+            const gridWrapper = document.querySelector('.grid__wrapper');
+            if (gridWrapper) {
+                gridWrapper.parentElement.classList.add('projects');
+            }
+        } else if (sectionId === 'certifications') {
+            const gridWrapper = document.querySelector('.grid__wrapper');
+            if (gridWrapper) {
+                gridWrapper.parentElement.classList.add('certifications');
+            }
+        }
+        
         // Initialize specific components for each section
         if (sectionId === 'aboutMe') {
             attachCardListeners();
         } else if (sectionId === 'projects') {
             initializeProjectGrid();
             initializeProjectModal();
+        } else if (sectionId === 'certifications') {
+            initializeCertificationsGrid();
+            initializeCertModal();
         }
         
         mainContent.classList.remove('fade-out');
