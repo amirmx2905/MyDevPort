@@ -15,6 +15,7 @@
   width: 50px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
+  filter: drop-shadow(0 0 20px #fff);
 }
 
 .next-arrow {
@@ -28,7 +29,7 @@
 .prev-arrow:hover,
 .next-arrow:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 10px #fff);
+  filter: drop-shadow(0 0 5px #fff);
 }
 
 .grid__container {

@@ -1,8 +1,24 @@
+/**
+ * INDEX - SEARCH KEYWORDS
+ * ======================
+ * [INIT] - Document initialization
+ * [NAV] - Navigation handling
+ * [CARDS] - Skill cards listeners
+ * [PROJECTS_DATA] - Project data object
+ * [GRID] - Project grid initialization and animations
+ * [MODAL] - Project modal initialization and handling
+ * [SECTIONS] - Content sections HTML
+ * [CONTENT_LOAD] - Content loading functions
+ * [EVENT_LISTENERS] - All event listeners
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
+    // [NAV] - Navigation elements
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
     
+    // [CARDS] - Function to attach event listeners to skill cards
     const attachCardListeners = () => {
         const cards = document.querySelectorAll('.skill__card');
         cards.forEach(card => {
@@ -15,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    // Project data
+    // [PROJECTS_DATA] - Project data array containing all project information
     const projectsData = [
         {
             id: 'mydevport',
@@ -25,10 +41,35 @@ document.addEventListener('DOMContentLoaded', function() {
             githubUrl: 'https://github.com/amirmx2905/MyDevPort',
             technologies: ['html', 'css', 'javascript']
         },
+        {
+            id: 'gmapsapiapp',
+            title: 'GmapsAPI App',
+            description: 'This repository uses the Google Cloud Console API Key to find addresses, store user data in an internal SQLite3 database, and display their locations on a Google Maps map within the same application. It implements data storage and geolocation using Google services.',
+            image: 'assets/img/imgGoogleMaps.jpg',
+            githubUrl: 'https://github.com/amirmx2905/AndroidStudioGoogleMapsAPI',
+            technologies: ['android', 'java', 'google']
+        },
+        {
+            id: 'pokemonbattlearena',
+            title: 'Pokemon BA',
+            description: 'In this repository, I was assigned to the backend team. We used C++ along with libraries like Asio and Crow to connect the backend with the database and with frontend. The goal on the backend side was to develop a server capable of handling all frontend requests. Additionally, we integrated the PokéAPI to create a game where users can capture, train, and battle with all first-generation Pokémon.',
+            image: 'assets/img/imgPokemon.jpg',
+            githubUrl: 'https://github.com/Cesar-Mendoza-V/PokemonBattleArena',
+            technologies: ['cpp', 'mysql']
+        },
+        {
+            id: 'investiapp',
+            title: 'InvestiApp',
+            description: 'This project was basically about creating a mobile application with Android Studio, Java, Kotlin, PHP, and a MySQL database. I did everything that is typically done in a real-life project, from scope definition, planning, UML diagramming, coding, etc. The goal was to simulate an application where researchers from all over Mexico could connect with each other to find people related to their area or field of research, with whom they could collaborate on projects, articles, events, etc. This application is essentially a LinkedIn for CONACYT.',
+            image: 'assets/img/imgInvestigators.jpg',
+            githubUrl: 'https://github.com/amirmx2905',
+            technologies: ['android','kotlin','java','php', 'mysql']
+        }
+        
         // ADD more projects here
     ];
 
-    // Function to initialize the project grid
+    // [GRID] - Function to initialize the project grid with carousel functionality
     const initializeProjectGrid = () => {
         const prevArrow = document.querySelector('.prev-arrow');
         const nextArrow = document.querySelector('.next-arrow');
@@ -40,10 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalGroups = groups.length;
         let isAnimating = false;
         
+        // [GRID_MOBILE] - Check if in mobile view
         function isMobileView() {
             return window.innerWidth <= 480;
         }
         
+        // [GRID_INIT] - Initialize group classes based on view
         function initGroups() {
             if (isMobileView()) {
                 groups.forEach(group => {
@@ -66,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         initGroups();
         
+        // [GRID_ANIMATION] - Handle animation end events
         function onAnimationEnd(element, callback) {
             if (isMobileView()) {
                 callback();
@@ -91,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(callback, 600);
         }
         
+        // [GRID_PREV] - Previous arrow click handler
         prevArrow.addEventListener('click', function() {
             if (isMobileView() || isAnimating) return;
 
@@ -108,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+        // [GRID_NEXT] - Next arrow click handler
         nextArrow.addEventListener('click', function() {
             if (isMobileView() || isAnimating) return;
             
@@ -126,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    // Function to initialize the project modal
+    // [MODAL] - Function to initialize the project modal
     const initializeProjectModal = () => {
         const modal = document.getElementById('project-modal');
         if (!modal) return;
@@ -137,46 +183,62 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalClose = document.getElementById('modal-close');
         const githubBtn = document.getElementById('github-btn');
         
+        // [MODAL_UTILS] - Utility function to capitalize first letter
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
         
+        // [MODAL_OPEN] - Function to open project modal
         function openProjectModal(projectId) {
-            const project = projectsData.find(p => p.id === projectId) || {
-                title: 'Proyecto',
-                description: 'Descripción del proyecto no disponible.',
-                image: 'assets/img/imgPortfolio.png',
-                githubUrl: '#',
-                technologies: []
-            };
-
-            modalTitle.textContent = project.title;
-            modalDescription.innerHTML = `<p>${project.description}</p>`;
-            modalImage.src = project.image;
-            modalImage.alt = project.title;
+            console.log("Opening modal for project ID:", projectId);
+            const project = projectsData.find(p => p.id === projectId);
             
-            githubBtn.setAttribute('data-url', project.githubUrl);
-            
-            // Update technology logos
-            const techLogos = document.querySelector('.tech-logos');
-            if (techLogos) {
-                techLogos.innerHTML = '';
+            if (!project) {
+                console.error("Project not found with ID:", projectId);
                 
-                if (project.technologies && project.technologies.length > 0) {
-                    project.technologies.forEach(tech => {
-                        const logoPath = `assets/img/icon${capitalizeFirstLetter(tech)}.svg`;
-                        const logoImg = document.createElement('img');
-                        logoImg.src = logoPath;
-                        logoImg.alt = tech;
-                        logoImg.title = capitalizeFirstLetter(tech);
-                        logoImg.className = 'tech-logo';
-                        techLogos.appendChild(logoImg);
-                    });
+                // [MODAL_FALLBACK] - Fallback project data if not found
+                const fallbackProject = {
+                    title: 'Project',
+                    description: 'Project description not available.',
+                    image: 'assets/img/imgPortfolio.png',
+                    githubUrl: '#',
+                    technologies: []
+                };
+                
+                modalTitle.textContent = fallbackProject.title;
+                modalDescription.innerHTML = `<p>${fallbackProject.description}</p>`;
+                modalImage.src = fallbackProject.image;
+                modalImage.alt = fallbackProject.title;
+                githubBtn.setAttribute('data-url', fallbackProject.githubUrl);
+            } else {
+                modalTitle.textContent = project.title;
+                modalDescription.innerHTML = `<p>${project.description}</p>`;
+                modalImage.src = project.image;
+                modalImage.alt = project.title;
+                githubBtn.setAttribute('data-url', project.githubUrl);
+                
+                // [MODAL_TECH] - Update technology logos
+                const techLogos = document.querySelector('.tech-logos');
+                if (techLogos) {
+                    techLogos.innerHTML = '';
+                    
+                    if (project.technologies && project.technologies.length > 0) {
+                        project.technologies.forEach(tech => {
+                            const logoPath = `assets/img/icon${capitalizeFirstLetter(tech)}.svg`;
+                            const logoImg = document.createElement('img');
+                            logoImg.src = logoPath;
+                            logoImg.alt = tech;
+                            logoImg.title = capitalizeFirstLetter(tech);
+                            logoImg.className = 'tech-logo';
+                            techLogos.appendChild(logoImg);
+                        });
+                    }
                 }
             }
             
             modal.classList.add('show');
             
+            // [MODAL_SCROLL] - Scroll modal into view
             setTimeout(() => {
                 const modalContent = document.querySelector('.modal-content');
                 if (modalContent) {
@@ -191,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 10); 
         }
 
+        // [MODAL_CLOSE] - Function to close project modal
         function closeProjectModal() {
             modal.classList.add('hide');
             
@@ -207,20 +270,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 400);
         }
 
-        // Attach event listeners to project items
+        // [MODAL_ITEMS] - Attach event listeners to project items
         const items = document.querySelectorAll('.item');
         items.forEach(item => {
             item.addEventListener('click', function() {
                 const subtitle = item.querySelector('.item-subtitle');
-                const projectId = subtitle ? 
-                    subtitle.textContent.trim().toLowerCase().replace(/\s+/g, '') : 
-                    'project';
+                if (!subtitle) return;
                 
-                openProjectModal(projectId);
+                const projectTitle = subtitle.textContent.trim();
+                console.log("Item clicked:", projectTitle);
+                
+                // Look up the project by title first, then fallback to ID generation
+                const project = projectsData.find(p => p.title === projectTitle);
+                if (project) {
+                    openProjectModal(project.id);
+                } else {
+                    // Fallback to generated ID
+                    const generatedId = projectTitle.toLowerCase().replace(/\s+/g, '');
+                    console.log("Generated ID:", generatedId);
+                    openProjectModal(generatedId);
+                }
             });
         });
 
-        // GitHub button click event
+        // [MODAL_GITHUB] - GitHub button click event
         if (githubBtn) {
             githubBtn.addEventListener('click', function() {
                 const url = this.getAttribute('data-url');
@@ -230,19 +303,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Modal close button click event
+        // [MODAL_CLOSE_BTN] - Modal close button click event
         if (modalClose) {
             modalClose.addEventListener('click', closeProjectModal);
         }
         
-        // Close modal when clicking outside
+        // [MODAL_OUTSIDE] - Close modal when clicking outside
         modal.addEventListener('click', function(event) {
             if (event.target === modal) {
                 closeProjectModal();
             }
         });
         
-        // Close modal with Escape key
+        // [MODAL_ESC] - Close modal with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.classList.contains('show')) {
                 closeProjectModal();
@@ -250,7 +323,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // [SECTIONS] - HTML content for each section
     const contentSections = {
+        // [SECTION_ABOUT] - About Me section HTML
         aboutMe: `
             <div class="main__content__container"> 
                 <div class="content__container">
@@ -394,6 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
+        // [SECTION_EXPERIENCE] - Experience section HTML
         experience: `
             <div class="main__content__container column start">
                 <div class="content__container__experience">
@@ -413,6 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
+        // [SECTION_PROJECTS] - Projects section HTML
         projects: `
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -422,6 +499,18 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="item">
                                 <img class="item-img" src="assets/img/imgPortfolio.png" alt="imgPortfolio">
                                 <h2 class="item-subtitle">MyDevPort</h2>
+                            </div>
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgGoogleMaps.jpg" alt="imgGmaps">
+                                <h2 class="item-subtitle">GmapsAPI App</h2>
+                            </div>
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgPokemon.jpg" alt="imgPokemon">
+                                <h2 class="item-subtitle">Pokemon BA</h2>
+                            </div>
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgInvestigators.jpg" alt="imgInvestigators">
+                                <h2 class="item-subtitle">InvestiApp</h2>
                             </div>
                         </div>
                     </div>
@@ -454,14 +543,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
+        // [SECTION_CERTIFICATIONS] - Certifications section HTML
         certifications: `
             Certifications
         `,
+        // [SECTION_CONTACT] - Contact section HTML
         contact: `
             Contact
         `
     };
 
+    // [NAV_ACTIVE] - Function to set active navigation link
     const setActiveLink = (clickedLink) => {
         navLinks.forEach(link => {
             link.classList.remove('pressed');
@@ -469,6 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clickedLink.classList.add('pressed');
     };
 
+    // [CONTENT_LOAD] - Function to load content with fade transition
     const loadContent = async (sectionId) => {
         mainContent.classList.add('fade-out');
         
@@ -487,10 +580,12 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.classList.remove('fade-out');
     };
 
+    // [INIT_PAGE] - Set initial active link and load default content
     const aboutMeLink = document.getElementById('aboutMe');
     setActiveLink(aboutMeLink);
     loadContent('aboutMe');
 
+    // [NAV_EVENTS] - Navigation link click events
     navLinks.forEach(link => {
         link.addEventListener('click', async (e) => {
             e.preventDefault();
@@ -500,6 +595,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // [RESIZE] - Window resize event for skill cards
     window.addEventListener('resize', () => {
         if (window.innerWidth > 915) {
             document.querySelectorAll('.skill__card-inner').forEach(cardInner => {
