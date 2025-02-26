@@ -12,7 +12,7 @@
  * [EVENT_LISTENERS] - All event listeners
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     // [NAV] - Navigation elements
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
@@ -951,4 +951,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-});
+}); */

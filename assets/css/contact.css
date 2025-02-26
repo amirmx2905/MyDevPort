@@ -1,0 +1,131 @@
+input,
+textarea {
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 40px auto;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    font-size: 0.6rem;
+    padding: 15px 15px;
+    font-family: JetBrainsMono;
+    border: none;
+    box-shadow: 0 0 10px 0 #fff;
+    outline: none;
+    transition: all 0.5s ease-in-out;
+    box-shadow: inset 0 0 0 #222;
+    color: #333;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    resize: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+input:focus,
+textarea:focus {
+    transform: scale(1.01);
+    box-shadow: inset 0 0 20px #222;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    text-align: start;
+    padding-left: 15px;
+    display: block;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px #fff;
+}
+
+.input-group input,
+.input-group textarea {
+    margin: 0 auto 20px;
+}
+
+.contact__container {
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    background: linear-gradient(#333, #222);
+    box-shadow: 0 0 20px 0 #000;
+}
+
+.contact__title {
+    text-shadow: 0 0 10px #fff;
+    white-space: nowrap;
+    transition: all 0.5s ease-in-out;
+}
+
+.contact__title:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 5px #fff;
+}
+
+.forms {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.send-button {
+    width: fit-content;
+    padding: auto;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 0 0 #fff;
+    cursor: pointer;
+}
+
+.send-button:hover,
+.send-button:focus {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 0 #fff;
+    font-weight: 600;
+    color: #333;
+}
+
+@media (max-width: 1035px) {
+    
+    .input-group label {
+        font-size: 1rem;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        font-size: 0.8rem;
+    }
+
+    .send-button {
+        font-size: 1rem;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .send-button:hover,
+    .send-button:focus {
+        transform: none;
+        box-shadow: none;
+        font-weight: none;
+        color: none;
+    }
+
+    .send-button:active {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px 0 #fff;
+        font-weight: 900;
+        color: #333;
+    }
+}
