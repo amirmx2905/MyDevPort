@@ -1,11 +1,31 @@
 /* 
  * EXPERIENCE SECTION STYLES
  * ========================
+ * [TITLE] - Section title
  * [EXPERIENCE_CONTAINER] - Main container for experience cards
  * [HOVER_EFFECTS] - Hover animations and interactions
  * [CONTENT_ELEMENTS] - Experience content elements styling
  * [RESPONSIVE] - Media queries for different screen sizes
  */
+
+
+/* [TITLE] - Section title */
+.section__title {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
+    transition: all 0.5s ease-in-out;
+}
+
+.section__title:hover {
+    text-shadow: 0 0 20px #fff;
+    transform: scale(1.1);
+}
+
+
 
 /* [EXPERIENCE_CONTAINER] - Main container for experience cards */
 .content__container__experience {

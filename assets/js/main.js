@@ -899,6 +899,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `,
         // [SECTION_EXPERIENCE] - Experience section HTML
         experience: `
+            <h2 class="section__title">Experience</h2>
             <div class="main__content__container column start">
                 <div class="content__container__experience">
                     <img class="content__img" src="assets/img/logoTeleperformance.png" alt="caritasWebsite">
@@ -919,6 +920,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `,
         // [SECTION_PROJECTS] - Projects section HTML
         projects: `
+            <h2 class="section__title">Projects</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
                     <img src="assets/img/leftArrow.svg" class="prev-arrow" alt="prev-arrow">
@@ -973,6 +975,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `,
         // [SECTION_CERTIFICATIONS] - Certifications section HTML
         certifications: `
+            <h2 class="section__title small">Certifications</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
                     <img src="assets/img/leftArrow.svg" class="prev-arrow" alt="prev-arrow">
