@@ -318,6 +318,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalClose = document.getElementById('modal-close');
         const githubBtn = document.getElementById('github-btn');
         
+        // [MODAL_UTILS] - Tech icon mapping function
+        function getTechIconPath(tech) {
+            // Map of lowercase tech names to their correct filename cases
+            const techMap = {
+                'html': 'HTML',
+                'css': 'CSS',
+                'javascript': 'JavaScript',
+                'java': 'Java',
+                'cpp': 'CPP',
+                'mysql': 'MySQL',
+                'php': 'PHP',
+                'android': 'Android',
+                'kotlin': 'Kotlin',
+                'google': 'Google'
+                // Add others as needed
+            };
+            
+            return `assets/img/icon${techMap[tech.toLowerCase()] || capitalizeFirstLetter(tech)}.svg`;
+        }
+        
         // [MODAL_UTILS] - Utility function to capitalize first letter
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
@@ -359,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     if (project.technologies && project.technologies.length > 0) {
                         project.technologies.forEach(tech => {
-                            const logoPath = `assets/img/icon${capitalizeFirstLetter(tech)}.svg`;
+                            const logoPath = getTechIconPath(tech);
                             const logoImg = document.createElement('img');
                             logoImg.src = logoPath;
                             logoImg.alt = tech;
