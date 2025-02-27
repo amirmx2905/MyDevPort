@@ -328,10 +328,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 'java': 'Java',
                 'cpp': 'CPP',
                 'mysql': 'MySQL',
-                'php': 'PHP',
+                'php': 'Php',
                 'android': 'Android',
                 'kotlin': 'Kotlin',
-                'google': 'Google'
+                'google': 'Google',
+                'swift': 'Swift',
+                'postgres': 'PostgreSQL',
+                'python': 'Python',
+                'csharp': 'CSharp',
+                'ios': 'IOS',
                 // Add others as needed
             };
             

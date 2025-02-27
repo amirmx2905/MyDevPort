@@ -88,6 +88,7 @@ textarea:focus {
     padding: auto;
     transition: all 0.5s ease-in-out;
     box-shadow: 0 0 0 0 #fff;
+    background-color: #fff;
     cursor: pointer;
 }
 
