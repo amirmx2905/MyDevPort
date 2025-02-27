@@ -684,10 +684,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // [UI] - Change loader animation to show a check
                         const loader = document.querySelector('.loader');
-                        loader.style.animation = 'none';
-                        loader.innerHTML = '✓';
-                        loader.style.fontSize = '3rem';
-                        loader.style.color = '#4CAF50';
+                        
+                        // Remove the loader class and add a success class
+                        loader.classList.remove('loader');
+                        loader.classList.add('loader-success');
                         
                         // [UI] - Remove overlay after a delay
                         setTimeout(() => {
@@ -700,10 +700,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
                             
                             // [UI] - Reset loader to original state
-                            loader.innerHTML = '';
-                            loader.style.fontSize = '';
-                            loader.style.color = '';
-                            loader.style.animation = 'loader 1.2s infinite';
+                            loader.classList.remove('loader-success');
+                            loader.classList.add('loader');
                             
                             // [UI] - Reset message
                             messageEl.textContent = "Sending message, please wait...";
