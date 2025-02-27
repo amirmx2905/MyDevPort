@@ -18,7 +18,7 @@
 /**
  * Interactive background animation with connected points and circles
  * Features:
- * - Responsive canvas that adjusts to window size
+ * - Fixed size canvas that maintains dimensions regardless of browser UI changes
  * - Interactive mouse movement on desktop
  * - Static centered animation on mobile/tablet
  * - Density adjustment based on screen size
@@ -29,8 +29,17 @@
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
     var zoomLevel = 1;
     var mouseEnabled = false;
+    var initialHeight; // Store initial height
+
+    // Capture initial height on first load
+    function captureInitialHeight() {
+        initialHeight = window.innerHeight;
+        // Store the initial height as a CSS variable
+        document.documentElement.style.setProperty('--canvas-height', initialHeight + 'px');
+    }
 
     // Initialize the animation
+    captureInitialHeight();
     initHeader();
     initAnimation();
     addListeners();
@@ -43,16 +52,16 @@
     }
 
     /**
-     * [CANVAS_INIT] - Initialize the canvas and header elements
-     * Sets up initial dimensions and creates the canvas context
+     * [CANVAS_INIT] - Initialize the canvas and header elements with fixed dimensions
      */
     function initHeader() {
         width = window.innerWidth;
-        height = window.innerHeight * 1;
+        height = initialHeight; // Use the captured initial height
         target = {x: width/2, y: height/2};
 
         largeHeader = document.getElementById('canvas');
-        largeHeader.style.height = height + 'px';
+        // Set fixed height once and never change it
+        largeHeader.style.height = initialHeight + 'px';
 
         canvas = document.getElementById('canvas__animation');
         setupCanvas();
@@ -125,19 +134,20 @@
 
     /**
      * [CANVAS_SETUP] - Configure canvas for proper rendering on high DPI displays
-     * Handles scaling and quality settings
+     * Using fixed dimensions based on initial size
      */
     function setupCanvas() {
         const pixelRatio = getPixelRatio();
         const displayWidth = Math.floor(width * pixelRatio);
-        const displayHeight = Math.floor(height * pixelRatio);
+        const displayHeight = Math.floor(initialHeight * pixelRatio); // Use initial height
 
         // Set physical dimensions
         canvas.width = displayWidth;
         canvas.height = displayHeight;
-        // Set display dimensions
+        
+        // Set display dimensions - keep these fixed
         canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
+        canvas.style.height = initialHeight + 'px'; // Use initial height
 
         // Setup context with high quality settings
         ctx = canvas.getContext('2d', { alpha: true });
@@ -182,23 +192,28 @@
                 updateMouseState();
             }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fade-duration')) * 1000);
         }
+        
         window.addEventListener('scroll', scrollCheck);
         
-        // Debounce resize event
+        // Only handle width changes on resize, keep height fixed
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(resize, 250);
+            resizeTimeout = setTimeout(handleWidthResize, 250);
         });
         
-        window.visualViewport.addEventListener('resize', handleZoom);
+        // Only handle zoom level changes, not height
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', handleZoom);
+        }
     }
 
     /**
      * [ZOOM] - Handle zoom level changes
      */
     function handleZoom() {
-        zoomLevel = window.visualViewport.scale;
+        zoomLevel = window.visualViewport ? window.visualViewport.scale : 1;
+        // Only update the canvas setup, not the container height
         setupCanvas();
     }
 
@@ -225,23 +240,21 @@
      * [SCROLLING] - Check scroll position to enable/disable animation
      */
     function scrollCheck() {
-        if(document.body.scrollTop > height) animateHeader = false;
+        if(document.body.scrollTop > initialHeight) animateHeader = false;
         else animateHeader = true;
     }
 
     /**
-     * [EVENTS] - Handle window resize
-     * Reinitializes animation with new dimensions
+     * [EVENTS] - Handle window width resize only - keep height fixed
      */
-    function resize() {
+    function handleWidthResize() {
+        // Only update width, keep height fixed to initial value
         width = window.innerWidth;
-        height = window.innerHeight * 1;
-        largeHeader.style.height = height+'px';
-        setupCanvas();
+        // DO NOT update height
         
+        setupCanvas();
         createPoints();
         initAnimation();
-        
         updateMouseState();
         
         target.x = width/2;
@@ -271,7 +284,7 @@
     function animate() {
         if(animateHeader) {
             const pixelRatio = getPixelRatio();
-            ctx.clearRect(0, 0, width * pixelRatio, height * pixelRatio);
+            ctx.clearRect(0, 0, width * pixelRatio, initialHeight * pixelRatio);
             
             for(var i in points) {
                 // Calculate point activity based on distance from target
@@ -360,6 +373,7 @@
  */
 document.addEventListener('DOMContentLoaded', function() {
     const fadeDuration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fade-duration')) * 1000;
+    
     setTimeout(() => {
         var typed = new Typed(".typing", {
             strings: ["Mobile App Developer", "BackEnd Developer", "Java Developer", "FrontEnd Developer"],
@@ -380,10 +394,9 @@ setTimeout(() => {
     document.body.style.overflow = "auto";
 }, 5000);
 
-
 /**
  * [SCROLLING] - This code establishes the main view when you enter or refresh the page
  */
 window.onbeforeunload = function() {
     window.scrollTo(0, 0);
-}
+};

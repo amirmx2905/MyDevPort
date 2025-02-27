@@ -18,6 +18,7 @@
 /* [VARIABLES] - CSS variables and initial state */
 :root {
     --fade-duration: 3s; 
+    --canvas-height: 100vh; /* Initial height on page load */
 }
 
 body{
@@ -26,18 +27,22 @@ body{
 
 /* [CANVAS_CONTAINER] - Canvas container and positioning */
 .canvas {
-	position: relative;
-	width: 100%;
-	background: #000;
-	overflow: hidden;
-	background-size: cover;
-	background-position: center center;
-	z-index: 1;
+    position: relative;
+    width: 100%;
+    height: var(--canvas-height); /* Use the stored height */
+    background: #000;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+    transform: translateZ(0); /* Force hardware acceleration */
 }
 
 .canvas__animation {
-	position: absolute;
-	z-index: -1;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
 }
 
 /* [CANVAS_CONTENT] - Content layout within canvas */
