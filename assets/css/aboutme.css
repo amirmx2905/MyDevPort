@@ -303,7 +303,9 @@
         align-items: center;
         justify-content: space-evenly;
         gap: 50px;
-        animation: none;
+        animation: appear 0.5s ease-in-out;
+        animation-timeline: none;
+        animation-range: none;  
     }
 
     .content__container, .scroll__container {
