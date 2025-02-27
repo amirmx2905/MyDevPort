@@ -12,7 +12,7 @@
  * [EVENT_LISTENERS] - All event listeners
  */
 
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // [NAV] - Navigation elements
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
@@ -608,6 +608,150 @@
         });
     };
     
+    // [FORM_INIT] - Initialize contact form functionality
+    const initializeContactForm = () => {
+        // [INIT] - Variable to control if form is being submitted
+        let isSubmitting = false;
+
+        // [FORM_DATA] - Function to check if form has data
+        function hasFormData() {
+            const form = document.getElementById('contactForm');
+            if (!form) return false;
+            
+            const name = document.getElementById('name')?.value;
+            const email = document.getElementById('email')?.value;
+            const subject = document.getElementById('subject')?.value;
+            const message = document.getElementById('message')?.value;
+            return name || email || subject || message;
+        }
+
+        // [SUBMISSION] - Capture form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default submission to handle it ourselves
+                
+                const overlay = document.getElementById('formOverlay');
+                const form = this;
+                
+                // [INIT] - Mark that we are submitting the form
+                isSubmitting = true;
+                
+                // [UI] - Show overlay
+                overlay.classList.add('active');
+                
+                // [SECURITY] - Disable all form fields during submission
+                const inputs = form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.disabled = true;
+                });
+
+                // [FORM_DATA] - Create a virtual form to send data
+                const formData = new FormData();
+                
+                // [FORM_DATA] - Add all form fields
+                formData.append('name', document.getElementById('name').value);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('subject', document.getElementById('subject').value);
+                formData.append('message', document.getElementById('message').value);
+                
+                // [FORM_DATA] - Add specific fields for FormSubmit
+                formData.append('_captcha', 'false');
+                formData.append('_next', 'false');
+                formData.append('_template', 'table'); // To display data in table format
+                
+                // [SUBMISSION] - FormSubmit URL
+                const formAction = form.getAttribute('action');
+                
+                // [SUBMISSION] - Send data using fetch API
+                fetch(formAction, {
+                    method: 'POST',
+                    body: formData,
+                    // Don't set Content-Type, let fetch determine it automatically with the correct boundary
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Server response error');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // [UI] - Success - wait 2 seconds to show the message
+                    setTimeout(() => {
+                        // [UI] - Change message in the overlay
+                        const messageEl = document.querySelector('.message');
+                        messageEl.textContent = "Message sent successfully!";
+                        
+                        // [UI] - Change loader animation to show a check
+                        const loader = document.querySelector('.loader');
+                        loader.style.animation = 'none';
+                        loader.innerHTML = '✓';
+                        loader.style.fontSize = '3rem';
+                        loader.style.color = '#4CAF50';
+                        
+                        // [UI] - Remove overlay after a delay
+                        setTimeout(() => {
+                            overlay.classList.remove('active');
+                            form.reset();
+                            
+                            // [SECURITY] - Re-enable form fields
+                            inputs.forEach(input => {
+                                input.disabled = false;
+                            });
+                            
+                            // [UI] - Reset loader to original state
+                            loader.innerHTML = '';
+                            loader.style.fontSize = '';
+                            loader.style.color = '';
+                            loader.style.animation = 'loader 1.2s infinite';
+                            
+                            // [UI] - Reset message
+                            messageEl.textContent = "Sending message, please wait...";
+                            
+                            // [INIT] - Reset submission state
+                            isSubmitting = false;
+                        }, 1500);
+                    }, 1000);
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                    
+                    // [UI] - In case of error
+                    const messageEl = document.querySelector('.message');
+                    messageEl.textContent = "Error sending message. Please try again.";
+                    
+                    // [UI] - Change loader animation to show an error
+                    const loader = document.querySelector('.loader');
+                    loader.style.animation = 'none';
+                    loader.innerHTML = '✗';
+                    loader.style.fontSize = '3rem';
+                    loader.style.color = '#FF5252';
+                    
+                    // [UI] - Wait 2 seconds and then close the overlay
+                    setTimeout(() => {
+                        overlay.classList.remove('active');
+                        
+                        // [SECURITY] - Re-enable form fields
+                        inputs.forEach(input => {
+                            input.disabled = false;
+                        });
+                        
+                        // [UI] - Reset loader to original state
+                        loader.innerHTML = '';
+                        loader.style.fontSize = '';
+                        loader.style.color = '';
+                        loader.style.animation = 'loader 1.2s infinite';
+                        
+                        // [UI] - Reset message
+                        messageEl.textContent = "Sending message, please wait...";
+                        
+                        // [INIT] - Reset submission state
+                        isSubmitting = false;
+                    }, 2000);
+                });
+            });
+        }
+    };
 
     // [SECTIONS] - HTML content for each section
     const contentSections = {
@@ -881,7 +1025,39 @@
         `,
         // [SECTION_CONTACT] - Contact section HTML
         contact: `
-            Contact
+            <div class="main__content__container">
+                <h2 class="contact__title">Contact Me</h2>
+                <div class="contact__container">
+                    <div class="overlay" id="formOverlay">
+                        <div class="loader-container">
+                            <div class="loader"></div>
+                            <div class="message">Sending message, please wait...</div>
+                        </div>
+                    </div>
+                    <form class="forms" action="https://formsubmit.co/f06e0b701a319e4512efeafc5e4103e0" method="POST" id="contactForm">
+                        <div class="input-group">
+                            <label for="name">Name</label>
+                            <input name="name" id="name" type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input name="email" id="email" type="email" placeholder="johndoe@gmail.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="subject">Subject</label>
+                            <input name="subject" id="subject" type="text" placeholder="Quesadillas" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="message">Message</label>
+                            <textarea name="message" id="message" placeholder="Type here your message" required></textarea>
+                        </div>
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="submit" class="send-button" value="Send">
+                    </form>
+                </div>
+            </div>
         `
     };
 
@@ -923,6 +1099,9 @@
         } else if (sectionId === 'certifications') {
             initializeCertificationsGrid();
             initializeCertModal();
+        } else if (sectionId === 'contact') {
+            // [FORM_INIT] - Initialize contact form functionality when contact section is loaded
+            initializeContactForm();
         }
         
         mainContent.classList.remove('fade-out');
@@ -951,4 +1130,4 @@
             });
         }
     });
-}); */
+});

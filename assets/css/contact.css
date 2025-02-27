@@ -20,8 +20,7 @@ textarea {
 textarea {
     box-sizing: border-box;
     width: 100%;
-    min-height: 200px;
-    max-height: 200px;
+    height: 30%;
     resize: none;
     overflow-y: auto;
     overflow-x: hidden;
@@ -53,12 +52,14 @@ textarea:focus {
 }
 
 .contact__container {
+    position: relative;
     overflow: hidden;
     box-sizing: border-box;
     display: flex;
     border-radius: 20px;
     width: 100%;
     height: fit-content;
+    max-height: 85vh;
     flex-direction: column;
     background: linear-gradient(#333, #222);
     box-shadow: 0 0 20px 0 #000;
@@ -99,7 +100,6 @@ textarea:focus {
 }
 
 @media (max-width: 1035px) {
-    
     .input-group label {
         font-size: 1rem;
     }
@@ -127,5 +127,75 @@ textarea:focus {
         box-shadow: 0 0 10px 0 #fff;
         font-weight: 900;
         color: #333;
+    }
+}
+
+/* Nuevos estilos para el overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.loader:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: loader 1.2s infinite;
+}
+
+.message {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #fff;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+        transform: rotate(1800deg);
     }
 }
