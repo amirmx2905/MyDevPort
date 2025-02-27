@@ -1,0 +1,219 @@
+input,
+textarea {
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 40px auto;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    font-size: 0.6rem;
+    padding: 15px 15px;
+    font-family: JetBrainsMono;
+    border: none;
+    box-shadow: 0 0 10px 0 #fff;
+    outline: none;
+    transition: all 0.5s ease-in-out;
+    box-shadow: inset 0 0 0 #222;
+    color: #333;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    height: 30%;
+    resize: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+input:focus,
+textarea:focus {
+    transform: scale(1.01);
+    box-shadow: inset 0 0 20px #222;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    text-align: start;
+    padding-left: 15px;
+    display: block;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px #fff;
+}
+
+.input-group input,
+.input-group textarea {
+    margin: 0 auto 20px;
+}
+
+.contact__container {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+    max-height: 85vh;
+    flex-direction: column;
+    background: linear-gradient(#333, #222);
+    box-shadow: 0 0 20px 0 #000;
+}
+
+.contact__title {
+    text-shadow: 0 0 10px #fff;
+    white-space: nowrap;
+    transition: all 0.5s ease-in-out;
+}
+
+.contact__title:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 5px #fff;
+}
+
+.forms {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.send-button {
+    width: fit-content;
+    padding: auto;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 0 0 #fff;
+    cursor: pointer;
+}
+
+.send-button:hover,
+.send-button:focus {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 0 #fff;
+    font-weight: 600;
+    color: #333;
+}
+
+@media (max-width: 1035px) {
+    .input-group label {
+        font-size: 1rem;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        font-size: 0.8rem;
+    }
+
+    .send-button {
+        font-size: 1rem;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .send-button:hover,
+    .send-button:focus {
+        transform: none;
+        box-shadow: none;
+        font-weight: none;
+        color: none;
+    }
+
+    .send-button:active {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px 0 #fff;
+        font-weight: 900;
+        color: #333;
+    }
+}
+
+/* Nuevos estilos para el overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.loader:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: loader 1.2s infinite;
+}
+
+.message {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #fff;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loader-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.loader-success:after {
+    content: "✓";
+    display: block;
+    animation: none;
+    border: none;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+        transform: rotate(1800deg);
+    }
+}

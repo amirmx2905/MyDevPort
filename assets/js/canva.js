@@ -1,4 +1,21 @@
 /**
+ * INDEX - SEARCH KEYWORDS
+ * ======================
+ * [MAIN_VARS] - Main variables and initialization
+ * [PIXEL_RATIO] - High DPI display handling
+ * [CANVAS_INIT] - Canvas setup and initialization
+ * [POINTS] - Points creation and management
+ * [CANVAS_SETUP] - Canvas configuration for proper rendering
+ * [EVENTS] - Event listeners for interactivity
+ * [ZOOM] - Zoom level handling
+ * [MOUSE] - Mouse movement handling
+ * [ANIMATION] - Animation loop and rendering
+ * [CIRCLES] - Circle class and drawing functions
+ * [TYPING] - Typed.js text animation
+ * [SCROLLING] - Scroll behavior management
+ */
+
+/**
  * Interactive background animation with connected points and circles
  * Features:
  * - Responsive canvas that adjusts to window size
@@ -8,7 +25,7 @@
  * - Smooth resize handling with debounce
  */
 (function() {
-    // Main variables for canvas and animation control
+    // [MAIN_VARS] - Main variables for canvas and animation control
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
     var zoomLevel = 1;
     var mouseEnabled = false;
@@ -19,14 +36,14 @@
     addListeners();
 
     /**
-     * Calculate pixel ratio considering zoom level for high DPI displays
+     * [PIXEL_RATIO] - Calculate pixel ratio considering zoom level for high DPI displays
      */
     function getPixelRatio() {
         return Math.max(window.devicePixelRatio || 1, 1) * zoomLevel;
     }
 
     /**
-     * Initialize the canvas and header elements
+     * [CANVAS_INIT] - Initialize the canvas and header elements
      * Sets up initial dimensions and creates the canvas context
      */
     function initHeader() {
@@ -44,7 +61,7 @@
     }
 
     /**
-     * Create animation points with dynamic density based on screen width
+     * [POINTS] - Create animation points with dynamic density based on screen width
      * Smaller screens get fewer points for better performance
      */
     function createPoints() {
@@ -107,7 +124,7 @@
     }
 
     /**
-     * Configure canvas for proper rendering on high DPI displays
+     * [CANVAS_SETUP] - Configure canvas for proper rendering on high DPI displays
      * Handles scaling and quality settings
      */
     function setupCanvas() {
@@ -132,14 +149,14 @@
     }
 
     /**
-     * Check if mouse interaction should be enabled based on screen width
+     * [MOUSE] - Check if mouse interaction should be enabled based on screen width
      */
     function shouldEnableMouse() {
         return window.innerWidth > 768;
     }
 
     /**
-     * Update mouse interaction state based on screen size
+     * [MOUSE] - Update mouse interaction state based on screen size
      * Disables mouse interaction and centers animation on mobile/tablet
      */
     function updateMouseState() {
@@ -156,7 +173,7 @@
     }
 
     /**
-     * Set up event listeners for interactivity and responsiveness
+     * [EVENTS] - Set up event listeners for interactivity and responsiveness
      */
     function addListeners() {
         // Add mouse movement listener with delay
@@ -178,7 +195,7 @@
     }
 
     /**
-     * Handle zoom level changes
+     * [ZOOM] - Handle zoom level changes
      */
     function handleZoom() {
         zoomLevel = window.visualViewport.scale;
@@ -186,7 +203,7 @@
     }
 
     /**
-     * Handle mouse movement and update target position
+     * [MOUSE] - Handle mouse movement and update target position
      */
     function mouseMove(e) {
         if (!mouseEnabled) return;
@@ -205,7 +222,7 @@
     }
 
     /**
-     * Check scroll position to enable/disable animation
+     * [SCROLLING] - Check scroll position to enable/disable animation
      */
     function scrollCheck() {
         if(document.body.scrollTop > height) animateHeader = false;
@@ -213,7 +230,7 @@
     }
 
     /**
-     * Handle window resize
+     * [EVENTS] - Handle window resize
      * Reinitializes animation with new dimensions
      */
     function resize() {
@@ -232,7 +249,7 @@
     }
 
     /**
-     * Initialize animation
+     * [ANIMATION] - Initialize animation
      * Kills existing tweens and starts new animation cycle
      */
     function initAnimation() {
@@ -248,7 +265,7 @@
     }
 
     /**
-     * Main animation loop
+     * [ANIMATION] - Main animation loop
      * Updates point states and draws connections
      */
     function animate() {
@@ -280,7 +297,7 @@
     }
 
     /**
-     * Animate point movement using TweenLite
+     * [ANIMATION] - Animate point movement using TweenLite
      */
     function shiftPoint(p) {
         p.tween = TweenLite.to(p, 1+1*Math.random(), {
@@ -294,7 +311,7 @@
     }
 
     /**
-     * Draw lines between connected points
+     * [ANIMATION] - Draw lines between connected points
      */
     function drawLines(p) {
         if(!p.active) return;
@@ -309,7 +326,7 @@
     }
 
     /**
-     * Circle class for creating and drawing point circles
+     * [CIRCLES] - Circle class for creating and drawing point circles
      */
     function Circle(pos,rad,color) {
         var _this = this;
@@ -330,7 +347,7 @@
     }
 
     /**
-     * Calculate distance between two points
+     * [ANIMATION] - Calculate distance between two points
      */
     function getDistance(p1, p2) {
         return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
@@ -338,7 +355,7 @@
 })();
 
 /**
- * Initialize Typed.js animation after DOM content is loaded
+ * [TYPING] - Initialize Typed.js animation after DOM content is loaded
  * Creates a typing animation effect for different developer roles
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -355,3 +372,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, fadeDuration);
 });
+
+/**
+ * [SCROLLING] - This timeout reestablishes the scrollbar after 5 seconds
+ */
+setTimeout(() => {
+    document.body.style.overflow = "auto";
+}, 5000);
+
+
+/**
+ * [SCROLLING] - This code establishes the main view when you enter or refresh the page
+ */
+window.onbeforeunload = function() {
+    window.scrollTo(0, 0);
+}

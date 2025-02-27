@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- [META] - Document metadata and viewport settings -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyDevPort</title>
+    <title>Amir Flores - MyDevPort</title>
+    
+    <!-- [CSS] - Stylesheet imports for different sections and components -->
+    <link rel="stylesheet" href="assets/css/aboutme.css">
+    <link rel="stylesheet" href="assets/css/experience.css">
+    <link rel="stylesheet" href="assets/css/projects.css">
+    <link rel="stylesheet" href="assets/css/certifications.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/others.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/canva.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
 </head>
 <body>
+    <!-- [HEADER] - Canvas element with animated background -->
     <header id="canvas" class="canvas">
         <canvas class="canvas__animation" id="canvas__animation"></canvas>
         <div class="canvas__content">
+            <!-- [HEADER_LINKS] - Social media icons and name title -->
             <div class="canvas__horizontal-group">
                 <a class="canvas__icon" href="https://www.linkedin.com/in/amir-sebastián-flores-cardona-617556250" target="_blank">
                     <img src="assets/img/iconLinkedin.svg" alt="linkedInLogo">
@@ -19,34 +32,52 @@
                     <img src="assets/img/iconGithub.svg" alt="githubLogo">
                 </a>
             </div>
+            <!-- [HEADER_SEPARATOR] - Horizontal line divider -->
             <hr class="canvas__separator fade-in-only">
+            <!-- [HEADER_TYPING] - Animated typing text container -->
             <div class="canvas__animation-group">
                 <div class="canvas__text"><span class="typing"></span></div>
             </div>
-            <div class="canvas__button__group">
-                <button class="canvas__button">
-                    <p class="canvas__button__text">
-                        Contact me
-                    </p>
-                </button>
-            </div>
-            
         </div>
     </header>
+    
+    <!-- [DECORATION] - Floating cube decorative elements -->
+    <div class="trasient__cube high"></div>
+    <div class="trasient__cube medium"></div>
+    <div class="trasient__cube light"></div>
+    
+    <!-- [MAIN] - Main content container -->
     <main>
-        <div class=""></div>
-
+        <!-- [NAV] - Sidebar navigation with mobile toggle -->
+        <nav class="sidebar">
+            <input type="checkbox" id="sidebar--active">
+            <label for="sidebar--active" class="sidebar__toggle">
+                <img src="assets/img/iconMenu.svg" alt="iconMenu">
+            </label>
+            <label for="sidebar--active" class="sidebar__overlay"></label>
+            <!-- [NAV_LINKS] - Navigation menu links -->
+            <div class="links">
+                <a id="aboutMe" class="firstlink" href="">About Me</a>
+                <a id="experience" href="">Experience</a>
+                <a id="projects" href="">Projects</a>
+                <a id="certifications" href="">Certifications</a>
+                <a id="contact" class="lastlink" href="">Contact</a>
+            </div>
+        </nav>
         
-
+        <!-- [CONTENT] - Dynamic content section loaded via JavaScript -->
+        <section class="main__content"></section>
+        
     </main>
     
-    <!-- Dependencies -->
+    <!-- [FOOTER] - Page footer -->
+    <footer></footer>
+
+    <!-- [DEPENDENCIES] - External libraries and script imports -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
-    <script>
-        
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenLite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/easing/EasePack.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/canva.js"></script>
 </body>
 </html>
