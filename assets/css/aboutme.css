@@ -21,7 +21,6 @@
 .main__content__container {
     background-color: transparent;
     display: flex;
-    background-color: transparent; /* MODIFY THIS FOR TESTS*/
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
@@ -226,8 +225,10 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari support */
     backface-visibility: hidden;
     overflow: hidden;
+    transform: rotateY(0deg); /* Explicit transform for Firefox */
 }
 
 .skill__card-front::before, .skill__card-back::before {
@@ -237,9 +238,9 @@
     left: 50%;
     translate: -50% 50%;
     width: 500%;
-    height: 50%; /* Cambiado a porcentaje */
+    height: 50%;
     background-color: #fff;
-    transform-origin: center; /* Añadido para mejorar la rotación */
+    transform-origin: center;
     animation: rotate 4s linear infinite;
 }
 
@@ -256,7 +257,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; 
+    padding: 15px;
+    z-index: 1; /* Ensure proper stacking */
 }
 
 .skill__card-back {
@@ -265,12 +267,13 @@
     align-items: center;
     justify-content: center;
     padding: 15px;
+    z-index: 2; /* Ensure proper stacking */
 }
 
 .skill__card-front img {
     width: 45%;
     height: auto;
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px #fff);
+    filter: drop-shadow(0 0 5px #fff);
     position: relative;
     z-index: 2;
     object-fit: contain;
@@ -284,6 +287,39 @@
     position: relative;
     z-index: 2;
     padding: 0 10px;
+}
+
+/* Hide front face when flipped */
+.skill__card-inner.is-flipped .skill__card-front {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Firefox-specific fixes */
+@supports (-moz-appearance:none) {
+    .skill__card-front, .skill__card-back {
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+    }
+    
+    .skill__card-inner {
+        transform-style: preserve-3d;
+    }
+    
+    .skill__card-inner.is-flipped .skill__card-front {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.1s linear;
+    }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance:none) {
+    .skill__card-inner.is-flipped .skill__card-front {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.1s linear;
+    }
 }
 
 /* [INTEREST] - Areas of interest section */
