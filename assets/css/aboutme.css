@@ -237,9 +237,9 @@
     left: 50%;
     translate: -50% 50%;
     width: 500%;
-    height: 50%; /* Cambiado a porcentaje */
+    height: 50%;
     background-color: #fff;
-    transform-origin: center; /* Añadido para mejorar la rotación */
+    transform-origin: center;
     animation: rotate 4s linear infinite;
 }
 
@@ -256,21 +256,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; 
+    padding: 15px;
+    transform: rotateY(0deg);
 }
 
 .skill__card-back {
-    transform: rotateY(180deg);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 15px;
+    transform: rotateY(180deg);
 }
 
 .skill__card-front img {
     width: 45%;
     height: auto;
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px #fff);
+    filter: drop-shadow(0 0 5px #fff);
     position: relative;
     z-index: 2;
     object-fit: contain;

@@ -28,6 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     cardInner.classList.toggle('is-flipped');
                 }
             });
+            
+            // Handle hover for desktop - only if not a touch device
+            if (window.matchMedia("(hover: hover)").matches && window.innerWidth > 915) {
+                card.addEventListener('mouseenter', () => {
+                    const cardInner = card.querySelector('.skill__card-inner');
+                    cardInner.classList.add('is-flipped');
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    const cardInner = card.querySelector('.skill__card-inner');
+                    cardInner.classList.remove('is-flipped');
+                });
+            }
         });
     };
 
@@ -1124,11 +1137,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // [RESIZE] - Window resize event for skill cards
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
         if (window.innerWidth > 915) {
-            document.querySelectorAll('.skill__card-inner').forEach(cardInner => {
-                cardInner.classList.remove('is-flipped');
+            document.querySelectorAll(".skill__card-inner").forEach((cardInner) => {
+                cardInner.classList.remove("is-flipped");
             });
         }
+        attachCardListeners();
     });
 });
