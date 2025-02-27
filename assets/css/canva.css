@@ -58,8 +58,8 @@ body{
 	justify-content: center;
 	gap: 1rem;
 	z-index: 2;
-	position: relative;
 	animation: fadeInContent var(--fade-duration) ease-out forwards;
+	position: relative;
 }
 
 /* [HORIZONTAL_GROUP] - Title and social icons row */
@@ -129,6 +129,38 @@ body{
 	text-shadow: 0 0 5px #fff;
 	white-space: nowrap;
     height: 1rem;
+}
+
+.scroll-arrow {
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    opacity: 0;
+}
+
+.scroll-image {
+	width: 50px;
+	height: 50px;
+	margin-top: 20px;
+	user-select: none;
+	filter: drop-shadow(0 0 10px #fff);
+}
+
+.scroll-text {
+	text-shadow: 0 0 10px #fff;
+	user-select: none;
+}
+
+.fade-in-bottom {
+    animation: fadeInFromBottom 1s ease-out forwards;
+}
+
+.fade-out-bottom {
+    animation: fadeOutToBottom 0.5s ease-out forwards;
 }
 
 /* [UTILITIES] - Utility classes */
@@ -268,4 +300,27 @@ body{
 	100% {
 		transform: translateY(0) scale(0.6);
 	}
+}
+
+@keyframes fadeInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes fadeOutToBottom {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 30px);
+        visibility: hidden;
+    }
 }

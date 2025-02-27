@@ -1156,4 +1156,34 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // [SCROLL_ARROW] - Initialize scroll arrow animation
+    const initializeScrollArrow = () => {
+        // Reference to the scroll-arrow element
+        const scrollArrow = document.querySelector('.scroll-arrow');
+        if (!scrollArrow) return;
+        
+        let hasScrolled = false; // Variable to track if user has scrolled
+        
+        // Function for the fadeIn animation
+        setTimeout(() => {
+            scrollArrow.style.animation = 'fadeInFromBottom 1s ease-out forwards';
+            scrollArrow.classList.add('visible'); // Add a class to indicate the element is visible
+        }, 5000); // 5 seconds delay
+        
+        // Function to handle scroll event
+        function handleScroll() {
+            // If the user has scrolled and the element is visible, hide it
+            if (window.scrollY > 10 && !hasScrolled && scrollArrow.classList.contains('visible')) {
+                scrollArrow.style.animation = 'fadeOutToBottom 0.5s ease-out forwards';
+                hasScrolled = true; // Mark that scrolling has occurred
+                scrollArrow.classList.remove('visible');
+            }
+        }
+        
+        // Add listener for the scroll event
+        window.addEventListener('scroll', handleScroll);
+    };
+
+    initializeScrollArrow();
 });

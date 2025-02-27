@@ -5,6 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
     <title>Amir Flores - MyDevPort</title>
+
+    <!-- [CRITICAL_CSS] - Inline critical styles for above-the-fold content -->
+    <style>
+        :root {
+            font-size: 36px;
+            font-family: JetBrainsMono;
+            color: #fff;
+        }
+        
+        .canvas__title {
+            transition: 0.2s ease-in-out;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-shadow: 0 0 5px #fff;
+            white-space: nowrap;
+        }
+        
+        .thin {
+            font-weight: 100;
+        }
+    </style>
     
     <!-- [CSS] - Stylesheet imports for different sections and components -->
     <link rel="stylesheet" href="assets/css/aboutme.css">
@@ -20,6 +43,7 @@
     <link rel="preload" href="assets/img/iconLinkedin.svg" as="image">
     <link rel="preload" href="assets/img/iconGithub.svg" as="image">
     <link rel="preload" href="assets/img/iconMenu.svg" as="image">
+    <link rel="preload" href="assets/img/iconArrowDown.svg" as="image">
 </head>
 <body>
     <!-- [HEADER] - Canvas element with animated background -->
@@ -41,6 +65,11 @@
             <!-- [HEADER_TYPING] - Animated typing text container -->
             <div class="canvas__animation-group">
                 <div class="canvas__text"><span class="typing"></span></div>
+            </div>
+
+            <div class="scroll-arrow">
+                <p class="scroll-text">Scroll Down</p>
+                <img class="scroll-image" src="assets/img/iconArrowDown.svg" alt="iconArrowDown">
             </div>
         </div>
     </header>
