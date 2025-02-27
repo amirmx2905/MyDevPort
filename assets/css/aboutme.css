@@ -293,6 +293,7 @@
 .skill__card-inner.is-flipped .skill__card-front {
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.3s linear 0.2s;
 }
 
 /* Firefox-specific fixes */
@@ -423,6 +424,19 @@
     .skill__card .skill__card-inner.is-flipped {
         transform: rotateY(180deg);
     }
+
+    .skill__card-inner.is-flipped {
+        transform: rotateY(180deg);
+        transition: transform 0.8s ease;
+    }
+    
+    /* Mejora la transición de opacidad para la cara frontal */
+    .skill__card-inner.is-flipped .skill__card-front {
+    opacity: 0;
+    visibility: hidden;
+    /* Cambia el timing de la transición para que la opacidad cambie DESPUÉS del giro */
+    transition: opacity 0.1s linear 0.4s, visibility 0.1s linear 0.4s;
+}
     
     .interest__container .content__text {
         font-size: 0.9rem;

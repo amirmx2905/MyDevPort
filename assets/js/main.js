@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cards = document.querySelectorAll('.skill__card');
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                if (window.innerWidth <= 915) {
+                if (window.innerWidth <= 1035) {
                     const cardInner = card.querySelector('.skill__card-inner');
                     cardInner.classList.toggle('is-flipped');
                 }
@@ -1145,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // [RESIZE] - Window resize event for skill cards
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 915) {
+        if (window.innerWidth > 1035) {
             document.querySelectorAll('.skill__card-inner').forEach(cardInner => {
                 cardInner.classList.remove('is-flipped');
             });
