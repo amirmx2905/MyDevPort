@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'mydevport',
             title: 'MyDevPort',
             description: 'MyDevPort is my personal development portfolio showcasing my technical skills and projects through a responsive interface built with vanilla HTML, CSS, and JavaScript. The site features an interactive project gallery smooth animations, and project showcases. Visitors can explore my development journey through visual representations of my technical competencies, highlights of my work experience, and browse my professional certifications. A contact section provides multiple ways to reach me, including a validated form, social media links, and an email designed to demonstrate my proficiency in front-end fundamentals while maintaining cross-device compatibility.',
-            image: 'assets/img/imgPortfolio.png',
+            image: 'assets/img/imgPortfolio.webp',
             githubUrl: 'https://github.com/amirmx2905/MyDevPort',
             technologies: ['html', 'css', 'javascript']
         },
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'gmapsapiapp',
             title: 'GmapsAPI App',
             description: 'This repository uses the Google Cloud Console API Key to find addresses, store user data in an internal SQLite3 database, and display their locations on a Google Maps map within the same application. It implements data storage and geolocation using Google services.',
-            image: 'assets/img/imgGoogleMaps.jpg',
+            image: 'assets/img/imgGoogleMaps.webp',
             githubUrl: 'https://github.com/amirmx2905/AndroidStudioGoogleMapsAPI',
             technologies: ['android', 'java', 'google']
         },
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'pokemonbattlearena',
             title: 'Pokemon BA',
             description: 'In this repository, I was assigned to the backend team. We used C++ along with libraries like Asio and Crow to connect the backend with the database and with frontend. The goal on the backend side was to develop a server capable of handling all frontend requests. Additionally, we integrated the PokéAPI to create a game where users can capture, train, and battle with all first-generation Pokémon.',
-            image: 'assets/img/imgPokemon.jpg',
+            image: 'assets/img/imgPokemon.webp',
             githubUrl: 'https://github.com/Cesar-Mendoza-V/PokemonBattleArena',
             technologies: ['cpp', 'mysql']
         },
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'investiapp',
             title: 'InvestiApp',
             description: 'This project was basically about creating a mobile application with Android Studio, Java, Kotlin, PHP, and a MySQL database. I did everything that is typically done in a real-life project, from scope definition, planning, UML diagramming, coding, etc. The goal was to simulate an application where researchers from all over Mexico could connect with each other to find people related to their area or field of research, with whom they could collaborate on projects, articles, events, etc. This application is essentially a LinkedIn for CONACYT.',
-            image: 'assets/img/imgInvestigators.jpg',
+            image: 'assets/img/imgInvestigators.webp',
             githubUrl: 'https://github.com/amirmx2905',
             technologies: ['android','kotlin','java','php', 'mysql']
         }
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'devops',
             title: 'DevOps',
             description: 'Currently progressing through a comprehensive DevOps program where I\'m mastering CI/CD implementation, Git version control, and infrastructure automation using IaC tools with integrated security practices. Developing expertise in Kubernetes for containerized application orchestration and implementing monitoring solutions with Prometheus and Grafana for observability, with additional modules still to complete.',
-            image: 'assets/img/imgTecmilenio.jpg',
+            image: 'assets/img/imgTecmilenio.webp',
             status: 'in-progress',
             certUrl: '#'
         },
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'appdevelop',
             title: 'App Development',
             description: 'Currently advancing through a mobile development program where I\'m getting a foundational understanding of mobile application architecture and design principles. Developed hands-on experience creating native Android applications using Java/Kotlin with Android Studio, implementing UI components, and managing application lifecycles. Also acquired skills in iOS development using Swift and Xcode, including interface design with UIKit/SwiftUI and implementing core iOS frameworks, with additional modules still to complete.',
-            image: 'assets/img/imgTecmilenio.jpg',
+            image: 'assets/img/imgTecmilenio.webp',
             status: 'in-progress',
             certUrl: '#'
         },
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'bigdata',
             title: 'Big Data',
             description: 'Currently progressing through a Big Data program where I\'m establishing a strong programming fundamentals for data manipulation and analysis using Python and R. Developed expertise in data engineering principles including ETL processes, data warehousing, and working with structured/unstructured datasets. Gained practical knowledge of Big Data infrastructure deployment including Hadoop ecosystem, distributed computing frameworks, and cloud-based data solutions, with additional modules still to complete.',
-            image: 'assets/img/imgTecmilenio.jpg',
+            image: 'assets/img/imgTecmilenio.webp',
             status: 'in-progress',
             certUrl: '#'
         }
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const fallbackProject = {
                     title: 'Project',
                     description: 'Project description not available.',
-                    image: 'assets/img/imgPortfolio.png',
+                    image: 'assets/img/imgPortfolio.webp',
                     githubUrl: '#',
                     technologies: []
                 };
@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const fallbackCert = {
                     title: 'Certification',
                     description: 'Certification description not available.',
-                    image: 'assets/img/imgCertDefault.jpg',
+                    image: 'assets/img/imgCertDefault.webp',
                     status: 'in-progress',
                     certUrl: '#'
                 };
@@ -927,14 +927,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="section__title">Experience</h2>
             <div class="main__content__container column start">
                 <div class="content__container__experience">
-                    <img class="content__img" src="assets/img/logoTeleperformance.png" alt="caritasWebsite">
+                    <img class="content__img" src="assets/img/logoTeleperformance.webp" alt="caritasWebsite">
                     <h2 class="content__subtitle__experience">Retention Agent at Tele-Performance</h2>
                     <h3 class="content__subtitle__experience no-shadow">May 2023 - July 2023</h3>
                     <p class="content__text experience-text no-shadow">
                         At Tele-Performance, I worked as a Retention Agent focused on maintaining the company's client base. I analyzed customer situations to understand their concerns about leaving the company and used effective communication skills to engage with them. By applying problem-solving and negotiation techniques, I created tailored offers that addressed their specific needs, contributing directly to successful client retention.                    </p>
                 </div>
                 <div class="content__container__experience">
-                    <img class="content__img" src="assets/img/caritasImage.png" alt="caritasWebsite">
+                    <img class="content__img" src="assets/img/caritasImage.webp" alt="caritasWebsite">
                     <h2 class="content__subtitle__experience">Web Developer at Cáritas de Guadalajara</h2>
                     <h3 class="content__subtitle__experience no-shadow">Aug 2023 - May 2024</h3>
                     <p class="content__text experience-text no-shadow">
@@ -952,19 +952,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="grid__container">
                         <div class="item-group active" id="group-1">
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgPortfolio.png" alt="imgPortfolio">
+                                <img class="item-img" src="assets/img/imgPortfolio.webp" alt="imgPortfolio">
                                 <h2 class="item-subtitle">MyDevPort</h2>
                             </div>
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgGoogleMaps.jpg" alt="imgGmaps">
+                                <img class="item-img" src="assets/img/imgGoogleMaps.webp" alt="imgGmaps">
                                 <h2 class="item-subtitle">GmapsAPI App</h2>
                             </div>
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgPokemon.jpg" alt="imgPokemon">
+                                <img class="item-img" src="assets/img/imgPokemon.webp" alt="imgPokemon">
                                 <h2 class="item-subtitle">Pokemon BA</h2>
                             </div>
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgInvestigators.jpg" alt="imgInvestigators">
+                                <img class="item-img" src="assets/img/imgInvestigators.webp" alt="imgInvestigators">
                                 <h2 class="item-subtitle">InvestiApp</h2>
                             </div>
                         </div>
@@ -1007,15 +1007,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="grid__container">
                         <div class="item-group active" id="cert-group-1">
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgTecmilenio.jpg" alt="Devops">
+                                <img class="item-img" src="assets/img/imgTecmilenio.webp" alt="Devops">
                                 <h2 class="item-subtitle">DevOps</h2>
                             </div>
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgTecmilenio.jpg" alt="App Development">
+                                <img class="item-img" src="assets/img/imgTecmilenio.webp" alt="App Development">
                                 <h2 class="item-subtitle">App Development</h2>
                             </div>
                             <div class="item">
-                                <img class="item-img" src="assets/img/imgTecmilenio.jpg" alt="Big Data">
+                                <img class="item-img" src="assets/img/imgTecmilenio.webp" alt="Big Data">
                                 <h2 class="item-subtitle">Big Data</h2>
                             </div>
                         </div>
