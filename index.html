@@ -27,6 +27,23 @@
         .thin {
             font-weight: 100;
         }
+
+        .page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .page-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
     
     <!-- [CSS] - Stylesheet imports for different sections and components -->
@@ -46,6 +63,7 @@
     <link rel="preload" href="assets/img/iconArrowDown.svg" as="image">
 </head>
 <body>
+    <div id="page-overlay" class="page-overlay"></div>
     <!-- [HEADER] - Canvas element with animated background -->
     <header id="canvas" class="canvas">
         <canvas class="canvas__animation" id="canvas__animation"></canvas>
@@ -66,7 +84,6 @@
             <div class="canvas__animation-group">
                 <div class="canvas__text"><span class="typing"></span></div>
             </div>
-
             <div class="scroll-arrow">
                 <p class="scroll-text">Scroll Down</p>
                 <img class="scroll-image" src="assets/img/iconArrowDown.svg" alt="iconArrowDown">
@@ -107,6 +124,17 @@
     <footer></footer>
 
     <!-- [DEPENDENCIES] - External libraries and script imports -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('page-overlay');
+            setTimeout(function() {
+                overlay.classList.add('fade-out');
+                setTimeout(function() {
+                    overlay.style.display = 'none';
+                }, 1000);
+            }, 0.5); 
+        });
+    </script>
     <script src="assets/js/lib/typed.min.js"></script>
     <script src="assets/js/lib/TweenLite.min.js"></script>
     <script src="assets/js/lib/EasePack.min.js"></script>
