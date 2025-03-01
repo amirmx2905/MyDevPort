@@ -12,7 +12,43 @@
  * [EVENT_LISTENERS] - All event listeners
  */
 
+/* TO ADD MORE PROJECTS OR CERTIFICATES:
+    * 1. Add the image to the assets folder
+    * 2. Add the image to imagesToPreload array in the preloadImages function
+    * 3. Add the project data to the projectsData array
+    * 4. Add the certification data to the certificationsData array
+    * 5. Add the project to the project grid in the HTML
+    * 6. Add the certification to the certifications grid in the HTML
+*/
+
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    // [PRELOAD] - Preload images function
+    function preloadImages() {
+      // Lista de imágenes a precargar
+        const imagesToPreload = [
+            "assets/img/iconLinkedin.svg",
+            "assets/img/iconGithub.svg",
+            "assets/img/iconMenu.svg",
+            "assets/img/iconArrowDown.svg",
+            "assets/img/imgGoogleMaps.webp",
+            "assets/img/imgInvestigators.webp",
+            "assets/img/imgPokemon.webp",
+            "assets/img/imgPortfolio.webp",
+            "assets/img/imgTecmilenio.webp",
+            "assets/img/caritasImage.webp",
+            "assets/img/logoTeleperformance.webp",
+        ];
+
+        imagesToPreload.forEach((imageSrc) => {
+            const img = new Image();
+            img.src = imageSrc;
+        });
+    }
+
+    preloadImages();
+
     // [NAV] - Navigation elements
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
