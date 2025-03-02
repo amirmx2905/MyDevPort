@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.links a');
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
+    const quickLinks = document.querySelectorAll(".footer__container ul li a");
+        const mainSection = document.getElementById("main-content");
     
     // [CARDS] - Function to attach event listeners to skill cards
     const attachCardListeners = () => {
@@ -814,8 +816,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // [SECTIONS] - HTML content for each section
     const contentSections = {
-        // [SECTION_ABOUT] - About Me section HTML
-        aboutMe: `
+      // [SECTION_ABOUT] - About Me section HTML
+      aboutMe: `
             <div class="main__content__container"> 
                 <div class="content__container">
                     <h2 class="content__subtitle">About Me</h2>
@@ -958,8 +960,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-        // [SECTION_EXPERIENCE] - Experience section HTML
-        experience: `
+      // [SECTION_EXPERIENCE] - Experience section HTML
+      experience: `
             <h2 class="section__title">Experience</h2>
             <div class="main__content__container column start">
                 <div class="content__container__experience">
@@ -979,8 +981,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-        // [SECTION_PROJECTS] - Projects section HTML
-        projects: `
+      // [SECTION_PROJECTS] - Projects section HTML
+      projects: `
             <h2 class="section__title">Projects</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -1034,8 +1036,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-        // [SECTION_CERTIFICATIONS] - Certifications section HTML
-        certifications: `
+      // [SECTION_CERTIFICATIONS] - Certifications section HTML
+      certifications: `
             <h2 class="section__title small">Certifications</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -1085,8 +1087,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-        // [SECTION_CONTACT] - Contact section HTML
-        contact: `
+      // [SECTION_CONTACT] - Contact section HTML
+      contact: `
             <div class="main__content__container">
                 <h2 class="contact__title">Contact Me</h2>
                 <div class="contact__container">
@@ -1099,19 +1101,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <form class="forms" action="https://formsubmit.co/f06e0b701a319e4512efeafc5e4103e0" method="POST" id="contactForm">
                         <div class="input-group">
                             <label for="name">Name</label>
-                            <input name="name" id="name" type="text" placeholder="John Doe" required>
+                            <input name="name" id="name" type="text" placeholder="Dr. Sheldon Cooper" required>
                         </div>
                         <div class="input-group">
                             <label for="email">Email</label>
-                            <input name="email" id="email" type="email" placeholder="johndoe@gmail.com" required>
+                            <input name="email" id="email" type="email" placeholder="bazinga@caltech.edu" required>
                         </div>
                         <div class="input-group">
                             <label for="subject">Subject</label>
-                            <input name="subject" id="subject" type="text" placeholder="Quesadillas" required>
+                            <input name="subject" id="subject" type="text" placeholder="Fun with Flags" required>
                         </div>
                         <div class="input-group">
                             <label for="message">Message</label>
-                            <textarea name="message" id="message" placeholder="Type here your message" required></textarea>
+                            <textarea name="message" id="message" placeholder="I'm not crazy. My mother had me tested. But sometimes I wonder..." required></textarea>
                         </div>
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_next" value="false">
@@ -1120,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </form>
                 </div>
             </div>
-        `
+        `,
     };
 
     // [NAV_ACTIVE] - Function to set active navigation link
@@ -1181,6 +1183,16 @@ document.addEventListener('DOMContentLoaded', function() {
             checkbox.checked = false;
             setActiveLink(e.target);
             await loadContent(e.target.id);
+        });
+    });
+
+    // [QUICK_LINKS_EVENTS] - Quick links click events
+    quickLinks.forEach(link => {
+        link.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const sectionId = e.target.getAttribute('href').substring(1);
+            await loadContent(sectionId);
+            mainSection.scrollIntoView({ behavior: 'smooth' });
         });
     });
 

@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="assets/css/projects.css">
     <link rel="stylesheet" href="assets/css/certifications.css">
     <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/others.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/canva.css">
@@ -86,7 +87,7 @@
         </div>
     </header>
     
-    <!-- [DECORATION] - Floating cube decorative elements -->
+    
     <div class="trasient__cube high"></div>
     <div class="trasient__cube medium"></div>
     <div class="trasient__cube light"></div>
@@ -111,12 +112,58 @@
         </nav>
         
         <!-- [CONTENT] - Dynamic content section loaded via JavaScript -->
-        <section class="main__content"></section>
+        <section id="main-content" class="main__content"></section>
         
     </main>
     
+    <!-- [DECORATION] - Floating cube decorative elements -->
+    <div class="trasient__cube light"></div>
+    <div class="trasient__cube medium"></div>
+    
+
     <!-- [FOOTER] - Page footer -->
-    <footer></footer>
+    <footer class="footer">
+        <div class="footer__content">
+            <!-- Contact & Socials -->
+            <div class="footer__container">
+                <h3 class="footer__subtitle">Socials</h3>
+                <div class="social-icons">
+                    <a class="footer__icon" href="https://www.linkedin.com/in/amir-sebastián-flores-cardona-617556250" target="_blank">
+                        <img src="assets/img/iconLinkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a class="footer__icon" href="https://github.com/amirmx2905" target="_blank">
+                        <img src="assets/img/iconGithub.svg" alt="GitHub">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer__container">
+                <h3 class="footer__subtitle">Quick Links</h3>
+                <ul>
+                    <li><a href="#aboutMe">About Me</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Technologies Used -->
+            <div class="footer__container">
+                <h3 class="footer__subtitle">Built With</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__rights">
+            Copyright © Amir Flores 2025
+        </div>
+    </footer>
+
 
     <!-- [DEPENDENCIES] - External libraries and script imports -->
     <script>
