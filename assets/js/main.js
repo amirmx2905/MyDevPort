@@ -1101,7 +1101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <form class="forms" action="https://formsubmit.co/f06e0b701a319e4512efeafc5e4103e0" method="POST" id="contactForm">
                         <div class="input-group">
                             <label for="name">Name</label>
-                            <input name="name" id="name" type="text" placeholder="Dr. Sheldon Cooper" required>
+                            <input name="name" id="name" type="text" placeholder="Sheldon Cooper" required>
                         </div>
                         <div class="input-group">
                             <label for="email">Email</label>
@@ -1113,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="input-group">
                             <label for="message">Message</label>
-                            <textarea name="message" id="message" placeholder="I'm not crazy. My mother had me tested. But sometimes I wonder..." required></textarea>
+                            <textarea name="message" id="message" placeholder="I'm not crazy. My mother had me tested." required></textarea>
                         </div>
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_next" value="false">
