@@ -26,15 +26,6 @@ Welcome to MyDevPort, a showcase of my skills and projects as a developer. This 
 - **Component-Based Design**: Each section is built as a standalone component.
 - **Dynamic Content Loading**: JavaScript-driven content sections with smooth transitions.
 
-## Projects Showcase
-
-The portfolio features a selection of my projects:
-
-- **MyDevPort**: Personal development portfolio website built with HTML, CSS, and JavaScript.
-- **GmapsAPI App**: Android application using Google Maps API and SQLite3 for storing location data.
-- **Pokemon Battle Arena**: Backend project with C++, Asio and Crow libraries, connecting to the PokéAPI.
-- **InvestiApp**: Mobile application created with Android Studio, Java, Kotlin, PHP, and MySQL for connecting researchers across Mexico.
-
 ## Contact
 
 Feel free to reach out through the contact form or via my social media profiles linked in the header.
