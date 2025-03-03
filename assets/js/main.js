@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkbox = document.getElementById('sidebar--active');
     const mainContent = document.querySelector('.main__content');
     const quickLinks = document.querySelectorAll(".footer__container ul li a");
-        const mainSection = document.getElementById("main-content");
+    const mainSection = document.getElementById("main-content");
     
     // [CARDS] - Function to attach event listeners to skill cards
     const attachCardListeners = () => {
@@ -1193,6 +1193,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = e.target.getAttribute('href').substring(1);
             await loadContent(sectionId);
             mainSection.scrollIntoView({ behavior: 'smooth' });
+            const navLink = document.getElementById(sectionId);
+            setActiveLink(navLink);
         });
     });
 
