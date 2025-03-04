@@ -295,6 +295,34 @@
   object-fit: cover;
 }
 
+.project-image img.image-small {
+    max-width: 50%;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 10px;
+    display: block;
+    object-fit: contain;
+}
+
+.project-image img.image-medium {
+    max-width: 75%;
+    margin: 0 auto;
+    display: block;
+}
+
+.project-image img.image-large {
+    width: 100%;
+}
+
+.flexrow{
+  justify-content: center;
+  width: 25%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .project-description {
   line-height: 1.6;
   font-size: 1rem;

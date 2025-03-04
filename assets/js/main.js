@@ -16,6 +16,8 @@
     * 1. Add the image to the assets folder
     * 2. Add the image to imagesToPreload array in the preloadImages function
     * 3. Add the project data to the projectsData array
+        - For controlling project image size in modal, add modalImageSize property:
+        - 'small' (50% width), 'medium' (75% width), or 'large' (100% width)
     * 4. Add the certification data to the certificationsData array
     * 5. Add the project to the project grid in the HTML
     * 6. Add the certification to the certifications grid in the HTML
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "assets/img/iconArrowDown.svg",
             "assets/img/imgGoogleMaps.webp",
             "assets/img/imgInvestigators.webp",
+            "assets/img/imgPlaybook.webp",
             "assets/img/imgPokemon.webp",
             "assets/img/imgPortfolio.webp",
             "assets/img/imgTecmilenio.webp",
@@ -102,6 +105,15 @@ document.addEventListener('DOMContentLoaded', function() {
             image: 'assets/img/imgInvestigators.webp',
             githubUrl: 'https://github.com/amirmx2905',
             technologies: ['android','kotlin','java','php', 'mysql']
+        },
+        {
+            id: 'playbook',
+            title: 'PlayBook',
+            description: 'A fully native Sport Courts Booking iOS App built using SwiftUI. This project focuses on delivering an elegant and user-friendly experience for booking sports courts.',
+            image: 'assets/img/gifPlaybook.gif',
+            githubUrl: 'https://github.com/JaimeTAR/PlayBook',
+            technologies: ['swift', 'ios'],
+            modalImageSize: 'small'
         }
         // ADD more projects here
     ];
@@ -415,6 +427,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 modalImage.alt = project.title;
                 githubBtn.setAttribute('data-url', project.githubUrl);
                 
+                // Remove existing size classes
+                modalImage.classList.remove('image-small', 'image-medium', 'image-large', 'playbook-image');
+                
+                // Apply size class if specified
+                if (project.modalImageSize) {
+                    modalImage.classList.add(`image-${project.modalImageSize}`);
+                }
+
                 // [MODAL_TECH] - Update technology logos
                 const techLogos = document.querySelector('.tech-logos');
                 if (techLogos) {
@@ -817,7 +837,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // [SECTIONS] - HTML content for each section
     const contentSections = {
       // [SECTION_ABOUT] - About Me section HTML
-      aboutMe: `
+      aboutMe: /*html*/ `
             <div class="main__content__container"> 
                 <div class="content__container">
                     <h2 class="content__subtitle">About Me</h2>
@@ -961,7 +981,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `,
       // [SECTION_EXPERIENCE] - Experience section HTML
-      experience: `
+      experience: /*html*/ `
             <h2 class="section__title">Experience</h2>
             <div class="main__content__container column start">
                 <div class="content__container__experience">
@@ -982,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `,
       // [SECTION_PROJECTS] - Projects section HTML
-      projects: `
+      projects: /*html*/ `
             <h2 class="section__title">Projects</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -1004,6 +1024,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="item">
                                 <img class="item-img" src="assets/img/imgInvestigators.webp" alt="imgInvestigators">
                                 <h2 class="item-subtitle">InvestiApp</h2>
+                            </div>
+                            <div class="item">
+                                <div class = "flexrow">
+                                    <img class="item-img" src="assets/img/imgPlaybook.webp" alt="imgPlaybook">
+                                    <img class="item-img" src="assets/img/imgPlaybook2.webp" alt="imgPlaybook">
+                                </div>
+                                <h2 class="item-subtitle">PlayBook</h2>
                             </div>
                         </div>
                     </div>
@@ -1037,7 +1064,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `,
       // [SECTION_CERTIFICATIONS] - Certifications section HTML
-      certifications: `
+      certifications: /*html*/ `
             <h2 class="section__title small">Certifications</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -1088,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `,
       // [SECTION_CONTACT] - Contact section HTML
-      contact: `
+      contact: /*html*/ `
             <div class="main__content__container">
                 <h2 class="contact__title">Contact Me</h2>
                 <div class="contact__container">
