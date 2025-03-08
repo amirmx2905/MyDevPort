@@ -23,821 +23,865 @@
     * 6. Add the certification to the certifications grid in the HTML
 */
 
+document.addEventListener("DOMContentLoaded", function () {
+  // [PRELOAD] - Preload images function
+  function preloadImages() {
+    // Lista de imágenes a precargar
+    const imagesToPreload = [
+      "assets/img/iconLinkedin.svg",
+      "assets/img/iconGithub.svg",
+      "assets/img/iconMenu.svg",
+      "assets/img/iconArrowDown.svg",
+      "assets/img/imgGoogleMaps.webp",
+      "assets/img/imgInvestigators.webp",
+      "assets/img/imgPlaybook.webp",
+      "assets/img/imgPlaybook2.webp",
+      "assets/img/imgPokemon.webp",
+      "assets/img/imgPortfolio.webp",
+      "assets/img/imgNotes.webp",
+      "assets/img/imgTecmilenio.webp",
+      "assets/img/caritasImage.webp",
+      "assets/img/logoTeleperformance.webp",
+    ];
 
-document.addEventListener('DOMContentLoaded', function() {
+    imagesToPreload.forEach((imageSrc) => {
+      const img = new Image();
+      img.src = imageSrc;
+    });
+  }
 
-    // [PRELOAD] - Preload images function
-    function preloadImages() {
-      // Lista de imágenes a precargar
-        const imagesToPreload = [
-            "assets/img/iconLinkedin.svg",
-            "assets/img/iconGithub.svg",
-            "assets/img/iconMenu.svg",
-            "assets/img/iconArrowDown.svg",
-            "assets/img/imgGoogleMaps.webp",
-            "assets/img/imgInvestigators.webp",
-            "assets/img/imgPlaybook.webp",
-            "assets/img/imgPokemon.webp",
-            "assets/img/imgPortfolio.webp",
-            "assets/img/imgTecmilenio.webp",
-            "assets/img/caritasImage.webp",
-            "assets/img/logoTeleperformance.webp",
-        ];
+  preloadImages();
 
-        imagesToPreload.forEach((imageSrc) => {
-            const img = new Image();
-            img.src = imageSrc;
-        });
+  // [NAV] - Navigation elements
+  const navLinks = document.querySelectorAll(".links a");
+  const checkbox = document.getElementById("sidebar--active");
+  const mainContent = document.querySelector(".main__content");
+  const quickLinks = document.querySelectorAll(".footer__container ul li a");
+  const mainSection = document.getElementById("main-content");
+
+  // [CARDS] - Function to attach event listeners to skill cards
+  const attachCardListeners = () => {
+    const cards = document.querySelectorAll(".skill__card");
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        if (window.innerWidth <= 1035) {
+          const cardInner = card.querySelector(".skill__card-inner");
+          cardInner.classList.toggle("is-flipped");
+        }
+      });
+    });
+  };
+
+  // [DATA] - Project data array containing all project information
+  const projectsData = [
+    {
+      id: "mydevport",
+      title: "MyDevPort",
+      description:
+        "MyDevPort is my personal development portfolio showcasing my technical skills and projects through a responsive interface built with vanilla HTML, CSS, and JavaScript. The site features an interactive project gallery smooth animations, and project showcases. Visitors can explore my development journey through visual representations of my technical competencies, highlights of my work experience, and browse my professional certifications. A contact section provides multiple ways to reach me, including a validated form, social media links, and an email designed to demonstrate my proficiency in front-end fundamentals while maintaining cross-device compatibility.",
+      image: "assets/img/imgPortfolio.webp",
+      githubUrl: "https://github.com/amirmx2905/MyDevPort",
+      technologies: ["html", "css", "javascript"],
+    },
+    {
+      id: "gmapsapiapp",
+      title: "GmapsAPI App",
+      description:
+        "This repository uses the Google Cloud Console API Key to find addresses, store user data in an internal SQLite3 database, and display their locations on a Google Maps map within the same application. It implements data storage and geolocation using Google services.",
+      image: "assets/img/imgGoogleMaps.webp",
+      githubUrl: "https://github.com/amirmx2905/AndroidStudioGoogleMapsAPI",
+      technologies: ["android", "java", "google"],
+    },
+    {
+      id: "pokemonbattlearena",
+      title: "Pokemon BA",
+      description:
+        "In this repository, I was assigned to the backend team. We used C++ along with libraries like Asio and Crow to connect the backend with the database and with frontend. The goal on the backend side was to develop a server capable of handling all frontend requests. Additionally, we integrated the PokéAPI to create a game where users can capture, train, and battle with all first-generation Pokémon.",
+      image: "assets/img/imgPokemon.webp",
+      githubUrl: "https://github.com/Cesar-Mendoza-V/PokemonBattleArena",
+      technologies: ["cpp", "mysql"],
+    },
+    {
+      id: "investiapp",
+      title: "InvestiApp",
+      description:
+        "This project was basically about creating a mobile application with Android Studio, Java, Kotlin, PHP, and a MySQL database. I did everything that is typically done in a real-life project, from scope definition, planning, UML diagramming, coding, etc. The goal was to simulate an application where researchers from all over Mexico could connect with each other to find people related to their area or field of research, with whom they could collaborate on projects, articles, events, etc. This application is essentially a LinkedIn for CONACYT.",
+      image: "assets/img/imgInvestigators.webp",
+      githubUrl: "https://github.com/amirmx2905",
+      technologies: ["android", "kotlin", "java", "php", "mysql"],
+    },
+    {
+      id: "playbook",
+      title: "PlayBook",
+      description:
+        "A fully native Sport Courts Booking iOS App built using SwiftUI. This project focuses on delivering an elegant and user-friendly experience for booking sports courts.",
+      image: "assets/img/gifPlaybook.gif",
+      githubUrl: "https://github.com/JaimeTAR/PlayBook",
+      technologies: ["swift", "ios"],
+      modalImageSize: "small",
+    },
+    {
+      id: "notes",
+      title: "Notes App",
+      description:
+        "This full-stack web application combines Django REST Framework and React to create a secure note-taking platform. It features user authentication via JWT, CRUD operations for notes, and a modern, responsive UI with Tailwind CSS. The app uses PostgreSQL for data storage and supports protected routes. ",
+      image: "assets/img/imgNotes.webp",
+      githubUrl: "https://github.com/amirmx2905/firstDjangoReactWebApp",
+      technologies: ["django", "react", "tailwind", "postgresql"],
+    },
+    // ADD more projects here
+  ];
+
+  // [DATA] - Certification data array containing all certification information
+  const certificationsData = [
+    {
+      id: "devops",
+      title: "DevOps",
+      description:
+        "Currently progressing through a comprehensive DevOps program where I'm mastering CI/CD implementation, Git version control, and infrastructure automation using IaC tools with integrated security practices. Developing expertise in Kubernetes for containerized application orchestration and implementing monitoring solutions with Prometheus and Grafana for observability, with additional modules still to complete.",
+      image: "assets/img/imgTecmilenio.webp",
+      status: "in-progress",
+      certUrl: "#",
+    },
+    {
+      id: "appdevelop",
+      title: "App Development",
+      description:
+        "Currently advancing through a mobile development program where I'm getting a foundational understanding of mobile application architecture and design principles. Developed hands-on experience creating native Android applications using Java/Kotlin with Android Studio, implementing UI components, and managing application lifecycles. Also acquired skills in iOS development using Swift and Xcode, including interface design with UIKit/SwiftUI and implementing core iOS frameworks, with additional modules still to complete.",
+      image: "assets/img/imgTecmilenio.webp",
+      status: "in-progress",
+      certUrl: "#",
+    },
+    {
+      id: "bigdata",
+      title: "Big Data",
+      description:
+        "Currently progressing through a Big Data program where I'm establishing a strong programming fundamentals for data manipulation and analysis using Python and R. Developed expertise in data engineering principles including ETL processes, data warehousing, and working with structured/unstructured datasets. Gained practical knowledge of Big Data infrastructure deployment including Hadoop ecosystem, distributed computing frameworks, and cloud-based data solutions, with additional modules still to complete.",
+      image: "assets/img/imgTecmilenio.webp",
+      status: "in-progress",
+      certUrl: "#",
+    },
+    // ADD more certifications as needed
+  ];
+
+  // [GRID] - Function to initialize the project grid with carousel functionality
+  const initializeProjectGrid = () => {
+    const prevArrow = document.querySelector(".projects .prev-arrow");
+    const nextArrow = document.querySelector(".projects .next-arrow");
+    const groups = document.querySelectorAll(".projects .item-group");
+
+    if (!prevArrow || !nextArrow || groups.length === 0) return;
+
+    let currentGroup = 0;
+    const totalGroups = groups.length;
+    let isAnimating = false;
+
+    // [GRID_MOBILE] - Check if in mobile view
+    function isMobileView() {
+      return window.innerWidth <= 480;
     }
 
-    preloadImages();
-
-    // [NAV] - Navigation elements
-    const navLinks = document.querySelectorAll('.links a');
-    const checkbox = document.getElementById('sidebar--active');
-    const mainContent = document.querySelector('.main__content');
-    const quickLinks = document.querySelectorAll(".footer__container ul li a");
-    const mainSection = document.getElementById("main-content");
-    
-    // [CARDS] - Function to attach event listeners to skill cards
-    const attachCardListeners = () => {
-        const cards = document.querySelectorAll('.skill__card');
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                if (window.innerWidth <= 1035) {
-                    const cardInner = card.querySelector('.skill__card-inner');
-                    cardInner.classList.toggle('is-flipped');
-                }
-            });
+    // [GRID_INIT] - Initialize group classes based on view
+    function initGroups() {
+      if (isMobileView()) {
+        groups.forEach((group) => {
+          group.className = "item-group";
         });
-    };
+        return;
+      }
 
-    // [DATA] - Project data array containing all project information
-    const projectsData = [
-        {
-            id: 'mydevport',
-            title: 'MyDevPort',
-            description: 'MyDevPort is my personal development portfolio showcasing my technical skills and projects through a responsive interface built with vanilla HTML, CSS, and JavaScript. The site features an interactive project gallery smooth animations, and project showcases. Visitors can explore my development journey through visual representations of my technical competencies, highlights of my work experience, and browse my professional certifications. A contact section provides multiple ways to reach me, including a validated form, social media links, and an email designed to demonstrate my proficiency in front-end fundamentals while maintaining cross-device compatibility.',
-            image: 'assets/img/imgPortfolio.webp',
-            githubUrl: 'https://github.com/amirmx2905/MyDevPort',
-            technologies: ['html', 'css', 'javascript']
-        },
-        {
-            id: 'gmapsapiapp',
-            title: 'GmapsAPI App',
-            description: 'This repository uses the Google Cloud Console API Key to find addresses, store user data in an internal SQLite3 database, and display their locations on a Google Maps map within the same application. It implements data storage and geolocation using Google services.',
-            image: 'assets/img/imgGoogleMaps.webp',
-            githubUrl: 'https://github.com/amirmx2905/AndroidStudioGoogleMapsAPI',
-            technologies: ['android', 'java', 'google']
-        },
-        {
-            id: 'pokemonbattlearena',
-            title: 'Pokemon BA',
-            description: 'In this repository, I was assigned to the backend team. We used C++ along with libraries like Asio and Crow to connect the backend with the database and with frontend. The goal on the backend side was to develop a server capable of handling all frontend requests. Additionally, we integrated the PokéAPI to create a game where users can capture, train, and battle with all first-generation Pokémon.',
-            image: 'assets/img/imgPokemon.webp',
-            githubUrl: 'https://github.com/Cesar-Mendoza-V/PokemonBattleArena',
-            technologies: ['cpp', 'mysql']
-        },
-        {
-            id: 'investiapp',
-            title: 'InvestiApp',
-            description: 'This project was basically about creating a mobile application with Android Studio, Java, Kotlin, PHP, and a MySQL database. I did everything that is typically done in a real-life project, from scope definition, planning, UML diagramming, coding, etc. The goal was to simulate an application where researchers from all over Mexico could connect with each other to find people related to their area or field of research, with whom they could collaborate on projects, articles, events, etc. This application is essentially a LinkedIn for CONACYT.',
-            image: 'assets/img/imgInvestigators.webp',
-            githubUrl: 'https://github.com/amirmx2905',
-            technologies: ['android','kotlin','java','php', 'mysql']
-        },
-        {
-            id: 'playbook',
-            title: 'PlayBook',
-            description: 'A fully native Sport Courts Booking iOS App built using SwiftUI. This project focuses on delivering an elegant and user-friendly experience for booking sports courts.',
-            image: 'assets/img/gifPlaybook.gif',
-            githubUrl: 'https://github.com/JaimeTAR/PlayBook',
-            technologies: ['swift', 'ios'],
-            modalImageSize: 'small'
+      groups.forEach((group, index) => {
+        group.classList.remove(
+          "slide-from-left",
+          "slide-to-right",
+          "slide-from-right",
+          "slide-to-left"
+        );
+        if (index === currentGroup) {
+          group.className = "item-group active";
+        } else if (index === (currentGroup + 1) % totalGroups) {
+          group.className = "item-group next";
+        } else {
+          group.className = "item-group prev";
         }
-        // ADD more projects here
-    ];
-    
-    // [DATA] - Certification data array containing all certification information
-    const certificationsData = [
-        {
-            id: 'devops',
-            title: 'DevOps',
-            description: 'Currently progressing through a comprehensive DevOps program where I\'m mastering CI/CD implementation, Git version control, and infrastructure automation using IaC tools with integrated security practices. Developing expertise in Kubernetes for containerized application orchestration and implementing monitoring solutions with Prometheus and Grafana for observability, with additional modules still to complete.',
-            image: 'assets/img/imgTecmilenio.webp',
-            status: 'in-progress',
-            certUrl: '#'
-        },
-        {
-            id: 'appdevelop',
-            title: 'App Development',
-            description: 'Currently advancing through a mobile development program where I\'m getting a foundational understanding of mobile application architecture and design principles. Developed hands-on experience creating native Android applications using Java/Kotlin with Android Studio, implementing UI components, and managing application lifecycles. Also acquired skills in iOS development using Swift and Xcode, including interface design with UIKit/SwiftUI and implementing core iOS frameworks, with additional modules still to complete.',
-            image: 'assets/img/imgTecmilenio.webp',
-            status: 'in-progress',
-            certUrl: '#'
-        },
-        {
-            id: 'bigdata',
-            title: 'Big Data',
-            description: 'Currently progressing through a Big Data program where I\'m establishing a strong programming fundamentals for data manipulation and analysis using Python and R. Developed expertise in data engineering principles including ETL processes, data warehousing, and working with structured/unstructured datasets. Gained practical knowledge of Big Data infrastructure deployment including Hadoop ecosystem, distributed computing frameworks, and cloud-based data solutions, with additional modules still to complete.',
-            image: 'assets/img/imgTecmilenio.webp',
-            status: 'in-progress',
-            certUrl: '#'
-        }
-        // ADD more certifications as needed
-    ];
+      });
+    }
 
-    // [GRID] - Function to initialize the project grid with carousel functionality
-    const initializeProjectGrid = () => {
-        const prevArrow = document.querySelector('.projects .prev-arrow');
-        const nextArrow = document.querySelector('.projects .next-arrow');
-        const groups = document.querySelectorAll('.projects .item-group');
-        
-        if (!prevArrow || !nextArrow || groups.length === 0) return;
-        
-        let currentGroup = 0;
-        const totalGroups = groups.length;
-        let isAnimating = false;
-        
-        // [GRID_MOBILE] - Check if in mobile view
-        function isMobileView() {
-            return window.innerWidth <= 480;
+    initGroups();
+
+    // [GRID_ANIMATION] - Handle animation end events
+    function onAnimationEnd(element, callback) {
+      if (isMobileView()) {
+        callback();
+        return;
+      }
+
+      const animations = {
+        animation: "animationend",
+        OAnimation: "oAnimationEnd",
+        MozAnimation: "animationend",
+        WebkitAnimation: "webkitAnimationEnd",
+      };
+
+      for (const t in animations) {
+        if (element.style[t] !== undefined) {
+          element.addEventListener(animations[t], function onEnd() {
+            element.removeEventListener(animations[t], onEnd);
+            callback();
+          });
+          return;
         }
-        
-        // [GRID_INIT] - Initialize group classes based on view
-        function initGroups() {
-            if (isMobileView()) {
-                groups.forEach(group => {
-                    group.className = 'item-group';
-                });
-                return;
-            }
-        
-            groups.forEach((group, index) => {
-                group.classList.remove('slide-from-left', 'slide-to-right', 'slide-from-right', 'slide-to-left');
-                if (index === currentGroup) {
-                    group.className = 'item-group active';
-                } else if (index === (currentGroup + 1) % totalGroups) {
-                    group.className = 'item-group next';
-                } else {
-                    group.className = 'item-group prev';
-                }
-            });
-        }
-        
+      }
+      setTimeout(callback, 600);
+    }
+
+    // [GRID_PREV] - Previous arrow click handler
+    prevArrow.addEventListener("click", function () {
+      if (isMobileView() || isAnimating) return;
+
+      isAnimating = true;
+      const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
+      groups[prevGroup].className = "item-group prev";
+      void groups[prevGroup].offsetWidth;
+      groups[prevGroup].classList.add("slide-from-left");
+      groups[currentGroup].classList.add("slide-to-right");
+
+      onAnimationEnd(groups[currentGroup], function () {
+        currentGroup = prevGroup;
         initGroups();
-        
-        // [GRID_ANIMATION] - Handle animation end events
-        function onAnimationEnd(element, callback) {
-            if (isMobileView()) {
-                callback();
-                return;
-            }
-        
-            const animations = {
-                'animation': 'animationend',
-                'OAnimation': 'oAnimationEnd',
-                'MozAnimation': 'animationend',
-                'WebkitAnimation': 'webkitAnimationEnd'
-            };
-        
-            for (const t in animations) {
-                if (element.style[t] !== undefined) {
-                    element.addEventListener(animations[t], function onEnd() {
-                    element.removeEventListener(animations[t], onEnd);
-                    callback();
-                    });
-                    return;
-                }
-            }
-            setTimeout(callback, 600);
-        }
-        
-        // [GRID_PREV] - Previous arrow click handler
-        prevArrow.addEventListener('click', function() {
-            if (isMobileView() || isAnimating) return;
+        isAnimating = false;
+      });
+    });
 
-            isAnimating = true;
-            const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
-            groups[prevGroup].className = 'item-group prev';
-            void groups[prevGroup].offsetWidth;
-            groups[prevGroup].classList.add('slide-from-left');
-            groups[currentGroup].classList.add('slide-to-right');
-        
-            onAnimationEnd(groups[currentGroup], function() {
-                currentGroup = prevGroup;
-                initGroups();
-                isAnimating = false;
-            });
-        });
-        
-        // [GRID_NEXT] - Next arrow click handler
-        nextArrow.addEventListener('click', function() {
-            if (isMobileView() || isAnimating) return;
-            
-            isAnimating = true;
-            const nextGroup = (currentGroup + 1) % totalGroups;
-            groups[nextGroup].className = 'item-group next';
-            void groups[nextGroup].offsetWidth;
-            groups[nextGroup].classList.add('slide-from-right');
-            groups[currentGroup].classList.add('slide-to-left');
-        
-            onAnimationEnd(groups[currentGroup], function() {
-                currentGroup = nextGroup;
-                initGroups();
-                isAnimating = false;
-            });
-        });
-    };
-    
-    // [CERT_GRID] - Function to initialize the certifications grid
-    const initializeCertificationsGrid = () => {
-        const prevArrow = document.querySelector('.certifications .prev-arrow');
-        const nextArrow = document.querySelector('.certifications .next-arrow');
-        const groups = document.querySelectorAll('.certifications .item-group');
-        
-        if (!prevArrow || !nextArrow || groups.length === 0) return;
-        
-        let currentGroup = 0;
-        const totalGroups = groups.length;
-        let isAnimating = false;
-        
-        // [CERT_GRID_MOBILE] - Check if in mobile view
-        function isMobileView() {
-            return window.innerWidth <= 480;
-        }
-        
-        // [CERT_GRID_INIT] - Initialize group classes based on view
-        function initGroups() {
-            if (isMobileView()) {
-                groups.forEach(group => {
-                    group.className = 'item-group';
-                });
-                return;
-            }
-        
-            groups.forEach((group, index) => {
-                group.classList.remove('slide-from-left', 'slide-to-right', 'slide-from-right', 'slide-to-left');
-                if (index === currentGroup) {
-                    group.className = 'item-group active';
-                } else if (index === (currentGroup + 1) % totalGroups) {
-                    group.className = 'item-group next';
-                } else {
-                    group.className = 'item-group prev';
-                }
-            });
-        }
-        
+    // [GRID_NEXT] - Next arrow click handler
+    nextArrow.addEventListener("click", function () {
+      if (isMobileView() || isAnimating) return;
+
+      isAnimating = true;
+      const nextGroup = (currentGroup + 1) % totalGroups;
+      groups[nextGroup].className = "item-group next";
+      void groups[nextGroup].offsetWidth;
+      groups[nextGroup].classList.add("slide-from-right");
+      groups[currentGroup].classList.add("slide-to-left");
+
+      onAnimationEnd(groups[currentGroup], function () {
+        currentGroup = nextGroup;
         initGroups();
-        
-        // [CERT_GRID_ANIMATION] - Handle animation end events
-        function onAnimationEnd(element, callback) {
-            if (isMobileView()) {
-                callback();
-                return;
-            }
-        
-            const animations = {
-                'animation': 'animationend',
-                'OAnimation': 'oAnimationEnd',
-                'MozAnimation': 'animationend',
-                'WebkitAnimation': 'webkitAnimationEnd'
-            };
-        
-            for (const t in animations) {
-                if (element.style[t] !== undefined) {
-                    element.addEventListener(animations[t], function onEnd() {
-                    element.removeEventListener(animations[t], onEnd);
-                    callback();
-                    });
-                    return;
-                }
-            }
-            setTimeout(callback, 600);
-        }
-        
-        // [CERT_GRID_PREV] - Previous arrow click handler
-        if (prevArrow) {
-            prevArrow.addEventListener('click', function() {
-                if (isMobileView() || isAnimating) return;
+        isAnimating = false;
+      });
+    });
+  };
 
-                isAnimating = true;
-                const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
-                groups[prevGroup].className = 'item-group prev';
-                void groups[prevGroup].offsetWidth;
-                groups[prevGroup].classList.add('slide-from-left');
-                groups[currentGroup].classList.add('slide-to-right');
-            
-                onAnimationEnd(groups[currentGroup], function() {
-                    currentGroup = prevGroup;
-                    initGroups();
-                    isAnimating = false;
-                });
+  // [CERT_GRID] - Function to initialize the certifications grid
+  const initializeCertificationsGrid = () => {
+    const prevArrow = document.querySelector(".certifications .prev-arrow");
+    const nextArrow = document.querySelector(".certifications .next-arrow");
+    const groups = document.querySelectorAll(".certifications .item-group");
+
+    if (!prevArrow || !nextArrow || groups.length === 0) return;
+
+    let currentGroup = 0;
+    const totalGroups = groups.length;
+    let isAnimating = false;
+
+    // [CERT_GRID_MOBILE] - Check if in mobile view
+    function isMobileView() {
+      return window.innerWidth <= 480;
+    }
+
+    // [CERT_GRID_INIT] - Initialize group classes based on view
+    function initGroups() {
+      if (isMobileView()) {
+        groups.forEach((group) => {
+          group.className = "item-group";
+        });
+        return;
+      }
+
+      groups.forEach((group, index) => {
+        group.classList.remove(
+          "slide-from-left",
+          "slide-to-right",
+          "slide-from-right",
+          "slide-to-left"
+        );
+        if (index === currentGroup) {
+          group.className = "item-group active";
+        } else if (index === (currentGroup + 1) % totalGroups) {
+          group.className = "item-group next";
+        } else {
+          group.className = "item-group prev";
+        }
+      });
+    }
+
+    initGroups();
+
+    // [CERT_GRID_ANIMATION] - Handle animation end events
+    function onAnimationEnd(element, callback) {
+      if (isMobileView()) {
+        callback();
+        return;
+      }
+
+      const animations = {
+        animation: "animationend",
+        OAnimation: "oAnimationEnd",
+        MozAnimation: "animationend",
+        WebkitAnimation: "webkitAnimationEnd",
+      };
+
+      for (const t in animations) {
+        if (element.style[t] !== undefined) {
+          element.addEventListener(animations[t], function onEnd() {
+            element.removeEventListener(animations[t], onEnd);
+            callback();
+          });
+          return;
+        }
+      }
+      setTimeout(callback, 600);
+    }
+
+    // [CERT_GRID_PREV] - Previous arrow click handler
+    if (prevArrow) {
+      prevArrow.addEventListener("click", function () {
+        if (isMobileView() || isAnimating) return;
+
+        isAnimating = true;
+        const prevGroup = (currentGroup - 1 + totalGroups) % totalGroups;
+        groups[prevGroup].className = "item-group prev";
+        void groups[prevGroup].offsetWidth;
+        groups[prevGroup].classList.add("slide-from-left");
+        groups[currentGroup].classList.add("slide-to-right");
+
+        onAnimationEnd(groups[currentGroup], function () {
+          currentGroup = prevGroup;
+          initGroups();
+          isAnimating = false;
+        });
+      });
+    }
+
+    // [CERT_GRID_NEXT] - Next arrow click handler
+    if (nextArrow) {
+      nextArrow.addEventListener("click", function () {
+        if (isMobileView() || isAnimating) return;
+
+        isAnimating = true;
+        const nextGroup = (currentGroup + 1) % totalGroups;
+        groups[nextGroup].className = "item-group next";
+        void groups[nextGroup].offsetWidth;
+        groups[nextGroup].classList.add("slide-from-right");
+        groups[currentGroup].classList.add("slide-to-left");
+
+        onAnimationEnd(groups[currentGroup], function () {
+          currentGroup = nextGroup;
+          initGroups();
+          isAnimating = false;
+        });
+      });
+    }
+  };
+
+  // [MODAL] - Function to initialize the project modal
+  const initializeProjectModal = () => {
+    const modal = document.getElementById("project-modal");
+    if (!modal) return;
+
+    const modalTitle = document.getElementById("modal-title");
+    const modalDescription = document.getElementById("modal-description");
+    const modalImage = document.getElementById("modal-image");
+    const modalClose = document.getElementById("modal-close");
+    const githubBtn = document.getElementById("github-btn");
+
+    // [MODAL_UTILS] - Tech icon mapping function
+    function getTechIconPath(tech) {
+      // Map of lowercase tech names to their correct filename cases
+      const techMap = {
+        html: "HTML",
+        css: "CSS",
+        javascript: "JavaScript",
+        java: "Java",
+        cpp: "CPP",
+        mysql: "MySQL",
+        php: "Php",
+        android: "Android",
+        kotlin: "Kotlin",
+        google: "Google",
+        swift: "Swift",
+        postgres: "PostgreSQL",
+        python: "Python",
+        csharp: "CSharp",
+        ios: "IOS",
+        // Add others as needed
+      };
+
+      return `assets/img/icon${
+        techMap[tech.toLowerCase()] || capitalizeFirstLetter(tech)
+      }.svg`;
+    }
+
+    // [MODAL_UTILS] - Utility function to capitalize first letter
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    // [MODAL_OPEN] - Function to open project modal
+    function openProjectModal(projectId) {
+      console.log("Opening modal for project ID:", projectId);
+      const project = projectsData.find((p) => p.id === projectId);
+
+      if (!project) {
+        console.error("Project not found with ID:", projectId);
+
+        // [MODAL_FALLBACK] - Fallback project data if not found
+        const fallbackProject = {
+          title: "Project",
+          description: "Project description not available.",
+          image: "assets/img/imgPortfolio.webp",
+          githubUrl: "#",
+          technologies: [],
+        };
+
+        modalTitle.textContent = fallbackProject.title;
+        modalDescription.innerHTML = `<p>${fallbackProject.description}</p>`;
+        modalImage.src = fallbackProject.image;
+        modalImage.alt = fallbackProject.title;
+        githubBtn.setAttribute("data-url", fallbackProject.githubUrl);
+      } else {
+        modalTitle.textContent = project.title;
+        modalDescription.innerHTML = `<p>${project.description}</p>`;
+        modalImage.src = project.image;
+        modalImage.alt = project.title;
+        githubBtn.setAttribute("data-url", project.githubUrl);
+
+        // Remove existing size classes
+        modalImage.classList.remove(
+          "image-small",
+          "image-medium",
+          "image-large",
+          "playbook-image"
+        );
+
+        // Apply size class if specified
+        if (project.modalImageSize) {
+          modalImage.classList.add(`image-${project.modalImageSize}`);
+        }
+
+        // [MODAL_TECH] - Update technology logos
+        const techLogos = document.querySelector(".tech-logos");
+        if (techLogos) {
+          techLogos.innerHTML = "";
+
+          if (project.technologies && project.technologies.length > 0) {
+            project.technologies.forEach((tech) => {
+              const logoPath = getTechIconPath(tech);
+              const logoImg = document.createElement("img");
+              logoImg.src = logoPath;
+              logoImg.alt = tech;
+              logoImg.title = capitalizeFirstLetter(tech);
+              logoImg.className = "tech-logo";
+              techLogos.appendChild(logoImg);
             });
+          }
         }
-        
-        // [CERT_GRID_NEXT] - Next arrow click handler
-        if (nextArrow) {
-            nextArrow.addEventListener('click', function() {
-                if (isMobileView() || isAnimating) return;
-                
-                isAnimating = true;
-                const nextGroup = (currentGroup + 1) % totalGroups;
-                groups[nextGroup].className = 'item-group next';
-                void groups[nextGroup].offsetWidth;
-                groups[nextGroup].classList.add('slide-from-right');
-                groups[currentGroup].classList.add('slide-to-left');
-            
-                onAnimationEnd(groups[currentGroup], function() {
-                    currentGroup = nextGroup;
-                    initGroups();
-                    isAnimating = false;
-                });
-            });
-        }
-    };
+      }
 
-    // [MODAL] - Function to initialize the project modal
-    const initializeProjectModal = () => {
-        const modal = document.getElementById('project-modal');
-        if (!modal) return;
-        
-        const modalTitle = document.getElementById('modal-title');
-        const modalDescription = document.getElementById('modal-description');
-        const modalImage = document.getElementById('modal-image');
-        const modalClose = document.getElementById('modal-close');
-        const githubBtn = document.getElementById('github-btn');
-        
-        // [MODAL_UTILS] - Tech icon mapping function
-        function getTechIconPath(tech) {
-            // Map of lowercase tech names to their correct filename cases
-            const techMap = {
-                'html': 'HTML',
-                'css': 'CSS',
-                'javascript': 'JavaScript',
-                'java': 'Java',
-                'cpp': 'CPP',
-                'mysql': 'MySQL',
-                'php': 'Php',
-                'android': 'Android',
-                'kotlin': 'Kotlin',
-                'google': 'Google',
-                'swift': 'Swift',
-                'postgres': 'PostgreSQL',
-                'python': 'Python',
-                'csharp': 'CSharp',
-                'ios': 'IOS',
-                // Add others as needed
-            };
-            
-            return `assets/img/icon${techMap[tech.toLowerCase()] || capitalizeFirstLetter(tech)}.svg`;
-        }
-        
-        // [MODAL_UTILS] - Utility function to capitalize first letter
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-        
-        // [MODAL_OPEN] - Function to open project modal
-        function openProjectModal(projectId) {
-            console.log("Opening modal for project ID:", projectId);
-            const project = projectsData.find(p => p.id === projectId);
-            
-            if (!project) {
-                console.error("Project not found with ID:", projectId);
-                
-                // [MODAL_FALLBACK] - Fallback project data if not found
-                const fallbackProject = {
-                    title: 'Project',
-                    description: 'Project description not available.',
-                    image: 'assets/img/imgPortfolio.webp',
-                    githubUrl: '#',
-                    technologies: []
-                };
-                
-                modalTitle.textContent = fallbackProject.title;
-                modalDescription.innerHTML = `<p>${fallbackProject.description}</p>`;
-                modalImage.src = fallbackProject.image;
-                modalImage.alt = fallbackProject.title;
-                githubBtn.setAttribute('data-url', fallbackProject.githubUrl);
-            } else {
-                modalTitle.textContent = project.title;
-                modalDescription.innerHTML = `<p>${project.description}</p>`;
-                modalImage.src = project.image;
-                modalImage.alt = project.title;
-                githubBtn.setAttribute('data-url', project.githubUrl);
-                
-                // Remove existing size classes
-                modalImage.classList.remove('image-small', 'image-medium', 'image-large', 'playbook-image');
-                
-                // Apply size class if specified
-                if (project.modalImageSize) {
-                    modalImage.classList.add(`image-${project.modalImageSize}`);
-                }
+      modal.classList.add("show");
 
-                // [MODAL_TECH] - Update technology logos
-                const techLogos = document.querySelector('.tech-logos');
-                if (techLogos) {
-                    techLogos.innerHTML = '';
-                    
-                    if (project.technologies && project.technologies.length > 0) {
-                        project.technologies.forEach(tech => {
-                            const logoPath = getTechIconPath(tech);
-                            const logoImg = document.createElement('img');
-                            logoImg.src = logoPath;
-                            logoImg.alt = tech;
-                            logoImg.title = capitalizeFirstLetter(tech);
-                            logoImg.className = 'tech-logo';
-                            techLogos.appendChild(logoImg);
-                        });
-                    }
-                }
+      // [MODAL_SCROLL] - Scroll modal into view
+      setTimeout(() => {
+        const modalContent = document.querySelector(".modal-content");
+        if (modalContent) {
+          const modalRect = modalContent.getBoundingClientRect();
+          const scrollToY =
+            window.scrollY +
+            modalRect.top +
+            modalRect.height / 2 -
+            window.innerHeight / 2;
+
+          window.scrollTo({
+            top: scrollToY,
+            behavior: "smooth",
+          });
+        }
+      }, 10);
+    }
+
+    // [MODAL_CLOSE] - Function to close project modal
+    function closeProjectModal() {
+      modal.classList.add("hide");
+
+      setTimeout(() => {
+        modal.classList.remove("show");
+
+        setTimeout(() => {
+          modalTitle.textContent = "";
+          modalDescription.innerHTML = "";
+          modalImage.src = "";
+          modal.classList.remove("hide");
+        }, 50);
+      }, 400);
+    }
+
+    // [MODAL_ITEMS] - Attach event listeners to project items
+    const items = document.querySelectorAll(".projects .item");
+    items.forEach((item) => {
+      item.addEventListener("click", function () {
+        const subtitle = item.querySelector(".item-subtitle");
+        if (!subtitle) return;
+
+        const projectTitle = subtitle.textContent.trim();
+        console.log("Item clicked:", projectTitle);
+
+        // Look up the project by title first, then fallback to ID generation
+        const project = projectsData.find((p) => p.title === projectTitle);
+        if (project) {
+          openProjectModal(project.id);
+        } else {
+          // Fallback to generated ID
+          const generatedId = projectTitle.toLowerCase().replace(/\s+/g, "");
+          console.log("Generated ID:", generatedId);
+          openProjectModal(generatedId);
+        }
+      });
+    });
+
+    // [MODAL_GITHUB] - GitHub button click event
+    if (githubBtn) {
+      githubBtn.addEventListener("click", function () {
+        const url = this.getAttribute("data-url");
+        if (url && url !== "#") {
+          window.open(url, "_blank");
+        }
+      });
+    }
+
+    // [MODAL_CLOSE_BTN] - Modal close button click event
+    if (modalClose) {
+      modalClose.addEventListener("click", closeProjectModal);
+    }
+
+    // [MODAL_OUTSIDE] - Close modal when clicking outside
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeProjectModal();
+      }
+    });
+
+    // [MODAL_ESC] - Close modal with Escape key
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && modal.classList.contains("show")) {
+        closeProjectModal();
+      }
+    });
+  };
+
+  // [CERT_MODAL] - Function to initialize the certification modal
+  const initializeCertModal = () => {
+    const modal = document.getElementById("cert-modal");
+    if (!modal) return;
+
+    const modalTitle = document.getElementById("cert-modal-title");
+    const modalDescription = document.getElementById("cert-modal-description");
+    const modalImage = document.getElementById("cert-modal-image");
+    const modalClose = document.getElementById("cert-modal-close");
+    const statusBtn = document.getElementById("cert-status-btn");
+    const statusIcon = document.getElementById("cert-status-icon");
+    const statusText = document.getElementById("cert-status-text");
+
+    // [CERT_MODAL_OPEN] - Function to open certification modal
+    function openCertModal(certId) {
+      console.log("Opening modal for certification ID:", certId);
+      const cert = certificationsData.find((c) => c.id === certId);
+
+      if (!cert) {
+        console.error("Certification not found with ID:", certId);
+
+        // [CERT_MODAL_FALLBACK] - Fallback certification data if not found
+        const fallbackCert = {
+          title: "Certification",
+          description: "Certification description not available.",
+          image: "assets/img/imgCertDefault.webp",
+          status: "in-progress",
+          certUrl: "#",
+        };
+
+        modalTitle.textContent = fallbackCert.title;
+        modalDescription.innerHTML = `<p>${fallbackCert.description}</p>`;
+        modalImage.src = fallbackCert.image;
+        modalImage.alt = fallbackCert.title;
+
+        // [CERT_MODAL_STATUS] - Configure status icon
+        if (fallbackCert.status === "completed") {
+          statusIcon.src = "assets/img/iconCheck.svg";
+          statusText.innerHTML =
+            '<span class="status-completed">Completed</span>';
+        } else {
+          statusIcon.src = "assets/img/iconTime.svg";
+          statusText.innerHTML =
+            '<span class="status-in-progress">In Progress</span>';
+        }
+
+        statusBtn.setAttribute("data-url", fallbackCert.certUrl);
+      } else {
+        modalTitle.textContent = cert.title;
+        modalDescription.innerHTML = `<p>${cert.description}</p>`;
+        modalImage.src = cert.image;
+        modalImage.alt = cert.title;
+
+        // [CERT_MODAL_STATUS] - Configure status icon
+        if (cert.status === "completed") {
+          statusIcon.src = "assets/img/iconCheck.svg";
+          statusText.innerHTML =
+            '<span class="status-completed">Completed</span>';
+        } else {
+          statusIcon.src = "assets/img/iconTime.svg";
+          statusText.innerHTML =
+            '<span class="status-in-progress">In Progress</span>';
+        }
+
+        statusBtn.setAttribute("data-url", cert.certUrl);
+      }
+
+      modal.classList.add("show");
+
+      // [CERT_MODAL_SCROLL] - Scroll modal into view
+      setTimeout(() => {
+        const modalContent = modal.querySelector(".modal-content");
+        if (modalContent) {
+          const modalRect = modalContent.getBoundingClientRect();
+          const scrollToY =
+            window.scrollY +
+            modalRect.top +
+            modalRect.height / 2 -
+            window.innerHeight / 2;
+
+          window.scrollTo({
+            top: scrollToY,
+            behavior: "smooth",
+          });
+        }
+      }, 10);
+    }
+
+    // [CERT_MODAL_CLOSE] - Function to close certification modal
+    function closeCertModal() {
+      modal.classList.add("hide");
+
+      setTimeout(() => {
+        modal.classList.remove("show");
+
+        setTimeout(() => {
+          modalTitle.textContent = "";
+          modalDescription.innerHTML = "";
+          modalImage.src = "";
+          modal.classList.remove("hide");
+        }, 50);
+      }, 400);
+    }
+
+    // [CERT_MODAL_ITEMS] - Attach event listeners to certification items
+    const items = document.querySelectorAll(".certifications .item");
+    items.forEach((item) => {
+      item.addEventListener("click", function () {
+        const subtitle = item.querySelector(".item-subtitle");
+        if (!subtitle) return;
+
+        const certTitle = subtitle.textContent.trim();
+        console.log("Certification item clicked:", certTitle);
+
+        // Look up the certification by title first, then fallback to ID generation
+        const cert = certificationsData.find((c) => c.title === certTitle);
+        if (cert) {
+          openCertModal(cert.id);
+        } else {
+          // Fallback to generated ID
+          const generatedId = certTitle.toLowerCase().replace(/\s+/g, "");
+          console.log("Generated ID:", generatedId);
+          openCertModal(generatedId);
+        }
+      });
+    });
+
+    // [CERT_MODAL_STATUS_BTN] - Status button click event
+    if (statusBtn) {
+      statusBtn.addEventListener("click", function () {
+        const url = this.getAttribute("data-url");
+        if (url && url !== "#") {
+          window.open(url, "_blank");
+        }
+      });
+    }
+
+    // [CERT_MODAL_CLOSE_BTN] - Modal close button click event
+    if (modalClose) {
+      modalClose.addEventListener("click", closeCertModal);
+    }
+
+    // [CERT_MODAL_OUTSIDE] - Close modal when clicking outside
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeCertModal();
+      }
+    });
+
+    // [CERT_MODAL_ESC] - Close modal with Escape key
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && modal.classList.contains("show")) {
+        closeCertModal();
+      }
+    });
+  };
+
+  // [FORM_INIT] - Initialize contact form functionality
+  const initializeContactForm = () => {
+    // [INIT] - Variable to control if form is being submitted
+    let isSubmitting = false;
+
+    // [FORM_DATA] - Function to check if form has data
+    function hasFormData() {
+      const form = document.getElementById("contactForm");
+      if (!form) return false;
+
+      const name = document.getElementById("name")?.value;
+      const email = document.getElementById("email")?.value;
+      const subject = document.getElementById("subject")?.value;
+      const message = document.getElementById("message")?.value;
+      return name || email || subject || message;
+    }
+
+    // [SUBMISSION] - Capture form submission
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default submission to handle it ourselves
+
+        const overlay = document.getElementById("formOverlay");
+        const form = this;
+
+        // [INIT] - Mark that we are submitting the form
+        isSubmitting = true;
+
+        // [UI] - Show overlay
+        overlay.classList.add("active");
+
+        // [SECURITY] - Disable all form fields during submission
+        const inputs = form.querySelectorAll("input, textarea");
+        inputs.forEach((input) => {
+          input.disabled = true;
+        });
+
+        // [FORM_DATA] - Create a virtual form to send data
+        const formData = new FormData();
+
+        // [FORM_DATA] - Add all form fields
+        formData.append("name", document.getElementById("name").value);
+        formData.append("email", document.getElementById("email").value);
+        formData.append("subject", document.getElementById("subject").value);
+        formData.append("message", document.getElementById("message").value);
+
+        // [FORM_DATA] - Add specific fields for FormSubmit
+        formData.append("_captcha", "false");
+        formData.append("_next", "false");
+        formData.append("_template", "table"); // To display data in table format
+
+        // [SUBMISSION] - FormSubmit URL
+        const formAction = form.getAttribute("action");
+
+        // [SUBMISSION] - Send data using fetch API
+        fetch(formAction, {
+          method: "POST",
+          body: formData,
+          // Don't set Content-Type, let fetch determine it automatically with the correct boundary
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Server response error");
             }
-            
-            modal.classList.add('show');
-            
-            // [MODAL_SCROLL] - Scroll modal into view
+            return response.text();
+          })
+          .then((data) => {
+            // [UI] - Success - wait 2 seconds to show the message
             setTimeout(() => {
-                const modalContent = document.querySelector('.modal-content');
-                if (modalContent) {
-                    const modalRect = modalContent.getBoundingClientRect();
-                    const scrollToY = window.scrollY + modalRect.top + (modalRect.height / 2) - (window.innerHeight / 2);
-                    
-                    window.scrollTo({
-                        top: scrollToY,
-                        behavior: 'smooth'
-                    });
-                }
-            }, 10); 
-        }
+              // [UI] - Change message in the overlay
+              const messageEl = document.querySelector(".message");
+              messageEl.textContent = "Message sent successfully!";
 
-        // [MODAL_CLOSE] - Function to close project modal
-        function closeProjectModal() {
-            modal.classList.add('hide');
-            
-            setTimeout(() => {
-                modal.classList.remove('show');
-                
-                setTimeout(() => {
-                    modalTitle.textContent = '';
-                    modalDescription.innerHTML = '';
-                    modalImage.src = '';
-                    modal.classList.remove('hide'); 
-                }, 50);
-                
-            }, 400);
-        }
+              // [UI] - Change loader animation to show a check
+              const loader = document.querySelector(".loader");
 
-        // [MODAL_ITEMS] - Attach event listeners to project items
-        const items = document.querySelectorAll('.projects .item');
-        items.forEach(item => {
-            item.addEventListener('click', function() {
-                const subtitle = item.querySelector('.item-subtitle');
-                if (!subtitle) return;
-                
-                const projectTitle = subtitle.textContent.trim();
-                console.log("Item clicked:", projectTitle);
-                
-                // Look up the project by title first, then fallback to ID generation
-                const project = projectsData.find(p => p.title === projectTitle);
-                if (project) {
-                    openProjectModal(project.id);
-                } else {
-                    // Fallback to generated ID
-                    const generatedId = projectTitle.toLowerCase().replace(/\s+/g, '');
-                    console.log("Generated ID:", generatedId);
-                    openProjectModal(generatedId);
-                }
-            });
-        });
+              // Remove the loader class and add a success class
+              loader.classList.remove("loader");
+              loader.classList.add("loader-success");
 
-        // [MODAL_GITHUB] - GitHub button click event
-        if (githubBtn) {
-            githubBtn.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                if (url && url !== '#') {
-                    window.open(url, '_blank');
-                }
-            });
-        }
+              // [UI] - Remove overlay after a delay
+              setTimeout(() => {
+                overlay.classList.remove("active");
+                form.reset();
 
-        // [MODAL_CLOSE_BTN] - Modal close button click event
-        if (modalClose) {
-            modalClose.addEventListener('click', closeProjectModal);
-        }
-        
-        // [MODAL_OUTSIDE] - Close modal when clicking outside
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeProjectModal();
-            }
-        });
-        
-        // [MODAL_ESC] - Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('show')) {
-                closeProjectModal();
-            }
-        });
-    };
-    
-    // [CERT_MODAL] - Function to initialize the certification modal
-    const initializeCertModal = () => {
-        const modal = document.getElementById('cert-modal');
-        if (!modal) return;
-        
-        const modalTitle = document.getElementById('cert-modal-title');
-        const modalDescription = document.getElementById('cert-modal-description');
-        const modalImage = document.getElementById('cert-modal-image');
-        const modalClose = document.getElementById('cert-modal-close');
-        const statusBtn = document.getElementById('cert-status-btn');
-        const statusIcon = document.getElementById('cert-status-icon');
-        const statusText = document.getElementById('cert-status-text');
-        
-        // [CERT_MODAL_OPEN] - Function to open certification modal
-        function openCertModal(certId) {
-            console.log("Opening modal for certification ID:", certId);
-            const cert = certificationsData.find(c => c.id === certId);
-            
-            if (!cert) {
-                console.error("Certification not found with ID:", certId);
-                
-                // [CERT_MODAL_FALLBACK] - Fallback certification data if not found
-                const fallbackCert = {
-                    title: 'Certification',
-                    description: 'Certification description not available.',
-                    image: 'assets/img/imgCertDefault.webp',
-                    status: 'in-progress',
-                    certUrl: '#'
-                };
-                
-                modalTitle.textContent = fallbackCert.title;
-                modalDescription.innerHTML = `<p>${fallbackCert.description}</p>`;
-                modalImage.src = fallbackCert.image;
-                modalImage.alt = fallbackCert.title;
-                
-                // [CERT_MODAL_STATUS] - Configure status icon
-                if (fallbackCert.status === 'completed') {
-                    statusIcon.src = 'assets/img/iconCheck.svg';
-                    statusText.innerHTML = '<span class="status-completed">Completed</span>';
-                } else {
-                    statusIcon.src = 'assets/img/iconTime.svg';
-                    statusText.innerHTML = '<span class="status-in-progress">In Progress</span>';
-                }
-                
-                statusBtn.setAttribute('data-url', fallbackCert.certUrl);
-            } else {
-                modalTitle.textContent = cert.title;
-                modalDescription.innerHTML = `<p>${cert.description}</p>`;
-                modalImage.src = cert.image;
-                modalImage.alt = cert.title;
-                
-                // [CERT_MODAL_STATUS] - Configure status icon
-                if (cert.status === 'completed') {
-                    statusIcon.src = 'assets/img/iconCheck.svg';
-                    statusText.innerHTML = '<span class="status-completed">Completed</span>';
-                } else {
-                    statusIcon.src = 'assets/img/iconTime.svg';
-                    statusText.innerHTML = '<span class="status-in-progress">In Progress</span>';
-                }
-                
-                statusBtn.setAttribute('data-url', cert.certUrl);
-            }
-            
-            modal.classList.add('show');
-            
-            // [CERT_MODAL_SCROLL] - Scroll modal into view
-            setTimeout(() => {
-                const modalContent = modal.querySelector('.modal-content');
-                if (modalContent) {
-                    const modalRect = modalContent.getBoundingClientRect();
-                    const scrollToY = window.scrollY + modalRect.top + (modalRect.height / 2) - (window.innerHeight / 2);
-                    
-                    window.scrollTo({
-                        top: scrollToY,
-                        behavior: 'smooth'
-                    });
-                }
-            }, 10); 
-        }
-    
-        // [CERT_MODAL_CLOSE] - Function to close certification modal
-        function closeCertModal() {
-            modal.classList.add('hide');
-            
-            setTimeout(() => {
-                modal.classList.remove('show');
-                
-                setTimeout(() => {
-                    modalTitle.textContent = '';
-                    modalDescription.innerHTML = '';
-                    modalImage.src = '';
-                    modal.classList.remove('hide'); 
-                }, 50);
-                
-            }, 400);
-        }
-    
-        // [CERT_MODAL_ITEMS] - Attach event listeners to certification items
-        const items = document.querySelectorAll('.certifications .item');
-        items.forEach(item => {
-            item.addEventListener('click', function() {
-                const subtitle = item.querySelector('.item-subtitle');
-                if (!subtitle) return;
-                
-                const certTitle = subtitle.textContent.trim();
-                console.log("Certification item clicked:", certTitle);
-                
-                // Look up the certification by title first, then fallback to ID generation
-                const cert = certificationsData.find(c => c.title === certTitle);
-                if (cert) {
-                    openCertModal(cert.id);
-                } else {
-                    // Fallback to generated ID
-                    const generatedId = certTitle.toLowerCase().replace(/\s+/g, '');
-                    console.log("Generated ID:", generatedId);
-                    openCertModal(generatedId);
-                }
-            });
-        });
-    
-        // [CERT_MODAL_STATUS_BTN] - Status button click event
-        if (statusBtn) {
-            statusBtn.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                if (url && url !== '#') {
-                    window.open(url, '_blank');
-                }
-            });
-        }
-    
-        // [CERT_MODAL_CLOSE_BTN] - Modal close button click event
-        if (modalClose) {
-            modalClose.addEventListener('click', closeCertModal);
-        }
-        
-        // [CERT_MODAL_OUTSIDE] - Close modal when clicking outside
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeCertModal();
-            }
-        });
-        
-        // [CERT_MODAL_ESC] - Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('show')) {
-                closeCertModal();
-            }
-        });
-    };
-    
-    // [FORM_INIT] - Initialize contact form functionality
-    const initializeContactForm = () => {
-        // [INIT] - Variable to control if form is being submitted
-        let isSubmitting = false;
-
-        // [FORM_DATA] - Function to check if form has data
-        function hasFormData() {
-            const form = document.getElementById('contactForm');
-            if (!form) return false;
-            
-            const name = document.getElementById('name')?.value;
-            const email = document.getElementById('email')?.value;
-            const subject = document.getElementById('subject')?.value;
-            const message = document.getElementById('message')?.value;
-            return name || email || subject || message;
-        }
-
-        // [SUBMISSION] - Capture form submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Prevent default submission to handle it ourselves
-                
-                const overlay = document.getElementById('formOverlay');
-                const form = this;
-                
-                // [INIT] - Mark that we are submitting the form
-                isSubmitting = true;
-                
-                // [UI] - Show overlay
-                overlay.classList.add('active');
-                
-                // [SECURITY] - Disable all form fields during submission
-                const inputs = form.querySelectorAll('input, textarea');
-                inputs.forEach(input => {
-                    input.disabled = true;
+                // [SECURITY] - Re-enable form fields
+                inputs.forEach((input) => {
+                  input.disabled = false;
                 });
 
-                // [FORM_DATA] - Create a virtual form to send data
-                const formData = new FormData();
-                
-                // [FORM_DATA] - Add all form fields
-                formData.append('name', document.getElementById('name').value);
-                formData.append('email', document.getElementById('email').value);
-                formData.append('subject', document.getElementById('subject').value);
-                formData.append('message', document.getElementById('message').value);
-                
-                // [FORM_DATA] - Add specific fields for FormSubmit
-                formData.append('_captcha', 'false');
-                formData.append('_next', 'false');
-                formData.append('_template', 'table'); // To display data in table format
-                
-                // [SUBMISSION] - FormSubmit URL
-                const formAction = form.getAttribute('action');
-                
-                // [SUBMISSION] - Send data using fetch API
-                fetch(formAction, {
-                    method: 'POST',
-                    body: formData,
-                    // Don't set Content-Type, let fetch determine it automatically with the correct boundary
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Server response error');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    // [UI] - Success - wait 2 seconds to show the message
-                    setTimeout(() => {
-                        // [UI] - Change message in the overlay
-                        const messageEl = document.querySelector('.message');
-                        messageEl.textContent = "Message sent successfully!";
-                        
-                        // [UI] - Change loader animation to show a check
-                        const loader = document.querySelector('.loader');
-                        
-                        // Remove the loader class and add a success class
-                        loader.classList.remove('loader');
-                        loader.classList.add('loader-success');
-                        
-                        // [UI] - Remove overlay after a delay
-                        setTimeout(() => {
-                            overlay.classList.remove('active');
-                            form.reset();
-                            
-                            // [SECURITY] - Re-enable form fields
-                            inputs.forEach(input => {
-                                input.disabled = false;
-                            });
-                            
-                            // [UI] - Reset loader to original state
-                            loader.classList.remove('loader-success');
-                            loader.classList.add('loader');
-                            
-                            // [UI] - Reset message
-                            messageEl.textContent = "Sending message, please wait...";
-                            
-                            // [INIT] - Reset submission state
-                            isSubmitting = false;
-                        }, 1500);
-                    }, 1000);
-                })
-                .catch(error => {
-                    console.error('Error sending message:', error);
-                    
-                    // [UI] - In case of error
-                    const messageEl = document.querySelector('.message');
-                    messageEl.textContent = "Error sending message. Please try again.";
-                    
-                    // [UI] - Change loader animation to show an error
-                    const loader = document.querySelector('.loader');
-                    loader.style.animation = 'none';
-                    loader.innerHTML = '✗';
-                    loader.style.fontSize = '3rem';
-                    loader.style.color = '#FF5252';
-                    
-                    // [UI] - Wait 2 seconds and then close the overlay
-                    setTimeout(() => {
-                        overlay.classList.remove('active');
-                        
-                        // [SECURITY] - Re-enable form fields
-                        inputs.forEach(input => {
-                            input.disabled = false;
-                        });
-                        
-                        // [UI] - Reset loader to original state
-                        loader.innerHTML = '';
-                        loader.style.fontSize = '';
-                        loader.style.color = '';
-                        loader.style.animation = 'loader 1.2s infinite';
-                        
-                        // [UI] - Reset message
-                        messageEl.textContent = "Sending message, please wait...";
-                        
-                        // [INIT] - Reset submission state
-                        isSubmitting = false;
-                    }, 2000);
-                });
-            });
-        }
-    };
+                // [UI] - Reset loader to original state
+                loader.classList.remove("loader-success");
+                loader.classList.add("loader");
 
-    // [SECTIONS] - HTML content for each section
-    const contentSections = {
-      // [SECTION_ABOUT] - About Me section HTML
-      aboutMe: /*html*/ `
+                // [UI] - Reset message
+                messageEl.textContent = "Sending message, please wait...";
+
+                // [INIT] - Reset submission state
+                isSubmitting = false;
+              }, 1500);
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("Error sending message:", error);
+
+            // [UI] - In case of error
+            const messageEl = document.querySelector(".message");
+            messageEl.textContent = "Error sending message. Please try again.";
+
+            // [UI] - Change loader animation to show an error
+            const loader = document.querySelector(".loader");
+            loader.style.animation = "none";
+            loader.innerHTML = "✗";
+            loader.style.fontSize = "3rem";
+            loader.style.color = "#FF5252";
+
+            // [UI] - Wait 2 seconds and then close the overlay
+            setTimeout(() => {
+              overlay.classList.remove("active");
+
+              // [SECURITY] - Re-enable form fields
+              inputs.forEach((input) => {
+                input.disabled = false;
+              });
+
+              // [UI] - Reset loader to original state
+              loader.innerHTML = "";
+              loader.style.fontSize = "";
+              loader.style.color = "";
+              loader.style.animation = "loader 1.2s infinite";
+
+              // [UI] - Reset message
+              messageEl.textContent = "Sending message, please wait...";
+
+              // [INIT] - Reset submission state
+              isSubmitting = false;
+            }, 2000);
+          });
+      });
+    }
+  };
+
+  // [SECTIONS] - HTML content for each section
+  const contentSections = {
+    // [SECTION_ABOUT] - About Me section HTML
+    aboutMe: /*html*/ `
             <div class="main__content__container"> 
                 <div class="content__container">
                     <h2 class="content__subtitle">About Me</h2>
@@ -980,8 +1024,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-      // [SECTION_EXPERIENCE] - Experience section HTML
-      experience: /*html*/ `
+    // [SECTION_EXPERIENCE] - Experience section HTML
+    experience: /*html*/ `
             <h2 class="section__title">Experience</h2>
             <div class="main__content__container column start">
                 <div class="content__container__experience">
@@ -1001,8 +1045,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-      // [SECTION_PROJECTS] - Projects section HTML
-      projects: /*html*/ `
+    // [SECTION_PROJECTS] - Projects section HTML
+    projects: /*html*/ `
             <h2 class="section__title">Projects</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -1031,6 +1075,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <img class="item-img" src="assets/img/imgPlaybook2.webp" alt="imgPlaybook">
                                 </div>
                                 <h2 class="item-subtitle">PlayBook</h2>
+                            </div>
+                            <div class="item">
+                                <img class="item-img" src="assets/img/imgNotes.webp" alt="imgNotes">
+                                <h2 class="item-subtitle">Notes App</h2>
                             </div>
                         </div>
                     </div>
@@ -1063,8 +1111,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-      // [SECTION_CERTIFICATIONS] - Certifications section HTML
-      certifications: /*html*/ `
+    // [SECTION_CERTIFICATIONS] - Certifications section HTML
+    certifications: /*html*/ `
             <h2 class="section__title small">Certifications</h2>
             <div class="main__content__container">
                 <div class="grid__wrapper">
@@ -1114,8 +1162,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-      // [SECTION_CONTACT] - Contact section HTML
-      contact: /*html*/ `
+    // [SECTION_CONTACT] - Contact section HTML
+    contact: /*html*/ `
             <div class="main__content__container">
                 <h2 class="contact__title">Contact Me</h2>
                 <div class="contact__container">
@@ -1150,117 +1198,121 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-    };
+  };
 
-    // [NAV_ACTIVE] - Function to set active navigation link
-    const setActiveLink = (clickedLink) => {
-        navLinks.forEach(link => {
-            link.classList.remove('pressed');
-        });
-        clickedLink.classList.add('pressed');
-    };
-
-    // [CONTENT_LOAD] - Function to load content with fade transition
-    const loadContent = async (sectionId) => {
-        mainContent.classList.add('fade-out');
-        
-        await new Promise(resolve => setTimeout(resolve, 300));
-        
-        mainContent.innerHTML = contentSections[sectionId];
-        
-        // Add appropriate classes to sections for targeting in CSS and JS
-        if (sectionId === 'projects') {
-            const gridWrapper = document.querySelector('.grid__wrapper');
-            if (gridWrapper) {
-                gridWrapper.parentElement.classList.add('projects');
-            }
-        } else if (sectionId === 'certifications') {
-            const gridWrapper = document.querySelector('.grid__wrapper');
-            if (gridWrapper) {
-                gridWrapper.parentElement.classList.add('certifications');
-            }
-        }
-        
-        // Initialize specific components for each section
-        if (sectionId === 'aboutMe') {
-            attachCardListeners();
-        } else if (sectionId === 'projects') {
-            initializeProjectGrid();
-            initializeProjectModal();
-        } else if (sectionId === 'certifications') {
-            initializeCertificationsGrid();
-            initializeCertModal();
-        } else if (sectionId === 'contact') {
-            // [FORM_INIT] - Initialize contact form functionality when contact section is loaded
-            initializeContactForm();
-        }
-        
-        mainContent.classList.remove('fade-out');
-    };
-
-    // [INIT_PAGE] - Set initial active link and load default content
-    const aboutMeLink = document.getElementById('aboutMe');
-    setActiveLink(aboutMeLink);
-    loadContent('aboutMe');
-
-    // [NAV_EVENTS] - Navigation link click events
-    navLinks.forEach(link => {
-        link.addEventListener('click', async (e) => {
-            e.preventDefault();
-            checkbox.checked = false;
-            setActiveLink(e.target);
-            await loadContent(e.target.id);
-        });
+  // [NAV_ACTIVE] - Function to set active navigation link
+  const setActiveLink = (clickedLink) => {
+    navLinks.forEach((link) => {
+      link.classList.remove("pressed");
     });
+    clickedLink.classList.add("pressed");
+  };
 
-    // [QUICK_LINKS_EVENTS] - Quick links click events
-    quickLinks.forEach(link => {
-        link.addEventListener('click', async (e) => {
-            e.preventDefault();
-            const sectionId = e.target.getAttribute('href').substring(1);
-            await loadContent(sectionId);
-            mainSection.scrollIntoView({ behavior: 'smooth' });
-            const navLink = document.getElementById(sectionId);
-            setActiveLink(navLink);
-        });
+  // [CONTENT_LOAD] - Function to load content with fade transition
+  const loadContent = async (sectionId) => {
+    mainContent.classList.add("fade-out");
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    mainContent.innerHTML = contentSections[sectionId];
+
+    // Add appropriate classes to sections for targeting in CSS and JS
+    if (sectionId === "projects") {
+      const gridWrapper = document.querySelector(".grid__wrapper");
+      if (gridWrapper) {
+        gridWrapper.parentElement.classList.add("projects");
+      }
+    } else if (sectionId === "certifications") {
+      const gridWrapper = document.querySelector(".grid__wrapper");
+      if (gridWrapper) {
+        gridWrapper.parentElement.classList.add("certifications");
+      }
+    }
+
+    // Initialize specific components for each section
+    if (sectionId === "aboutMe") {
+      attachCardListeners();
+    } else if (sectionId === "projects") {
+      initializeProjectGrid();
+      initializeProjectModal();
+    } else if (sectionId === "certifications") {
+      initializeCertificationsGrid();
+      initializeCertModal();
+    } else if (sectionId === "contact") {
+      // [FORM_INIT] - Initialize contact form functionality when contact section is loaded
+      initializeContactForm();
+    }
+
+    mainContent.classList.remove("fade-out");
+  };
+
+  // [INIT_PAGE] - Set initial active link and load default content
+  const aboutMeLink = document.getElementById("aboutMe");
+  setActiveLink(aboutMeLink);
+  loadContent("aboutMe");
+
+  // [NAV_EVENTS] - Navigation link click events
+  navLinks.forEach((link) => {
+    link.addEventListener("click", async (e) => {
+      e.preventDefault();
+      checkbox.checked = false;
+      setActiveLink(e.target);
+      await loadContent(e.target.id);
     });
+  });
 
-    // [RESIZE] - Window resize event for skill cards
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 1035) {
-            document.querySelectorAll('.skill__card-inner').forEach(cardInner => {
-                cardInner.classList.remove('is-flipped');
-            });
-        }
+  // [QUICK_LINKS_EVENTS] - Quick links click events
+  quickLinks.forEach((link) => {
+    link.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const sectionId = e.target.getAttribute("href").substring(1);
+      await loadContent(sectionId);
+      mainSection.scrollIntoView({ behavior: "smooth" });
+      const navLink = document.getElementById(sectionId);
+      setActiveLink(navLink);
     });
+  });
 
-    // [SCROLL_ARROW] - Initialize scroll arrow animation
-    const initializeScrollArrow = () => {
-        // Reference to the scroll-arrow element
-        const scrollArrow = document.querySelector('.scroll-arrow');
-        if (!scrollArrow) return;
-        
-        let hasScrolled = false; // Variable to track if user has scrolled
-        
-        // Function for the fadeIn animation
-        setTimeout(() => {
-            scrollArrow.style.animation = 'fadeInFromBottom 1s ease-out forwards';
-            scrollArrow.classList.add('visible'); // Add a class to indicate the element is visible
-        }, 5000); // 5 seconds delay
-        
-        // Function to handle scroll event
-        function handleScroll() {
-            // If the user has scrolled and the element is visible, hide it
-            if (window.scrollY > 10 && !hasScrolled && scrollArrow.classList.contains('visible')) {
-                scrollArrow.style.animation = 'fadeOutToBottom 0.5s ease-out forwards';
-                hasScrolled = true; // Mark that scrolling has occurred
-                scrollArrow.classList.remove('visible');
-            }
-        }
-        
-        // Add listener for the scroll event
-        window.addEventListener('scroll', handleScroll);
-    };
+  // [RESIZE] - Window resize event for skill cards
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1035) {
+      document.querySelectorAll(".skill__card-inner").forEach((cardInner) => {
+        cardInner.classList.remove("is-flipped");
+      });
+    }
+  });
 
-    initializeScrollArrow();
+  // [SCROLL_ARROW] - Initialize scroll arrow animation
+  const initializeScrollArrow = () => {
+    // Reference to the scroll-arrow element
+    const scrollArrow = document.querySelector(".scroll-arrow");
+    if (!scrollArrow) return;
+
+    let hasScrolled = false; // Variable to track if user has scrolled
+
+    // Function for the fadeIn animation
+    setTimeout(() => {
+      scrollArrow.style.animation = "fadeInFromBottom 1s ease-out forwards";
+      scrollArrow.classList.add("visible"); // Add a class to indicate the element is visible
+    }, 5000); // 5 seconds delay
+
+    // Function to handle scroll event
+    function handleScroll() {
+      // If the user has scrolled and the element is visible, hide it
+      if (
+        window.scrollY > 10 &&
+        !hasScrolled &&
+        scrollArrow.classList.contains("visible")
+      ) {
+        scrollArrow.style.animation = "fadeOutToBottom 0.5s ease-out forwards";
+        hasScrolled = true; // Mark that scrolling has occurred
+        scrollArrow.classList.remove("visible");
+      }
+    }
+
+    // Add listener for the scroll event
+    window.addEventListener("scroll", handleScroll);
+  };
+
+  initializeScrollArrow();
 });
