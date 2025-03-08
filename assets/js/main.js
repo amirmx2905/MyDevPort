@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "This full-stack web application combines Django REST Framework and React to create a secure note-taking platform. It features user authentication via JWT, CRUD operations for notes, and a modern, responsive UI with Tailwind CSS. The app uses PostgreSQL for data storage and supports protected routes. ",
       image: "assets/img/imgNotes.webp",
       githubUrl: "https://github.com/amirmx2905/firstDjangoReactWebApp",
-      technologies: ["django", "react", "tailwind", "postgresql"],
+      technologies: ["django", "react", "tailwind", "postgres"],
     },
     // ADD more projects here
   ];
