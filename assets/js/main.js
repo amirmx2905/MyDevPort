@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "assets/img/imgTecmilenio.webp",
       "assets/img/caritasImage.webp",
       "assets/img/logoTeleperformance.webp",
+      "assets/img/photo.webp",
     ];
 
     imagesToPreload.forEach((imageSrc) => {
@@ -891,11 +892,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             and staying updated with industry trends. Strong collaborator with excellent communication skills.
                         </p>
                 </div>
-                <div class="content__video">
-                    <video class="center__video" autoplay muted loop playsinline>
-                        <source src="assets/videos/memoji.mp4" type="video/mp4">
-                        Your browser does not support the video tag
-                    </video>
+                <div class="img__container">
+                    <img src="assets/img/photo.webp" alt="Profile Picture">
                 </div>
             </div>
             <div class="main__content__container below">
