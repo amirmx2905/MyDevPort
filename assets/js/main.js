@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "assets/img/imgTecmilenio.webp",
       "assets/img/caritasImage.webp",
       "assets/img/logoTeleperformance.webp",
+      "assets/img/gifPlaybook.gif",
       "assets/img/photo.webp",
     ];
 
