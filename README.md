@@ -1,6 +1,6 @@
 # MyDevPort - Developer Portfolio
 
-Welcome to MyDevPort, a showcase of my skills and projects as a developer. This portfolio highlights my expertise in web development and animation. Explore my work and get to know me better!
+Welcome to MyDevPort, a showcase of my skills and projects as a developer. This portfolio highlights my expertise in web development and animation. Explore my work and get to know me better!!
 
 ## Features
 
