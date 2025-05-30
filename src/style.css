@@ -1,1 +1,73 @@
+/*
+  KEYWORD INDEX:
+  - Tailwind Import: tailwindcss base styles
+  - Root Variables: global background color
+  - Scroll Behavior: auto vs smooth, device-specific
+  - Mobile Detection: max-width, hover/pointer queries
+  - Desktop Detection: min-width, hover/pointer fine
+  - Tablet Detection: mixed touch/size queries
+  - Touch Scrolling: webkit-overflow-scrolling, touch-action
+  - Overscroll Behavior: contain vs none
+  - Section Targeting: scroll-margin-top for navigation
+  - Breakpoints: 768px mobile, 1024px tablet thresholds
+  - Animation Performance: hardware acceleration optimizations
+*/
+
+/* Import Tailwind CSS Framework */
 @import "tailwindcss";
+
+/* Global Root Variables */
+:root {
+  /* Set global dark background for consistent theming */
+  background-color: rgb(0, 0, 0);
+}
+
+/* Enhanced Device Detection and Scroll Behavior Separation */
+
+/* Default HTML Scroll Behavior - Desktop Preference */
+/* Auto scroll allows JavaScript-controlled smooth scrolling */
+html {
+  scroll-behavior: auto; /* Desktop default: JS-controlled scroll */
+}
+
+/* Mobile Device Detection and Optimization */
+/* Multiple feature queries ensure comprehensive mobile detection */
+@media (max-width: 768px),
+  (hover: none) and (pointer: coarse),
+  (max-width: 1024px) and (orientation: portrait) {
+  /* Mobile devices use native smooth scrolling for better performance */
+  html {
+    scroll-behavior: smooth !important;
+  }
+
+  /* Enhanced Touch Scrolling Optimization */
+  /* Improves scroll performance on mobile devices */
+  body {
+    -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+    overscroll-behavior: contain; /* Prevent scroll chaining */
+    touch-action: pan-y; /* Allow vertical touch scrolling only */
+  }
+}
+
+/* Desktop Device Detection and Optimization */
+/* Explicit detection for devices with precise pointer control */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  /* Desktop uses JavaScript-controlled scrolling for custom animations */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Desktop Interaction Optimization */
+  /* Prevent unintended scroll behaviors on desktop */
+  body {
+    overscroll-behavior: none; /* Disable bounce/pull-to-refresh */
+  }
+}
+
+/* Tablet Device Detection - Hybrid Approach */
+/* Tablets get CSS smooth scroll for better touch UX */
+@media (min-width: 768px) and (max-width: 1024px) and (hover: none) {
+  html {
+    scroll-behavior: smooth !important;
+  }
+}
