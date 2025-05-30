@@ -108,12 +108,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import InteractiveCanvas from "./InteractiveCanvas.vue";
-import NavigationBar from "./NavigationBar.vue";
-import TypingAnimation from "./TypingAnimation.vue";
-import ProfilePhoto from "./ProfilePhoto.vue";
-import ScrollIndicator from "./ScrollIndicator.vue";
-import SocialLinks from "./SocialLinks.vue";
+import InteractiveCanvas from "./subcomponents/InteractiveCanvas.vue";
+import NavigationBar from "./subcomponents/NavigationBar.vue";
+import TypingAnimation from "./subcomponents/TypingAnimation.vue";
+import ProfilePhoto from "./subcomponents/ProfilePhoto.vue";
+import ScrollIndicator from "./subcomponents/ScrollIndicator.vue";
+import SocialLinks from "./subcomponents/SocialLinks.vue";
 import { useDeviceDetection } from "../../composables/useDeviceDetection";
 import { useSmoothScroll } from "../../composables/useSmoothScroll";
 
