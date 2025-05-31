@@ -21,6 +21,14 @@
       Get to know the person behind the code - my journey, skills, and passion
       for creating innovative solutions!!
     </p>
+
+    <!-- ===============================
+         ACCENT LINE
+         =============================== -->
+    <!-- Subtle gradient line for visual separation -->
+    <div
+      class="w-24 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-6 opacity-60"
+    ></div>
   </div>
 </template>
 

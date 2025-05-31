@@ -12,7 +12,7 @@
     <h1 class="text-5xl lg:text-7xl font-bold text-white bg-clip-text mb-6">
       Contact
       <span
-        class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 font-light"
+        class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500 font-light"
       >
         Me
       </span>
@@ -21,6 +21,14 @@
       Let's connect! Send me a message and I'll get back to you as soon as
       possible.
     </p>
+
+    <!-- ===============================
+         ACCENT LINE
+         =============================== -->
+    <!-- Subtle gradient line for visual separation -->
+    <div
+      class="w-24 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-500 mx-auto mt-6 opacity-60"
+    ></div>
   </div>
 </template>
 

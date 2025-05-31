@@ -107,7 +107,7 @@ export const experienceData: Experience[] = [
       "Implementing modern web technologies and best practices",
       "Contributing to code reviews and technical documentation",
     ],
-    technologies: ["Vue", "JavaScript", "Figma", "SQL", "Git", "Agile"],
+    technologies: ["Vue", "JavaScript", "HTML", "Figma", "SQL", "Git", "Agile"],
     type: "internship",
   },
 ];
