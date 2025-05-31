@@ -15,6 +15,8 @@
 <script setup lang="ts">
 // Import main navigation header component
 import Header from "./components/Header/index.vue";
+// Import footer component
+import Footer from "./components/Footer/index.vue";
 </script>
 
 <template>
@@ -104,5 +106,8 @@ import Header from "./components/Header/index.vue";
         <h2 class="text-4xl text-white">Contact Me Section</h2>
       </section>
     </div>
+
+    <!-- Footer Component -->
+    <Footer />
   </div>
 </template>
