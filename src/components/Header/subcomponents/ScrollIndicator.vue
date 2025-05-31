@@ -1,7 +1,24 @@
 <!--
   =====================================================
   SCROLL INDICATOR COMPONENT - Scroll Down Animation
-  =====================================================
+  ======// Main descending particles configuration
+const mainParticles = computed(() => [
+  {
+    top: "0px",
+    class: "w-1.5 h-1.5 bg-white/80 rounded-full animate-pulse",
+    style: "animation-duration: 2s; animation-delay: 0s",
+  },
+  {
+    top: "12px",
+    class: "w-1 h-1 bg-white/60 rounded-full animate-pulse",
+    style: "animation-duration: 2s; animation-delay: 0.3s",
+  },
+  {
+    top: "24px",
+    class: "w-0.5 h-0.5 bg-white/40 rounded-full animate-pulse",
+    style: "animation-duration: 2s; animation-delay: 0.6s",
+  },
+]);=============================
   
   KEYWORD INDEX:
   - Scroll Indicator: scroll down prompt, visibility control
@@ -32,7 +49,7 @@
           class="absolute top-2 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-white/60 rounded-full animate-pulse"
         ></div>
         <div
-          class="absolute top-3 left-1/2 transform -translate-x-1/2 w-0.5 h-1 bg-white/40 rounded-full animate-ping"
+          class="absolute top-3 left-1/2 transform -translate-x-1/2 w-0.5 h-1 bg-white/40 rounded-full animate-pulse"
         ></div>
       </div>
 
@@ -75,7 +92,7 @@
 
           <!-- Gentle arrow at bottom -->
           <div
-            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-bounce"
+            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-pulse"
             style="animation-duration: 1.5s; animation-delay: 0.8s"
           >
             <svg
@@ -124,17 +141,17 @@ const { visible, isMobile } = toRefs(props);
 const mainParticles = computed(() => [
   {
     top: "0px",
-    class: "w-1.5 h-1.5 bg-white/80 rounded-full animate-bounce",
+    class: "w-1.5 h-1.5 bg-white/80 rounded-full animate-pulse",
     style: "animation-duration: 2s; animation-delay: 0s",
   },
   {
     top: "12px",
-    class: "w-1 h-1 bg-white/60 rounded-full animate-bounce",
+    class: "w-1 h-1 bg-white/60 rounded-full animate-pulse",
     style: "animation-duration: 2s; animation-delay: 0.3s",
   },
   {
     top: "24px",
-    class: "w-0.5 h-0.5 bg-white/40 rounded-full animate-bounce",
+    class: "w-0.5 h-0.5 bg-white/40 rounded-full animate-pulse",
     style: "animation-duration: 2s; animation-delay: 0.6s",
   },
 ]);

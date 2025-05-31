@@ -23,6 +23,8 @@ import About from "./components/AboutMe/index.vue";
 import Experience from "./components/Experience/index.vue";
 // Import Contact section component
 import Contact from "./components/Contact/index.vue";
+// Import Projects section component
+import Projects from "./components/Projects/index.vue";
 </script>
 
 <template>
@@ -84,11 +86,8 @@ import Contact from "./components/Contact/index.vue";
 
       <!-- Projects Section -->
       <!-- Portfolio projects showcase -->
-      <section
-        id="projects"
-        class="min-h-screen flex items-center justify-center"
-      >
-        <h2 class="text-4xl text-white">Projects Section</h2>
+      <section id="projects" class="min-h-screen">
+        <Projects />
       </section>
 
       <!-- Certifications Section -->

@@ -62,11 +62,11 @@ const getOrbPosition = (index: number) => {
 const getOrbAnimation = (index: number) => {
   const animations = [
     "animate-pulse",
-    "animate-bounce",
     "animate-pulse",
-    "animate-ping",
     "animate-pulse",
-    "animate-bounce",
+    "animate-pulse",
+    "animate-pulse",
+    "animate-pulse",
   ];
   return animations[index - 1];
 };
