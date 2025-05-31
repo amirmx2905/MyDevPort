@@ -19,6 +19,8 @@ import Header from "./components/Header/index.vue";
 import Footer from "./components/Footer/index.vue";
 // Import About Me section component
 import About from "./components/AboutMe/index.vue";
+// Import Experience section component
+import Experience from "./components/Experience/index.vue";
 // Import Contact section component
 import Contact from "./components/Contact/index.vue";
 </script>
@@ -76,11 +78,8 @@ import Contact from "./components/Contact/index.vue";
 
       <!-- Experience Section -->
       <!-- Professional experience and work history -->
-      <section
-        id="experience"
-        class="min-h-screen flex items-center justify-center"
-      >
-        <h2 class="text-4xl text-white">Experience Section</h2>
+      <section id="experience" class="min-h-screen">
+        <Experience />
       </section>
 
       <!-- Projects Section -->
