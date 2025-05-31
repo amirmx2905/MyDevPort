@@ -9,7 +9,7 @@
 -->
 
 <script setup lang="ts">
-import { useSmoothScroll } from "../../composables/useSmoothScroll";
+import { useSmoothScroll } from "../../../composables/useSmoothScroll";
 
 // ===============================
 // SMOOTH SCROLL COMPOSABLE

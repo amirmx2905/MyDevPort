@@ -15,9 +15,9 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import BrandInfo from "./BrandInfo.vue";
-import NavigationLinks from "./NavigationLinks.vue";
-import SocialLinks from "./SocialLinks.vue";
+import BrandInfo from "./subcomponents/BrandInfo.vue";
+import NavigationLinks from "./subcomponents/NavigationLinks.vue";
+import SocialLinks from "./subcomponents/SocialLinks.vue";
 import { useSmoothScroll } from "../../composables/useSmoothScroll";
 
 // Get current year for copyright
@@ -31,6 +31,7 @@ const handleBackToTop = (event: Event) => {
   event.preventDefault();
   scrollToTop(); // Scroll to the very top of the page
 };
+
 </script>
 
 <template>
