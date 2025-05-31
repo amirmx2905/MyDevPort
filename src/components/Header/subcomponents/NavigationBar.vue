@@ -31,11 +31,11 @@
     </div>
 
     <!-- Mobile Navigation Menu -->
-    <div class="md:hidden">
+    <div class="md:hidden relative">
       <!-- Animated Hamburger Icon -->
       <button
         @click="toggleMobileMenu"
-        class="bg-black/30 backdrop-blur-xl border border-white/20 rounded-full p-3 shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white/10 active:scale-95 focus:outline-none focus:ring-0 touch-manipulation"
+        class="bg-black/30 backdrop-blur-xl border border-white/20 rounded-full p-3 shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white/10 active:scale-95 focus:outline-none focus:ring-0 touch-manipulation relative z-[60]"
         :class="{ 'bg-white/10 scale-105': isMobileMenuOpen }"
         style="
           -webkit-tap-highlight-color: transparent;
@@ -74,15 +74,14 @@
       >
         <div
           v-if="isMobileMenuOpen"
-          class="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/30 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden drop-shadow-xl"
-          @click.self="closeMobileMenu"
+          class="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/30 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden drop-shadow-xl z-[55] min-w-[240px]"
         >
-          <div class="py-2">
+          <div class="py-3 text-center">
             <a
               v-for="section in navSections"
               :key="section.id"
               :href="`#${section.id}`"
-              class="block text-white/70 hover:text-white text-sm font-medium transition-all duration-300 px-6 py-3 hover:bg-white/10 hover:translate-x-1 active:bg-white/20 active:scale-95 touch-manipulation"
+              class="block text-white/70 hover:text-white text-base font-medium transition-all duration-300 px-8 py-4 hover:bg-white/10 hover:translate-x-1 active:bg-white/20 active:scale-95 touch-manipulation"
               style="
                 -webkit-tap-highlight-color: transparent;
                 -webkit-touch-callout: none;
@@ -96,8 +95,10 @@
           </div>
         </div>
       </Transition>
+    </div>
 
-      <!-- Mobile Menu Backdrop -->
+    <!-- Global Mobile Menu Backdrop (Outside main nav) -->
+    <Teleport to="body">
       <Transition
         enter-active-class="transition-opacity duration-400 ease-out"
         enter-from-class="opacity-0"
@@ -108,16 +109,17 @@
       >
         <div
           v-if="isMobileMenuOpen"
-          class="fixed inset-0 rounded-full bg-black/30 backdrop-blur-sm -z-10"
+          class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
           @click="closeMobileMenu"
+          @touchstart.passive="closeMobileMenu"
         ></div>
       </Transition>
-    </div>
+    </Teleport>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 // ===============================
 // PROPS & EMITS
@@ -146,14 +148,26 @@ const isMobileMenuOpen = ref(false); // Mobile navigation menu state
 // MOBILE MENU MANAGEMENT
 // ===============================
 
-// Toggle mobile navigation menu state
+// Toggle mobile navigation menu state or close if already open
 const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+  // If menu is open, always close it (better UX for the X button)
+  if (isMobileMenuOpen.value) {
+    closeMobileMenu();
+  } else {
+    isMobileMenuOpen.value = true;
+  }
 };
 
 // Close mobile navigation menu
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
+};
+
+// Handle keyboard events (Escape key to close menu)
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.key === "Escape" && isMobileMenuOpen.value) {
+    closeMobileMenu();
+  }
 };
 
 // ===============================
@@ -170,8 +184,22 @@ const handleDesktopNavClick = (sectionId: string) => {
 const handleMobileNavClick = (sectionId: string) => {
   // Emit navigation immediately for instant response
   emit("navigate", sectionId);
-  
+
   // Close menu after emitting (the navigation will start immediately)
   closeMobileMenu();
 };
+
+// ===============================
+// VUE LIFECYCLE HOOKS
+// ===============================
+
+// Component mount: Add keyboard listener
+onMounted(() => {
+  document.addEventListener("keydown", handleKeydown);
+});
+
+// Component unmount: Clean up keyboard listener
+onUnmounted(() => {
+  document.removeEventListener("keydown", handleKeydown);
+});
 </script>

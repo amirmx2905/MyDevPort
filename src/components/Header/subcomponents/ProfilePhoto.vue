@@ -25,7 +25,7 @@
       <img
         :src="imageSrc"
         :alt="altText"
-        class="relative w-28 h-28 rounded-full border-4 border-white/30 shadow-2xl hover:scale-105 transition-all duration-500 hover:border-white/50"
+        class="relative w-50 h-50 rounded-full border-4 border-white/30 shadow-2xl hover:scale-105 transition-all duration-500 hover:border-white/50"
       />
 
       <!-- Subtle glow effect -->
