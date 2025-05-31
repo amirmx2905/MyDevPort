@@ -118,7 +118,7 @@
               </h2>
 
               <!-- Position -->
-              <h3 class="text-lg md:text-xl text-pink-300 font-semibold mb-4">
+              <h3 class="text-lg md:text-xl text-white font-semibold mb-4">
                 {{ experience.position }}
               </h3>
 
