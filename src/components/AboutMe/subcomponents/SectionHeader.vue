@@ -19,7 +19,7 @@
     </h1>
     <p class="text-gray-400 max-w-2xl mx-auto">
       Get to know the person behind the code - my journey, skills, and passion
-      for creating innovative solutions!!
+      for creating innovative solutions.
     </p>
 
     <!-- ===============================
