@@ -17,6 +17,8 @@
 import Header from "./components/Header/index.vue";
 // Import footer component
 import Footer from "./components/Footer/index.vue";
+// Import About Me section component
+import About from "./components/AboutMe/index.vue";
 </script>
 
 <template>
@@ -65,9 +67,9 @@ import Footer from "./components/Footer/index.vue";
     <!-- Unified dark background for all portfolio sections -->
     <div class="bg-gray-900">
       <!-- About Me Section -->
-      <!-- Full-height section with centered content -->
-      <section id="about" class="min-h-screen flex items-center justify-center">
-        <h2 class="text-4xl text-white">About Me Section</h2>
+      <!-- Full-height section with modern glassmorphism design -->
+      <section id="about" class="min-h-screen">
+        <About />
       </section>
 
       <!-- Experience Section -->
