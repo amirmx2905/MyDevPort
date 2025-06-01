@@ -76,31 +76,31 @@ import Certifications from "./components/Certifications/index.vue";
     <div class="bg-gray-900">
       <!-- About Me Section -->
       <!-- Full-height section with modern glassmorphism design -->
-      <section id="about" class="min-h-screen">
+      <section id="about" class="min-h-[100dvh]">
         <About />
       </section>
 
       <!-- Experience Section -->
       <!-- Professional experience and work history -->
-      <section id="experience" class="min-h-screen">
+      <section id="experience" class="min-h-[100dvh]">
         <Experience />
       </section>
 
       <!-- Projects Section -->
       <!-- Portfolio projects showcase -->
-      <section id="projects" class="min-h-screen">
+      <section id="projects" class="min-h-[100dvh]">
         <Projects />
       </section>
 
       <!-- Certifications Section -->
       <!-- Professional certifications and achievements -->
-      <section id="certifications" class="min-h-screen">
+      <section id="certifications" class="min-h-[100dvh]">
         <Certifications />
       </section>
 
       <!-- Contact Section -->
       <!-- Contact information and communication methods -->
-      <section id="contact" class="min-h-screen">
+      <section id="contact" class="min-h-[100dvh]">
         <Contact />
       </section>
     </div>

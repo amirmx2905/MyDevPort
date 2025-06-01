@@ -18,7 +18,9 @@
 
 <template>
   <div
-    class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-hidden"
+    ref="headerContainer"
+    class="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-hidden"
+    :style="{ height: fixedHeight }"
   >
     <!-- Interactive Canvas Background with Particle System -->
     <InteractiveCanvas />
@@ -28,7 +30,7 @@
 
     <!-- Main Content Container -->
     <div
-      class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6"
+      class="relative z-10 flex flex-col items-center justify-center h-full px-6"
     >
       <!-- Mobile Layout: Vertical Stack -->
       <div class="md:hidden text-center">
@@ -129,6 +131,8 @@ const { scrollToSection } = useSmoothScroll();
 // ===============================
 
 const showScrollIndicator = ref(false); // Controls scroll indicator visibility
+const headerContainer = ref<HTMLElement>(); // Reference to header container
+const fixedHeight = ref("100vh"); // Fixed height to maintain consistency
 
 // ===============================
 // CONFIGURATION DATA
@@ -188,6 +192,11 @@ const handleScroll = () => {
 
 // Component mount: Initialize all systems
 onMounted(() => {
+  // Capture initial viewport height and fix it permanently
+  // This ensures the header never changes size regardless of mobile browser bar changes
+  const initialHeight = window.innerHeight;
+  fixedHeight.value = `${initialHeight}px`;
+
   // Add scroll listener for scroll indicator
   window.addEventListener("scroll", handleScroll);
 
