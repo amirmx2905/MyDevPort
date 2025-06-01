@@ -1,19 +1,15 @@
 {
   "name": "devport",
-  "homepage": "https://amirmx2905.github.io/MyDevPort/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
-    "gh-pages": "^6.3.0",
     "tailwindcss": "^4.1.8",
     "vue": "^3.5.13"
   },
