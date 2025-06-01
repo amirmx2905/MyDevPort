@@ -21,7 +21,7 @@
     >
       <!-- Individual Certification Cards -->
       <div
-        v-for="cert in certifications"
+        v-for="cert in displayedCertifications"
         :key="cert.id"
         @click="openModal(cert)"
         @keydown.enter="openModal(cert)"
@@ -117,6 +117,39 @@
       </div>
     </div>
 
+    <!-- ===============================
+         LOAD MORE BUTTON
+         =============================== -->
+    <div v-if="hasMoreCertifications" class="flex justify-center mt-16">
+      <button
+        ref="certificationLoadMoreButton"
+        @click="loadMoreCertifications"
+        class="group relative px-10 py-4 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 hover:from-indigo-500/30 hover:to-purple-500/30 border border-indigo-400/50 hover:border-indigo-400/70 text-indigo-300 font-semibold rounded-2xl transition-all duration-300 backdrop-blur-sm hover:shadow-xl hover:shadow-indigo-500/25 hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-3 overflow-hidden"
+      >
+        <!-- Background Animation -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        ></div>
+
+        <!-- Icon -->
+        <svg
+          class="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:rotate-180"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+
+        <!-- Text -->
+        <span class="relative z-10">Load More Certifications</span>
+
+        <!-- Shine Effect -->
+        <div
+          class="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+        ></div>
+      </button>
+    </div>
+
     <!-- Modal Component -->
     <CertificationModal
       :certification="selectedCertification"
@@ -127,7 +160,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed, nextTick } from "vue";
 import type { Certification } from "../certificationsData";
 import CertificationModal from "./CertificationModal.vue";
 import { useModalScroll } from "../../../composables/useModalScroll";
@@ -139,13 +172,82 @@ interface Props {
   certifications: Certification[];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 // ===============================
 // REACTIVE STATE
 // ===============================
 const selectedCertification = ref<Certification | null>(null);
 const isModalOpen = ref(false);
+const certificationLoadMoreButton = ref<HTMLElement | null>(null);
+
+// Pagination state for certifications
+const certificationsPerPage = 6;
+const currentCertificationPage = ref(1);
+
+// ===============================
+// COMPUTED PROPERTIES
+// ===============================
+
+/**
+ * Certifications to display based on pagination
+ */
+const displayedCertifications = computed(() => {
+  const totalItems = currentCertificationPage.value * certificationsPerPage;
+  return props.certifications.slice(0, totalItems);
+});
+
+/**
+ * Check if there are more certifications to load
+ */
+const hasMoreCertifications = computed(() => {
+  return props.certifications.length > displayedCertifications.value.length;
+});
+
+// ===============================
+// PAGINATION METHODS
+// ===============================
+
+/**
+ * Load more certifications with smooth scroll to new items
+ */
+const loadMoreCertifications = () => {
+  const previousCount = displayedCertifications.value.length;
+  currentCertificationPage.value++;
+
+  // Wait for Vue to update the DOM
+  nextTick(() => {
+    setTimeout(() => {
+      // Find the certifications grid container
+      const certificationsGrid = document.querySelector(
+        ".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-8.auto-rows-fr"
+      );
+
+      if (certificationsGrid) {
+        const allCertificationCards = Array.from(certificationsGrid.children);
+        const firstNewCertification = allCertificationCards[
+          previousCount
+        ] as HTMLElement;
+
+        if (firstNewCertification) {
+          // Calculate the optimal scroll position
+          const elementRect = firstNewCertification.getBoundingClientRect();
+          const currentScrollY = window.scrollY;
+          const offsetFromTop = 120; // Space from top of viewport
+
+          const targetScrollY =
+            currentScrollY + elementRect.top - offsetFromTop;
+
+          // Smooth scroll to the new certifications
+          window.scrollTo({
+            top: targetScrollY,
+            behavior: "smooth",
+          });
+        }
+      }
+    }, 150); // Allow time for DOM to update and animations to settle
+  });
+};
 
 // Modal scroll management
 const { openModal: openModalScroll, closeModal: closeModalScroll } =
