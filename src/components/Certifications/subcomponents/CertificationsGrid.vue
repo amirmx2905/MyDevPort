@@ -29,16 +29,20 @@
         tabindex="0"
         role="button"
         :aria-label="`View details for ${cert.title} certification`"
-        class="group relative bg-gray-800/50 backdrop-blur-lg border border-gray-700/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-gray-800/70 focus:outline-none focus:ring-2 focus:ring-gray-500/50"
+        class="group relative bg-gray-800/50 backdrop-blur-lg border border-gray-700/50 rounded-2xl p-6 cursor-pointer transition-all duration-500 hover:scale-105 hover:bg-gray-800/70 focus:outline-none focus:ring-2 focus:ring-gray-500/50"
         :class="{
           'opacity-0 translate-y-4': !animatedItems.has(cert.id),
           'opacity-100 translate-y-0': animatedItems.has(cert.id),
         }"
-        :style="{
-          transitionDelay: animatedItems.has(cert.id)
-            ? `${(index % certificationsPerPage) * 100}ms`
-            : '0ms',
-        }"
+        :style="
+          !animatedItems.has(cert.id)
+            ? {
+                transitionDelay: `${(index % certificationsPerPage) * 100}ms`,
+                transitionProperty: 'opacity, transform',
+                transitionDuration: '300ms',
+              }
+            : {}
+        "
       >
         <!-- Status Indicator -->
         <div class="absolute top-4 right-4 flex items-center space-x-2">
