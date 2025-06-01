@@ -44,7 +44,6 @@
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
         @click="handleBackdropClick"
         @keydown.esc="$emit('close')"
-        tabindex="0"
       >
         <!-- Modal Content -->
         <Transition
@@ -64,7 +63,7 @@
             <!-- Close Button -->
             <button
               @click="$emit('close')"
-              class="absolute top-6 right-6 w-10 h-10 bg-gradient-to-r from-pink-500/30 to-purple-600/30 hover:from-pink-500/50 hover:to-purple-600/50 border border-pink-400/50 rounded-full flex items-center justify-center transition-all duration-300 group z-20 backdrop-blur-xl shadow-lg"
+              class="cursor-pointer absolute top-6 right-6 w-10 h-10 bg-gradient-to-r from-pink-500/30 to-purple-600/30 hover:from-pink-500/50 hover:to-purple-600/50 border border-pink-400/50 rounded-full flex items-center justify-center transition-all duration-300 group z-20 backdrop-blur-xl shadow-lg"
               aria-label="Close modal"
             >
               <svg
@@ -239,7 +238,7 @@
 // ===============================
 // IMPORTS
 // ===============================
-import { watch, nextTick } from "vue";
+import { watch, nextTick, onUnmounted } from "vue";
 import type { Experience } from "../experienceData.ts";
 
 // ===============================
@@ -312,19 +311,23 @@ watch(
   () => props.isOpen,
   async (newValue) => {
     if (newValue) {
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = "hidden";
-
-      // Focus the modal for keyboard navigation
+      // The scroll position management is now handled by the parent component
+      // ExperienceTimeline.vue which preserves scroll position better
       await nextTick();
-      const modal = document.querySelector('[tabindex="0"]') as HTMLElement;
-      if (modal) {
-        modal.focus();
-      }
-    } else {
-      // Restore body scroll when modal is closed
-      document.body.style.overflow = "";
     }
   }
 );
+
+/**
+ * Cleanup when component is unmounted
+ * Ensures body scroll is restored if component unmounts while modal is open
+ */
+onUnmounted(() => {
+  if (props.isOpen) {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+  }
+});
 </script>

@@ -43,7 +43,6 @@
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
         @click="handleBackdropClick"
         @keydown.esc="$emit('close')"
-        tabindex="0"
       >
         <!-- Modal Content -->
         <Transition
@@ -251,7 +250,7 @@
 // ===============================
 // IMPORTS
 // ===============================
-import { watch, nextTick } from "vue";
+import { watch, nextTick, onUnmounted } from "vue";
 import type { Project } from "../projectsData.ts";
 
 // ===============================
@@ -289,26 +288,30 @@ const handleBackdropClick = (event: MouseEvent) => {
 
 /**
  * Watch for modal open/close to manage focus and body scroll
- * Prevents background scrolling when modal is open
- * Manages keyboard focus for accessibility
+ * The scroll position management is now handled by the parent component
+ * ProjectsGrid.vue which preserves scroll position better
  */
 watch(
   () => props.isOpen,
   async (newValue) => {
     if (newValue) {
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = "hidden";
-
-      // Focus the modal for keyboard navigation
+      // The scroll position management is now handled by the parent component
+      // ProjectsGrid.vue which preserves scroll position better
       await nextTick();
-      const modal = document.querySelector('[tabindex="0"]') as HTMLElement;
-      if (modal) {
-        modal.focus();
-      }
-    } else {
-      // Restore body scroll when modal is closed
-      document.body.style.overflow = "";
     }
   }
 );
+
+/**
+ * Cleanup when component is unmounted
+ * Ensures body scroll is restored if component unmounts while modal is open
+ */
+onUnmounted(() => {
+  if (props.isOpen) {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+  }
+});
 </script>

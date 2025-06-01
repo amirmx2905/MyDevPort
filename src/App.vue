@@ -25,6 +25,8 @@ import Experience from "./components/Experience/index.vue";
 import Contact from "./components/Contact/index.vue";
 // Import Projects section component
 import Projects from "./components/Projects/index.vue";
+// Import Certifications section component
+import Certifications from "./components/Certifications/index.vue";
 </script>
 
 <template>
@@ -92,11 +94,8 @@ import Projects from "./components/Projects/index.vue";
 
       <!-- Certifications Section -->
       <!-- Professional certifications and achievements -->
-      <section
-        id="certifications"
-        class="min-h-screen flex items-center justify-center"
-      >
-        <h2 class="text-4xl text-white">Certifications Section</h2>
+      <section id="certifications" class="min-h-screen">
+        <Certifications />
       </section>
 
       <!-- Contact Section -->

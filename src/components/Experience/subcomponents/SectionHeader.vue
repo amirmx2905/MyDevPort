@@ -61,9 +61,25 @@
     <!-- ===============================
          ACCENT LINE
          =============================== -->
-    <!-- Subtle gradient line for visual separation -->
-    <div
-      class="w-24 h-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 mx-auto mt-6 opacity-60"
-    ></div>
+    <!-- Enhanced Decorative Underline -->
+    <div class="mt-8 flex justify-center">
+      <div class="relative">
+        <!-- Main gradient line -->
+        <div
+          class="w-32 h-1.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 rounded-full"
+        ></div>
+        <!-- Glowing overlay -->
+        <div
+          class="absolute inset-0 w-32 h-1.5 bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-400 rounded-full blur-sm opacity-70 animate-pulse"
+        ></div>
+        <!-- Side dots -->
+        <div
+          class="absolute -left-6 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-pink-400 rounded-full animate-pulse"
+        ></div>
+        <div
+          class="absolute -right-6 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-pulse"
+        ></div>
+      </div>
+    </div>
   </div>
 </template>

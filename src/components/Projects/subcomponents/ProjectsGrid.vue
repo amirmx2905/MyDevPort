@@ -55,7 +55,7 @@
       >
         <!-- Project Card -->
         <div
-          class="relative bg-gradient-to-br from-gray-900/80 to-black/60 backdrop-blur-2xl border border-gray-700/50 rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.03]  focus:outline-none focus:ring-4 focus:ring-emerald-400/30 h-[500px] flex flex-col"
+          class="relative bg-gradient-to-br from-gray-900/80 to-black/60 backdrop-blur-2xl border border-gray-700/50 rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-emerald-400/30 h-[500px] flex flex-col"
           tabindex="0"
           @keydown.enter="openModal(project)"
           @keydown.space.prevent="openModal(project)"
@@ -145,6 +145,7 @@ import { ref, computed } from "vue";
 import type { Project } from "../projectsData.ts";
 import { projectCategories } from "../projectsData.ts";
 import ProjectModal from "./ProjectModal.vue";
+import { useModalScroll } from "../../../composables/useModalScroll";
 
 // ===============================
 // PROPS & REACTIVE DATA
@@ -157,6 +158,10 @@ const props = defineProps<{
 const selectedCategory = ref("all"); // Currently selected filter category
 const selectedProject = ref<Project | null>(null); // Currently selected project for modal
 const isModalOpen = ref(false); // Modal visibility state
+
+// Modal scroll management
+const { openModal: openModalScroll, closeModal: closeModalScroll } =
+  useModalScroll();
 
 // Categories for filtering
 const categories = projectCategories;
@@ -201,16 +206,16 @@ const filteredProjects = computed(() => {
 const openModal = (project: Project) => {
   selectedProject.value = project;
   isModalOpen.value = true;
-  document.body.style.overflow = "hidden"; // Prevent background scroll
+  openModalScroll(); // Use composable for scroll management
 };
 
 /**
  * Closes the project modal and resets state
- * Restores background scrolling capability
+ * Restores background scrolling capability with smooth mobile handling
  */
 const closeModal = () => {
   isModalOpen.value = false;
   selectedProject.value = null;
-  document.body.style.overflow = "unset"; // Restore scroll
+  closeModalScroll(); // Use composable for scroll management
 };
 </script>

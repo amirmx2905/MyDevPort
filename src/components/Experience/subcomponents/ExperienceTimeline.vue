@@ -140,6 +140,7 @@
 import { ref } from "vue";
 import type { Experience } from "../experienceData.ts";
 import ExperienceModal from "./ExperienceModal.vue";
+import { useModalScroll } from "../../../composables/useModalScroll";
 
 // ===============================
 // PROPS & REACTIVE DATA
@@ -152,6 +153,10 @@ defineProps<{
 const selectedExperience = ref<Experience | null>(null); // Currently selected experience for modal
 const isModalOpen = ref(false); // Modal visibility state
 
+// Modal scroll management
+const { openModal: openModalScroll, closeModal: closeModalScroll } =
+  useModalScroll();
+
 // ===============================
 // MODAL MANAGEMENT METHODS
 // ===============================
@@ -163,16 +168,16 @@ const isModalOpen = ref(false); // Modal visibility state
 const openModal = (experience: Experience) => {
   selectedExperience.value = experience;
   isModalOpen.value = true;
-  document.body.style.overflow = "hidden"; // Prevent background scroll
+  openModalScroll(); // Use composable for scroll management
 };
 
 /**
  * Closes the experience modal and resets state
- * Restores background scrolling capability
+ * Restores background scrolling capability with smooth mobile handling
  */
 const closeModal = () => {
   isModalOpen.value = false;
   selectedExperience.value = null;
-  document.body.style.overflow = "unset"; // Restore scroll
+  closeModalScroll(); // Use composable for scroll management
 };
 </script>
