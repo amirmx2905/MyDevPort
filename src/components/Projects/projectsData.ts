@@ -66,7 +66,7 @@ export const projectsData: Project[] = [
       "Collaborative platform connecting researchers across Mexico to find partners and collaborate in specific research areas.",
     fullDescription:
       "A comprehensive web platform designed to connect researchers throughout Mexico, enabling them to discover potential collaborators in their field of expertise. The application features a robust authentication system, interactive dashboard with research metrics, and complete CRUD operations for managing researchers, projects, and collaborations. Built with role-based access control supporting students, investigators, and administrators.",
-    image: "/images/projects/imgInvestigatorsWA.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgInvestigatorsWA.webp",
     technologies: [
       "Python",
       "Django RestFramework",
@@ -119,7 +119,7 @@ export const projectsData: Project[] = [
       "Modern Vue.js portfolio showcasing professional experience and projects with interactive animations.",
     fullDescription:
       "A comprehensive personal portfolio built with Vue.js 3 and TypeScript, featuring modern glassmorphism design, interactive timelines, and responsive layouts. Includes sections for experience, projects, skills, and contact information with smooth animations and accessibility features.",
-    image: "/images/projects/imgPortfolio.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgPortfolio.webp",
     technologies: [
       "Vue.js",
       "TypeScript",
@@ -159,7 +159,7 @@ export const projectsData: Project[] = [
       "Pokemon web game with advanced search, stats visualization, evolution trees, capture system and battles.",
     fullDescription:
       "A modern web application game that allows users to explore the Pokémon universe. Features include Pokémon database with the the first generation with advanced search and filters, interactive stats visualization, an evolution tree with branching paths, and a favorites system using local storage.",
-    image: "/images/projects/imgPokemon.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgPokemon.webp",
     technologies: [
       "React.js",
       "PokemonAPI",
@@ -169,7 +169,7 @@ export const projectsData: Project[] = [
       "HTML5",
       "JavaScript",
       "Agile",
-      "Scrum"
+      "Scrum",
     ],
     category: "web",
     githubUrl: "https://github.com/Cesar-Mendoza-V/PokemonBattleArena",
@@ -201,7 +201,7 @@ export const projectsData: Project[] = [
       "App that uses google services for pinging a certain location custom markers from all around the world.",
     fullDescription:
       "A feature-rich maps application replicating core Google Maps functionality. Includes custom map markers, location search.",
-    image: "/images/projects/imgGoogleMaps.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgGoogleMaps.webp",
     technologies: [
       "Java",
       "Kotlin",
@@ -238,7 +238,7 @@ export const projectsData: Project[] = [
       "Collaborative research mobile application for investigators from all around Mexico to access document management and analytics tools.",
     fullDescription:
       "A comprehensive platform designed for research teams to collaborate on investigations. Features document management, evidence tracking, timeline visualization, secure communication channels, and advanced search capabilities across all research materials.",
-    image: "/images/projects/imgInvestigators.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgInvestigators.webp",
     technologies: [
       "Java",
       "Kotlin",
@@ -277,7 +277,7 @@ export const projectsData: Project[] = [
       "Simple and intuitive note-taking application for creating, editing, and organizing personal notes.",
     fullDescription:
       "A straightforward note-taking application built with Django and React.js that allows users to create, edit, delete, and organize their personal notes. Features a clean interface with basic text formatting, note categorization, and search functionality for easy note management.",
-    image: "/images/projects/imgNotes.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgNotes.webp",
     technologies: ["Python", "Rest API", "Django", "React.js", "Tailwind CSS"],
     category: "web",
     githubUrl: "https://github.com/amirmx2905/firstDjangoReactWebApp",
@@ -309,7 +309,7 @@ export const projectsData: Project[] = [
       "Interactive digital playbook application for team strategies and game planning with real-time collaboration.",
     fullDescription:
       "A comprehensive digital playbook application designed for sports teams to create, share, and manage game strategies. Features include drag-and-drop play design, real-time collaboration, video integration, and analytics dashboard for performance tracking.",
-    image: "/images/projects/imgPlaybook.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgPlaybook.webp",
     technologies: ["Xcode", "Swift", "Material-UI"],
     category: "mobile",
     githubUrl: "https://github.com/JaimeTAR/PlayBook",

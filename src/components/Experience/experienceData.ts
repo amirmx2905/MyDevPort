@@ -50,7 +50,7 @@ export const experienceData: Experience[] = [
     position: "Retention Agent",
     duration: "May 2023 - July 2023",
     location: "Guadalajara, Mexico",
-    logo: "/images/logos/logoTeleperformance.webp",
+    logo: import.meta.env.BASE_URL + "images/logos/logoTeleperformance.webp",
     description:
       "Worked as a Retention Agent at Teleperformance, developing strong communication and problem-solving skills while helping customers resolve issues and maintain service satisfaction.",
     achievements: [
@@ -76,7 +76,7 @@ export const experienceData: Experience[] = [
     position: "Web Development Volunteer",
     duration: "Aug 2023 - May 2024",
     location: "Guadalajara, Mexico",
-    logo: "/images/logos/logoCaritas.webp",
+    logo: import.meta.env.BASE_URL + "images/logos/logoCaritas.webp",
     description:
       "Volunteered as a Web Developer at Cáritas de Guadalajara, contributing to the development of their interactive website to better communicate their mission to diverse audiences.",
     achievements: [
@@ -98,7 +98,7 @@ export const experienceData: Experience[] = [
     position: "Software Development Engineer Intern",
     duration: "May 2025 - Present",
     location: "Guadalajara, Mexico",
-    logo: "/images/logos/logoToshiba.webp",
+    logo: import.meta.env.BASE_URL + "images/logos/logoToshiba.webp",
     description:
       "Currently working as a Software Development Engineer Intern at Toshiba Global Commerce Solutions, contributing to innovative retail technology solutions.",
     achievements: [

@@ -53,21 +53,60 @@ import { ref } from "vue";
 // ===============================
 
 const technicalSkills = ref([
-  { name: "C++", icon: "/images/icons/iconCPP.svg" },
-  { name: "Java", icon: "/images/icons/iconJava.svg" },
-  { name: "Kotlin", icon: "/images/icons/iconKotlin.svg" },
-  { name: "Python", icon: "/images/icons/iconPython.svg" },
-  { name: "Swift", icon: "/images/icons/iconSwift.svg" },
-  { name: "JavaScript", icon: "/images/icons/iconJavaScript.svg" },
-  { name: "HTML", icon: "/images/icons/iconHTML.svg" },
-  { name: "CSS", icon: "/images/icons/iconCSS.svg" },
-  { name: "Vue", icon: "/images/icons/iconVue.svg" },
-  { name: "React", icon: "/images/icons/iconReact.svg" },
-  { name: "Tailwind", icon: "/images/icons/iconTailwind.svg" },
-  { name: "Django", icon: "/images/icons/iconDjango.svg" },
-  { name: "Docker", icon: "/images/icons/iconDocker.svg" },
-  { name: "MySQL", icon: "/images/icons/iconMySQL.svg" },
-  { name: "PostgreSQL", icon: "/images/icons/iconPostgreSQL.svg" },
-  { name: "TypeScript", icon: "/images/icons/iconTypescript.svg" },
+  { name: "C++", icon: import.meta.env.BASE_URL + "images/icons/iconCPP.svg" },
+  {
+    name: "Java",
+    icon: import.meta.env.BASE_URL + "images/icons/iconJava.svg",
+  },
+  {
+    name: "Kotlin",
+    icon: import.meta.env.BASE_URL + "images/icons/iconKotlin.svg",
+  },
+  {
+    name: "Python",
+    icon: import.meta.env.BASE_URL + "images/icons/iconPython.svg",
+  },
+  {
+    name: "Swift",
+    icon: import.meta.env.BASE_URL + "images/icons/iconSwift.svg",
+  },
+  {
+    name: "JavaScript",
+    icon: import.meta.env.BASE_URL + "images/icons/iconJavaScript.svg",
+  },
+  {
+    name: "HTML",
+    icon: import.meta.env.BASE_URL + "images/icons/iconHTML.svg",
+  },
+  { name: "CSS", icon: import.meta.env.BASE_URL + "images/icons/iconCSS.svg" },
+  { name: "Vue", icon: import.meta.env.BASE_URL + "images/icons/iconVue.svg" },
+  {
+    name: "React",
+    icon: import.meta.env.BASE_URL + "images/icons/iconReact.svg",
+  },
+  {
+    name: "Tailwind",
+    icon: import.meta.env.BASE_URL + "images/icons/iconTailwind.svg",
+  },
+  {
+    name: "Django",
+    icon: import.meta.env.BASE_URL + "images/icons/iconDjango.svg",
+  },
+  {
+    name: "Docker",
+    icon: import.meta.env.BASE_URL + "images/icons/iconDocker.svg",
+  },
+  {
+    name: "MySQL",
+    icon: import.meta.env.BASE_URL + "images/icons/iconMySQL.svg",
+  },
+  {
+    name: "PostgreSQL",
+    icon: import.meta.env.BASE_URL + "images/icons/iconPostgreSQL.svg",
+  },
+  {
+    name: "TypeScript",
+    icon: import.meta.env.BASE_URL + "images/icons/iconTypescript.svg",
+  },
 ]);
 </script>

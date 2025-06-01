@@ -21,7 +21,7 @@ export const certificationsData: Certification[] = [
     title: "DevOps",
     description:
       "Currently progressing through a comprehensive DevOps program where I'm mastering CI/CD implementation, Git version control, and infrastructure automation using IaC tools with integrated security practices. Developing expertise in Kubernetes for containerized application orchestration and implementing monitoring solutions with Prometheus and Grafana for observability, with additional modules still to complete.",
-    image: "/images/projects/imgTecmilenio.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgTecmilenio.webp",
     status: "in-progress",
     institution: "Universidad TecMilenio",
     // No certUrl, in-progress certification
@@ -39,7 +39,7 @@ export const certificationsData: Certification[] = [
     title: "App Development",
     description:
       "Currently advancing through a mobile development program where I'm getting a foundational understanding of mobile application architecture and design principles. Developed hands-on experience creating native Android applications using Java/Kotlin with Android Studio, implementing UI components, and managing application lifecycles. Also acquired skills in iOS development using Swift and Xcode, including interface design with UIKit/SwiftUI and implementing core iOS frameworks, with additional modules still to complete.",
-    image: "/images/projects/imgTecmilenio.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgTecmilenio.webp",
     status: "in-progress",
     institution: "Universidad TecMilenio",
     // No certUrl, in-progress certification
@@ -50,7 +50,7 @@ export const certificationsData: Certification[] = [
     title: "Big Data",
     description:
       "Currently progressing through a Big Data program where I'm establishing a strong programming fundamentals for data manipulation and analysis using Python and R. Developed expertise in data engineering principles including ETL processes, data warehousing, and working with structured/unstructured datasets. Gained practical knowledge of Big Data infrastructure deployment including Hadoop ecosystem, distributed computing frameworks, and cloud-based data solutions, with additional modules still to complete.",
-    image: "/images/projects/imgTecmilenio.webp",
+    image: import.meta.env.BASE_URL + "images/projects/imgTecmilenio.webp",
     status: "in-progress",
     institution: "Universidad TecMilenio",
     // No certUrl, in-progress certification
@@ -68,7 +68,7 @@ export const certificationsData: Certification[] = [
     title: "Data Engineering",
     description:
       "Successfully completed AWS Data Engineering certification program, mastering cloud-based data pipeline architecture and implementation. Gained comprehensive expertise in designing scalable ETL workflows using AWS Glue for data transformation and Amazon S3 for distributed storage solutions. Developed proficiency in building secure data warehousing solutions with proper access controls and encryption protocols. Acquired hands-on experience with Amazon Athena for serverless analytics and SQL querying across large datasets. Utilized Cloud9 IDE for collaborative development of data processing scripts and automation workflows, implementing best practices for data governance, monitoring, and cost optimization in cloud environments.",
-    image: "/images/certifications/imgAWS.webp",
+    image: import.meta.env.BASE_URL + "images/certifications/imgAWS.webp",
     status: "completed",
     institution: "Amazon Web Services",
     completionDate: "April 2025",
@@ -90,7 +90,7 @@ export const certificationsData: Certification[] = [
     title: "Foundations of Cybersecurity",
     description:
       "Successfully completed Google's Cybersecurity Fundamentals certification, establishing proficiency in threat detection, security management frameworks, and incident response. Developed expertise in identifying cyber attacks including malware and phishing, implementing security controls, and utilizing SIEM systems for continuous monitoring and comprehensive security strategy development.",
-    image: "/images/certifications/imgGoogle.webp",
+    image: import.meta.env.BASE_URL + "images/certifications/imgGoogle.webp",
     status: "completed",
     institution: "Google",
     completionDate: "May 2025",
@@ -113,7 +113,7 @@ export const certificationsData: Certification[] = [
     title: "Play It Safe: Manage Security Risks",
     description:
       "Successfully completed Google's advanced security risk management certification, specializing in enterprise-level threat detection and continuous security monitoring. Developed expertise in comprehensive risk assessment methodologies and implementing proactive threat management strategies. Gained practical experience in identifying security vulnerabilities, conducting threat analysis, and establishing monitoring frameworks for enterprise environments. Acquired proficiency in security risk mitigation techniques and building resilient security architectures to protect organizational assets.",
-    image: "/images/certifications/imgGoogle.webp",
+    image: import.meta.env.BASE_URL + "images/certifications/imgGoogle.webp",
     status: "completed",
     institution: "Google",
     completionDate: "May 2025",
@@ -136,11 +136,12 @@ export const certificationsData: Certification[] = [
     title: "Connect and Protect: Networks and Network Security",
     description:
       "Successfully completed Google's comprehensive network security certification, mastering network infrastructure design and advanced security implementation. Developed expertise in configuring and managing firewalls, intrusion detection and prevention systems, and secure VPN architectures. Gained proficiency in Zero Trust security model implementation and conducting thorough vulnerability assessments across network environments. Acquired hands-on experience with network protocol analysis, continuous monitoring solutions, and cloud computing security best practices including system hardening techniques to protect organizational network assets.",
-    image: "/images/certifications/imgGoogle.webp",
+    image: import.meta.env.BASE_URL + "images/certifications/imgGoogle.webp",
     status: "completed",
     institution: "Google",
     completionDate: "May 2025",
-    certUrl:"https://www.coursera.org/account/accomplishments/verify/C1TIR6FCUFI0",
+    certUrl:
+      "https://www.coursera.org/account/accomplishments/verify/C1TIR6FCUFI0",
     skills: [
       "Network Infrastructure",
       "Network Security",
@@ -160,11 +161,12 @@ export const certificationsData: Certification[] = [
     title: "Tools of the Trade: Linux and SQL",
     description:
       "Successfully completed Google's comprehensive Linux and SQL certification, mastering essential skills for data manipulation and system administration. Developed expertise in using Linux command-line tools for file management, process monitoring, and system troubleshooting. Gained proficiency in SQL for querying and managing relational databases, including advanced techniques for data analysis and reporting. Acquired hands-on experience with shell scripting and automation to streamline workflows and improve efficiency.",
-    image: "/images/certifications/imgGoogle.webp",
+    image: import.meta.env.BASE_URL + "images/certifications/imgGoogle.webp",
     status: "completed",
     institution: "Google",
     completionDate: "May 2025",
-    certUrl:"https://www.coursera.org/account/accomplishments/verify/GF10GYQAJ8GW",
+    certUrl:
+      "https://www.coursera.org/account/accomplishments/verify/GF10GYQAJ8GW",
     skills: [
       "Linux",
       "SQL",

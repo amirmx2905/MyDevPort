@@ -79,7 +79,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  imageSrc: "/images/profile/photo.webp",
+  imageSrc: import.meta.env.BASE_URL + "images/profile/photo.webp",
   altText: "Profile Photo",
   isMobile: false,
 });

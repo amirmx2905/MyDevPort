@@ -56,12 +56,12 @@ const props = withDefaults(defineProps<Props>(), {
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/amir-sebasti%C3%A1n-flores-cardona-617556250/",
-      icon: "/images/icons/iconLinkedin.svg",
+      icon: import.meta.env.BASE_URL + "images/icons/iconLinkedin.svg",
     },
     {
       name: "GitHub",
       url: "https://github.com/amirmx2905",
-      icon: "/images/icons/iconGithub.svg",
+      icon: import.meta.env.BASE_URL + "images/icons/iconGithub.svg",
     },
   ],
 });
@@ -71,5 +71,14 @@ const props = withDefaults(defineProps<Props>(), {
 // ===============================
 
 // Access props for template reactivity
-const { socialLinks } = props;
+// Ensure reactivity and correct path resolution for all environments
+const resolvedSocialLinks = props.socialLinks.map((link) => ({
+  ...link,
+  icon: link.icon.startsWith("http")
+    ? link.icon
+    : import.meta.env.BASE_URL + link.icon.replace(/^.*images\//, "images/"),
+}));
+
+// Use resolvedSocialLinks in template
+const socialLinks = resolvedSocialLinks;
 </script>

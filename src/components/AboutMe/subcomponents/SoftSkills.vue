@@ -58,32 +58,32 @@ import { ref } from "vue";
 const softSkills = ref([
   {
     name: "Problem Solving",
-    icon: "/images/icons/iconProblemSolving.svg",
+    icon: import.meta.env.BASE_URL + "images/icons/iconProblemSolving.svg",
     description: "Breaking down complex challenges",
   },
   {
     name: "Team Collaboration",
-    icon: "/images/icons/iconTeamWork.svg",
+    icon: import.meta.env.BASE_URL + "images/icons/iconTeamWork.svg",
     description: "Working effectively in teams",
   },
   {
     name: "Communication",
-    icon: "/images/icons/iconCommunication.svg",
+    icon: import.meta.env.BASE_URL + "images/icons/iconCommunication.svg",
     description: "Clear and effective communication",
   },
   {
     name: "Adaptability",
-    icon: "/images/icons/iconAdaptability.svg",
+    icon: import.meta.env.BASE_URL + "images/icons/iconAdaptability.svg",
     description: "Quick learning and adaptation",
   },
   {
     name: "Critical Thinking",
-    icon: "/images/icons/iconThinking.svg",
+    icon: import.meta.env.BASE_URL + "images/icons/iconThinking.svg",
     description: "Analytical approach to problems",
   },
   {
     name: "Time Management",
-    icon: "/images/icons/iconTime.svg",
+    icon: import.meta.env.BASE_URL + "images/icons/iconTime.svg",
     description: "Efficient task prioritization",
   },
 ]);
