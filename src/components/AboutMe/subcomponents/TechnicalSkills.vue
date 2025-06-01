@@ -68,5 +68,6 @@ const technicalSkills = ref([
   { name: "Docker", icon: "/images/icons/iconDocker.svg" },
   { name: "MySQL", icon: "/images/icons/iconMySQL.svg" },
   { name: "PostgreSQL", icon: "/images/icons/iconPostgreSQL.svg" },
+  { name: "TypeScript", icon: "/images/icons/iconTypescript.svg" },
 ]);
 </script>
