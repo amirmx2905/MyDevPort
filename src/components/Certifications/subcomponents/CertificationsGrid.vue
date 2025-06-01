@@ -21,7 +21,7 @@
     >
       <!-- Individual Certification Cards -->
       <div
-        v-for="cert in displayedCertifications"
+        v-for="(cert, index) in displayedCertifications"
         :key="cert.id"
         @click="openModal(cert)"
         @keydown.enter="openModal(cert)"
@@ -30,6 +30,15 @@
         role="button"
         :aria-label="`View details for ${cert.title} certification`"
         class="group relative bg-gray-800/50 backdrop-blur-lg border border-gray-700/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-gray-800/70 focus:outline-none focus:ring-2 focus:ring-gray-500/50"
+        :class="{
+          'opacity-0 translate-y-4': !animatedItems.has(cert.id),
+          'opacity-100 translate-y-0': animatedItems.has(cert.id),
+        }"
+        :style="{
+          transitionDelay: animatedItems.has(cert.id)
+            ? `${(index % certificationsPerPage) * 100}ms`
+            : '0ms',
+        }"
       >
         <!-- Status Indicator -->
         <div class="absolute top-4 right-4 flex items-center space-x-2">
@@ -185,6 +194,10 @@ const certificationLoadMoreButton = ref<HTMLElement | null>(null);
 const certificationsPerPage = 6;
 const currentCertificationPage = ref(1);
 
+// Animation state for new items
+const isLoadingMore = ref(false);
+const animatedItems = ref(new Set<string>());
+
 // ===============================
 // COMPUTED PROPERTIES
 // ===============================
@@ -213,10 +226,25 @@ const hasMoreCertifications = computed(() => {
  */
 const loadMoreCertifications = () => {
   const previousCount = displayedCertifications.value.length;
+  isLoadingMore.value = true;
+
+  // Increment page
   currentCertificationPage.value++;
 
   // Wait for Vue to update the DOM
   nextTick(() => {
+    // Get new certifications to animate
+    const newCertifications =
+      displayedCertifications.value.slice(previousCount);
+
+    // Add new items to animated set with staggered timing
+    newCertifications.forEach((cert, index) => {
+      setTimeout(() => {
+        animatedItems.value.add(cert.id);
+      }, index * 100); // 100ms delay between each item
+    });
+
+    // Scroll to new items after animation starts
     setTimeout(() => {
       // Find the certifications grid container
       const certificationsGrid = document.querySelector(
@@ -245,6 +273,8 @@ const loadMoreCertifications = () => {
           });
         }
       }
+
+      isLoadingMore.value = false;
     }, 150); // Allow time for DOM to update and animations to settle
   });
 };
@@ -288,6 +318,13 @@ import { onMounted, onUnmounted } from "vue";
 
 onMounted(() => {
   document.addEventListener("keydown", handleKeydown);
+
+  // Initialize first batch of certifications as animated
+  nextTick(() => {
+    displayedCertifications.value.forEach((cert) => {
+      animatedItems.value.add(cert.id);
+    });
+  });
 });
 
 onUnmounted(() => {

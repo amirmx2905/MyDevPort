@@ -103,11 +103,13 @@
         :key="project.id"
         class="group cursor-pointer max-w-sm mx-auto w-full transition-all duration-300"
         :class="{
-          'opacity-100 translate-y-0': !isTransitioning,
-          'opacity-0 translate-y-4': isTransitioning,
+          'opacity-0 translate-y-4': !animatedItems.has(project.id),
+          'opacity-100 translate-y-0': animatedItems.has(project.id),
         }"
         :style="{
-          transitionDelay: isTransitioning ? '0ms' : `${index * 50}ms`,
+          transitionDelay: animatedItems.has(project.id)
+            ? `${(index % projectsPerPage) * 100}ms`
+            : '0ms',
         }"
         @click="openModal(project)"
       >
@@ -253,6 +255,7 @@ const projectLoadMoreButton = ref<HTMLElement | null>(null);
 
 // Animation state
 const isTransitioning = ref(false); // Animation transition state
+const animatedItems = ref(new Set<string>()); // Track which projects have been animated
 
 // Pagination state for projects
 const projectsPerPage = 6;
@@ -344,6 +347,9 @@ const changeCategory = async (categoryValue: string) => {
   selectedCategory.value = categoryValue;
   currentProjectPage.value = 1; // Reset pagination when changing category
 
+  // Clear animated items for smooth re-entry
+  animatedItems.value.clear();
+
   // Wait for DOM update
   await nextTick();
 
@@ -352,6 +358,13 @@ const changeCategory = async (categoryValue: string) => {
 
   // Start fade in animation
   isTransitioning.value = false;
+
+  // Re-animate the displayed projects with stagger
+  displayedProjects.value.forEach((project, index) => {
+    setTimeout(() => {
+      animatedItems.value.add(project.id);
+    }, index * 100);
+  });
 };
 
 /**
@@ -383,6 +396,17 @@ const loadMoreProjects = () => {
 
   // Wait for Vue to update the DOM
   nextTick(() => {
+    // Get new projects to animate
+    const newProjects = displayedProjects.value.slice(previousCount);
+
+    // Add new items to animated set with staggered timing
+    newProjects.forEach((project, index) => {
+      setTimeout(() => {
+        animatedItems.value.add(project.id);
+      }, index * 100); // 100ms delay between each item
+    });
+
+    // Scroll to new items after animation starts
     setTimeout(() => {
       // Find the projects grid container specifically
       const projectsGrid = document.querySelector(
@@ -435,6 +459,15 @@ const handleKeyPress = (event: KeyboardEvent) => {
 
 onMounted(() => {
   document.addEventListener("keydown", handleKeyPress);
+
+  // Initialize first batch of projects as animated
+  nextTick(() => {
+    displayedProjects.value.forEach((project, index) => {
+      setTimeout(() => {
+        animatedItems.value.add(project.id);
+      }, index * 100);
+    });
+  });
 });
 
 onUnmounted(() => {
