@@ -29,7 +29,7 @@
         tabindex="0"
         role="button"
         :aria-label="`View details for ${cert.title} certification`"
-        class="group relative bg-gray-800/50 backdrop-blur-lg border border-gray-700/50 rounded-2xl p-6 cursor-pointer transition-all duration-500 hover:scale-105 hover:bg-gray-800/70 focus:outline-none focus:ring-2 focus:ring-gray-500/50"
+        class="group relative bg-gradient-to-br from-gray-900/80 to-black/60 backdrop-blur-2xl border border-gray-700/50 rounded-3xl p-8 cursor-pointer transition-all duration-500 hover:scale-[1.03] shadow-2xl overflow-hidden focus:outline-none focus:ring-4 focus:ring-indigo-400/30"
         :class="{
           'opacity-0 translate-y-4': !animatedItems.has(cert.id),
           'opacity-100 translate-y-0': animatedItems.has(cert.id),
@@ -44,6 +44,14 @@
             : {}
         "
       >
+        <!-- Decorative Background Elements -->
+        <div
+          class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-indigo-500/10 to-transparent rounded-full -translate-y-16 translate-x-16"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-600/10 to-transparent rounded-full translate-y-12 -translate-x-12"
+        ></div>
+
         <!-- Status Indicator -->
         <div class="absolute top-4 right-4 flex items-center space-x-2">
           <div
@@ -68,17 +76,17 @@
         </div>
 
         <!-- Certification Image -->
-        <div class="mb-6 mt-2">
-          <div class="relative w-24 h-24 mx-auto">
-            <!-- Image Background with Gradient -->
+        <div class="flex justify-center mb-6">
+          <div class="relative w-24 h-24">
+            <!-- Logo Background with Gradient -->
             <div
-              class="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/30 via-indigo-600/30 to-purple-700/30 backdrop-blur-xl shadow-xl transition-all duration-300"
+              class="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500/30 via-purple-600/30 to-indigo-700/30 backdrop-blur-xl border-2 border-indigo-400/50 shadow-xl"
             ></div>
             <!-- Certification Logo Image -->
             <img
               :src="cert.image"
               :alt="`${cert.title} certification logo`"
-              class="relative w-full h-full object-cover rounded-xl filter brightness-95 group-hover:brightness-110 transition-all duration-300 p-1"
+              class="relative w-full h-full object-cover rounded-full filter brightness-95 transition-all duration-300 p-1"
               loading="lazy"
             />
           </div>
@@ -86,18 +94,31 @@
 
         <!-- Certification Title -->
         <h3
-          class="text-xl font-bold text-white mb-3 text-center transition-colors duration-300"
+          class="text-white font-bold text-2xl mb-2 text-center transition-colors duration-300"
         >
           {{ cert.title }}
         </h3>
 
         <!-- Institution Badge -->
-        <div v-if="cert.institution" class="text-center mb-4">
-          <span
-            class="inline-block bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-500/30"
+        <div v-if="cert.institution" class="text-center mb-6">
+          <div
+            class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500/20 to-purple-600/20 border border-indigo-400/30 rounded-full"
           >
-            {{ cert.institution }}
-          </span>
+            <!-- Institution Icon -->
+            <svg
+              class="w-4 h-4 mr-2 text-indigo-400"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"
+              />
+            </svg>
+            <!-- Institution Text -->
+            <span class="text-indigo-300 text-sm font-medium">{{
+              cert.institution
+            }}</span>
+          </div>
         </div>
 
         <!-- Description Preview -->
@@ -116,13 +137,13 @@
           <span
             v-for="skill in cert.skills.slice(0, 3)"
             :key="skill"
-            class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-md border border-indigo-500/30"
+            class="px-2 py-1 bg-gradient-to-r from-gray-800/60 to-gray-700/60 border border-gray-600/40 rounded-md text-xs text-gray-300 font-medium"
           >
             {{ skill }}
           </span>
           <span
             v-if="cert.skills.length > 3"
-            class="text-xs bg-gray-500/20 text-gray-400 px-2 py-1 rounded-md"
+            class="px-2 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-md text-xs text-indigo-300 font-medium"
           >
             +{{ cert.skills.length - 3 }} more
           </span>

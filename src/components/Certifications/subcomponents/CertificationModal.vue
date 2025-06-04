@@ -100,12 +100,12 @@
               <div class="relative mb-4 flex justify-center">
                 <div class="relative w-28 h-28">
                   <div
-                    class="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/40 via-indigo-600/40 to-purple-600/40 backdrop-blur-xl border-2 border-purple-400/60 shadow-2xl"
+                    class="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500/40 via-purple-600/40 to-indigo-600/40 backdrop-blur-xl border-2 border-indigo-400/60 shadow-2xl"
                   ></div>
                   <img
                     :src="certification.image"
                     :alt="`${certification.title} certification logo`"
-                    class="relative w-full h-full object-cover rounded-xl filter brightness-105 transition-all duration-300 p-1"
+                    class="relative w-full h-full object-cover rounded-full filter brightness-105 transition-all duration-300 p-1"
                     loading="lazy"
                   />
                 </div>

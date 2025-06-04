@@ -22,9 +22,14 @@
 
     <!-- Main Section Title -->
     <h2
-      class="relative text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-500 via-pink-400 to-indigo-500 bg-clip-text text-transparent transition-all duration-1000"
+      class="relative text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 transition-all duration-1000"
     >
-      Certifications
+      Technical
+      <span
+        class="bg-gradient-to-r from-purple-500 via-pink-400 to-indigo-500 bg-clip-text text-transparent font-light"
+      >
+        Certifications
+      </span>
     </h2>
 
     <!-- Floating Accent Elements -->

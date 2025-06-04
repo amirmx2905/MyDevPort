@@ -105,14 +105,25 @@
             </button>
 
             <!-- Project Header -->
-            <div class="relative p-8 pb-6">
-              <!-- Decorative Background -->
-              <div class="absolute inset-0"></div>
+            <div class="relative text-center py-8 px-8 overflow-hidden">
+              <!-- Decorative Background Elements -->
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-600/5 to-green-600/5"
+              ></div>
+              <div
+                class="absolute top-0 left-1/4 w-32 h-32 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-full -translate-y-16"
+              ></div>
+              <div
+                class="absolute top-0 right-1/4 w-24 h-24 bg-gradient-to-bl from-teal-500/10 to-transparent rounded-full -translate-y-12 translate-x-12"
+              ></div>
+              <div
+                class="absolute bottom-0 right-1/4 w-24 h-24 bg-gradient-to-tr from-green-600/10 to-transparent rounded-full translate-y-12"
+              ></div>
 
               <!-- Project Image -->
-              <div class="relative mb-6 mt-8">
+              <div class="relative mb-6 mt-12">
                 <div
-                  class="aspect-video mt-13 rounded-2xl overflow-hidden shadow-2xl"
+                  class="aspect-video rounded-2xl overflow-hidden shadow-2xl"
                 >
                   <img
                     :src="project.image"
@@ -123,40 +134,49 @@
                 </div>
               </div>
 
-              <!-- Project Title and Meta -->
-              <div class="relative z-10">
-                <h2
-                  class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-400 via-teal-400 to-green-400 bg-clip-text text-transparent"
-                >
-                  {{ project.title }}
-                </h2>
+              <!-- Project Title -->
+              <h2
+                class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-400 via-teal-400 to-green-400 bg-clip-text text-transparent"
+              >
+                {{ project.title }}
+              </h2>
 
-                <!-- Project Meta Information -->
-                <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-6">
-                  <div class="flex items-center">
-                    <svg
-                      class="w-4 h-4 mr-2 text-emerald-400"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
-                      />
-                    </svg>
-                    <span>{{ project.year }}</span>
-                  </div>
-                  <div class="flex items-center">
-                    <svg
-                      class="w-4 h-4 mr-2 text-emerald-400"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                      />
-                    </svg>
-                    <span>{{ project.duration }}</span>
-                  </div>
+              <!-- Badges Row -->
+              <div class="flex flex-wrap justify-center gap-4">
+                <!-- Year Badge -->
+                <div
+                  class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-500/25 to-teal-600/25 border border-emerald-400/40 rounded-full backdrop-blur-sm shadow-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2 text-emerald-400"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
+                    />
+                  </svg>
+                  <span class="text-emerald-200 font-medium">{{
+                    project.year
+                  }}</span>
+                </div>
+
+                <!-- Duration Badge -->
+                <div
+                  class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-teal-500/25 to-green-600/25 border border-teal-400/40 rounded-full backdrop-blur-sm shadow-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2 text-teal-400"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                    />
+                  </svg>
+                  <span class="text-teal-200 font-medium">{{
+                    project.duration
+                  }}</span>
                 </div>
               </div>
             </div>
