@@ -56,7 +56,7 @@
         >
           <div
             v-if="isOpen && certification"
-            class="relative bg-gradient-to-br from-gray-900/95 to-black/80 backdrop-blur-2xl border border-purple-400/40 rounded-3xl max-w-2xl w-full max-h-[95vh] overflow-y-auto overflow-x-hidden shadow-2xl shadow-purple-500/30"
+            class="relative bg-gradient-to-br from-gray-900/95 to-black/80 backdrop-blur-2xl border border-purple-400/40 rounded-3xl max-w-2xl w-full max-h-[80dvh] overflow-y-scroll scrollbar-none overflow-x-hidden shadow-2xl shadow-purple-500/30"
             @click.stop
           >
             <!-- Close Button -->
