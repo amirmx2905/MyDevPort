@@ -56,7 +56,7 @@
         >
           <div
             v-if="isOpen && project"
-            class="relative bg-gradient-to-br from-gray-900/95 to-black/80 backdrop-blur-2xl border border-emerald-400/40 rounded-3xl max-w-2xl w-full max-h-[80dvh] overflow-y-scroll overflow-x-hidden shadow-2xl shadow-emerald-500/30 scrollbar-none"
+            class="relative bg-gradient-to-br from-gray-900/95 to-black/80 backdrop-blur-2xl border border-emerald-400/40 rounded-3xl max-w-2xl w-full max-h-[80dvh] overflow-y-scroll overflow-x-hidden shadow-2xl shadow-emerald-500/30 no-scrollbar"
             @click.stop
           >
             <!-- Action Buttons Top -->

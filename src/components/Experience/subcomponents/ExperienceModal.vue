@@ -57,7 +57,7 @@
         >
           <div
             v-if="isOpen && experience"
-            class="relative bg-gradient-to-br from-gray-900/95 to-black/80 backdrop-blur-2xl border border-pink-400/40 rounded-3xl max-w-2xl w-full max-h-[80dvh] overflow-y-scroll overflow-x-hidden shadow-2xl shadow-pink-500/30 scrollbar-none"
+            class="relative bg-gradient-to-br from-gray-900/95 to-black/80 backdrop-blur-2xl border border-pink-400/40 rounded-3xl max-w-2xl w-full max-h-[80dvh] overflow-y-scroll overflow-x-hidden shadow-2xl shadow-pink-500/30 no-scrollbar"
             @click.stop
           >
             <!-- Close Button -->
