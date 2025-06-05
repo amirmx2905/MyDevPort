@@ -1,10 +1,10 @@
 # Experience Section - Documentation
 
-## 📋 Overview
+## Overview
 
 The Experience section is a modern, interactive timeline component that showcases professional work history in a clean and engaging way. It features a vertical timeline with clickable experience cards that open detailed modal windows.
 
-## 🎨 Design Features
+## Design Features
 
 - **Vertical Timeline**: Clean chronological display (oldest to newest, top to bottom)
 - **Interactive Cards**: Clickable experience cards with hover animations
@@ -14,7 +14,7 @@ The Experience section is a modern, interactive timeline component that showcase
 - **Glassmorphism**: Modern glass-like UI elements with backdrop blur
 - **Accessibility**: Full keyboard navigation and screen reader support
 
-## 🏗️ Component Architecture
+## Component Architecture
 
 ```
 Experience/
@@ -28,7 +28,7 @@ Experience/
     └── ExperienceModal.vue     # Detailed experience modal
 ```
 
-## 🔧 How to Add New Experiences
+## How to Add New Experiences
 
 ### Step 1: Prepare Company Logo
 
@@ -94,7 +94,7 @@ Navigate to `src/components/Experience/experienceData.ts` and add your new exper
 }
 ```
 
-## 🎨 Customization Options
+## Customization Options
 
 ### Experience Type Colors
 
@@ -114,7 +114,7 @@ Company logos are automatically styled with:
 - Responsive sizing (24x24 on timeline, 20x20 in modal)
 - `object-cover` for consistent aspect ratios
 
-## 📱 Responsive Behavior
+## Responsive Behavior
 
 ### Desktop (lg and up)
 
@@ -128,7 +128,7 @@ Company logos are automatically styled with:
 - Modal stacks content vertically
 - Condensed spacing for touch interactions
 
-## ♿ Accessibility Features
+## Accessibility Features
 
 - **Keyboard Navigation**: Full keyboard support with focus indicators
 - **Screen Reader Support**: Proper ARIA labels and semantic HTML
@@ -136,7 +136,7 @@ Company logos are automatically styled with:
 - **High Contrast**: Sufficient color contrast ratios
 - **Reduced Motion**: Respects user's motion preferences
 
-## 🚀 Performance Considerations
+## Performance Considerations
 
 - **Lazy Loading**: Company logos use `loading="lazy"`
 - **Image Optimization**: WebP format for optimal file sizes
@@ -144,7 +144,7 @@ Company logos are automatically styled with:
 - **Component Splitting**: Modular architecture for code splitting
 - **Event Delegation**: Efficient event handling
 
-## 🔍 Testing Your Changes
+## Testing Your Changes
 
 After adding a new experience:
 
@@ -154,7 +154,7 @@ After adding a new experience:
 4. **Responsive Design**: Test on mobile and desktop
 5. **Accessibility**: Test keyboard navigation
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Logo Not Displaying
 
@@ -173,7 +173,7 @@ After adding a new experience:
 - Check for typos in property names
 - Verify arrays have content
 
-## 📝 Code Style Guidelines
+## Code Style Guidelines
 
 - Use TypeScript for type safety
 - Follow existing naming conventions

@@ -1,10 +1,10 @@
 # Certifications Section - Documentation
 
-## 📋 Overview
+## Overview
 
 The Certifications section is a modern, interactive showcase that displays professional development achievements, ongoing learning programs, and specialized training. It features a responsive grid layout with detailed modal windows for comprehensive certification information.
 
-## 🎨 Design Features
+## Design Features
 
 - **Responsive Grid**: Dynamic layout (1-3 columns based on screen size)
 - **Status Indicators**: Visual distinction between completed and in-progress certifications
@@ -14,7 +14,7 @@ The Certifications section is a modern, interactive showcase that displays profe
 - **Glassmorphism**: Modern glass-like UI elements with backdrop blur
 - **Accessibility**: Full keyboard navigation and screen reader support
 
-## 🏗️ Component Architecture
+## Component Architecture
 
 ```
 Certifications/
@@ -28,7 +28,7 @@ Certifications/
     └── AnimatedBackground.vue   # Floating orbs background
 ```
 
-## 📊 Data Structure
+## Data Structure
 
 ### Certification Interface
 
@@ -67,7 +67,7 @@ export interface Certification {
 }
 ```
 
-## ➕ Adding New Certifications
+## Adding New Certifications
 
 ### Step 1: Add Certification Data
 
@@ -108,7 +108,7 @@ The certification will automatically appear in the grid. Check:
 - ✅ Skills tags display properly
 - ✅ Institution name appears correctly
 
-## 🎨 Customization Options
+## Customization Options
 
 ### Status Types
 
@@ -141,7 +141,7 @@ The responsive grid automatically adjusts:
 - **Tablet**: 2 columns
 - **Desktop**: 3 columns
 
-## 📱 Responsive Behavior
+## Responsive Behavior
 
 ### Mobile (sm and below)
 
@@ -163,7 +163,7 @@ The responsive grid automatically adjusts:
 - Full modal layout
 - Enhanced visual effects
 
-## ♿ Accessibility Features
+## Accessibility Features
 
 - **Keyboard Navigation**: Full keyboard support with focus indicators
 - **Screen Reader Support**: Proper ARIA labels and semantic HTML
@@ -171,7 +171,7 @@ The responsive grid automatically adjusts:
 - **High Contrast**: Sufficient color contrast ratios
 - **Status Indicators**: Both visual and text-based status communication
 
-## 🚀 Performance Considerations
+## Performance Considerations
 
 - **Lazy Loading**: Certification images use `loading="lazy"`
 - **Image Optimization**: WebP format for optimal file sizes
@@ -179,7 +179,7 @@ The responsive grid automatically adjusts:
 - **Component Splitting**: Modular architecture for code splitting
 - **Event Delegation**: Efficient event handling
 
-## 🔍 Testing Your Changes
+## Testing Your Changes
 
 After adding a new certification:
 
@@ -190,7 +190,7 @@ After adding a new certification:
 5. **Responsive Design**: Test on mobile and desktop
 6. **Accessibility**: Test keyboard navigation
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Image Not Displaying
 
@@ -217,7 +217,7 @@ After adding a new certification:
 - Check for proper array syntax
 - Verify skills contain meaningful technology/skill names
 
-## 📝 Code Style Guidelines
+## Code Style Guidelines
 
 - Use TypeScript for type safety
 - Follow existing naming conventions
@@ -226,7 +226,7 @@ After adding a new certification:
 - Use descriptive variable names
 - Keep descriptions informative but concise
 
-## 💡 Best Practices
+## Best Practices
 
 ### Writing Descriptions
 
