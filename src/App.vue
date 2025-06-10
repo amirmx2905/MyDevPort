@@ -31,7 +31,7 @@ import Certifications from "./components/Certifications/index.vue";
 
 <template>
   <!-- Root Application Container -->
-  <div class="min-h-screen overscroll-none no-scrollbar">
+  <div class="min-h-screen no-scrollbar">
     <!-- Main Navigation Header Component -->
     <Header />
 

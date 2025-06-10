@@ -31,19 +31,20 @@
 /* Global Root Variables */
 :root {
   /* Set global dark background for consistent theming */
-  overflow: hidden;
   background-color: rgb(0, 0, 0);
 }
 
-/* Global Scrollbar Hiding - Apply to all elements */
+/* Global Scrollbar Hiding - Hide scrollbars but allow scrolling */
 * {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  /* Hide scrollbar for IE and Edge */
+  -ms-overflow-style: none;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
 *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
 
 /* Enhanced Device Detection and Scroll Behavior Separation */
@@ -52,24 +53,16 @@
 /* Auto scroll allows JavaScript-controlled smooth scrolling */
 html {
   scroll-behavior: auto; /* Desktop default: JS-controlled scroll */
-  /* Ensure no scrollbars on html element */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  /* Allow scrolling but hide scrollbar */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-html::-webkit-scrollbar {
-  display: none;
-}
-
-/* Body scrollbar hiding */
+/* Body scrolling configuration */
 body {
-  /* Ensure no scrollbars on body element */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-body::-webkit-scrollbar {
-  display: none;
+  /* Allow scrolling but hide scrollbar */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Mobile Device Detection and Optimization */
@@ -80,13 +73,9 @@ body::-webkit-scrollbar {
   /* Mobile devices use native smooth scrolling for better performance */
   html {
     scroll-behavior: smooth !important;
-    /* Ensure no scrollbars on mobile */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  html::-webkit-scrollbar {
-    display: none;
+    /* Allow scrolling but hide scrollbar */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   /* Enhanced Touch Scrolling Optimization */
@@ -95,13 +84,9 @@ body::-webkit-scrollbar {
     -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
     overscroll-behavior: contain; /* Prevent scroll chaining */
     touch-action: pan-y; /* Allow vertical touch scrolling only */
-    /* Ensure no scrollbars on mobile body */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  body::-webkit-scrollbar {
-    display: none;
+    /* Allow scrolling but hide scrollbar */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
@@ -111,26 +96,18 @@ body::-webkit-scrollbar {
   /* Desktop uses JavaScript-controlled scrolling for custom animations */
   html {
     scroll-behavior: auto !important;
-    /* Ensure no scrollbars on desktop */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  html::-webkit-scrollbar {
-    display: none;
+    /* Allow scrolling but hide scrollbar */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   /* Desktop Interaction Optimization */
   /* Prevent unintended scroll behaviors on desktop */
   body {
     overscroll-behavior: none; /* Disable bounce/pull-to-refresh */
-    /* Ensure no scrollbars on desktop body */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  body::-webkit-scrollbar {
-    display: none;
+    /* Allow scrolling but hide scrollbar */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
@@ -139,22 +116,14 @@ body::-webkit-scrollbar {
 @media (min-width: 768px) and (max-width: 1024px) and (hover: none) {
   html {
     scroll-behavior: smooth !important;
-    /* Ensure no scrollbars on tablets */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  html::-webkit-scrollbar {
-    display: none;
+    /* Allow scrolling but hide scrollbar */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   body {
-    /* Ensure no scrollbars on tablet body */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  body::-webkit-scrollbar {
-    display: none;
+    /* Allow scrolling but hide scrollbar */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
