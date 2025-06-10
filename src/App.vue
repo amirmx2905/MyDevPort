@@ -31,7 +31,7 @@ import Certifications from "./components/Certifications/index.vue";
 
 <template>
   <!-- Root Application Container -->
-  <div class="min-h-screen overscroll-none">
+  <div class="min-h-screen overscroll-none no-scrollbar">
     <!-- Main Navigation Header Component -->
     <Header />
 
@@ -73,7 +73,7 @@ import Certifications from "./components/Certifications/index.vue";
 
     <!-- Main Content Sections Container -->
     <!-- Unified dark background for all portfolio sections -->
-    <div class="bg-gray-900">
+    <div class="bg-gray-900 no-scrollbar">
       <!-- About Me Section -->
       <!-- Full-height section with modern glassmorphism design -->
       <section id="about" class="min-h-[100dvh]">

@@ -35,12 +35,41 @@
   background-color: rgb(0, 0, 0);
 }
 
+/* Global Scrollbar Hiding - Apply to all elements */
+* {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 /* Enhanced Device Detection and Scroll Behavior Separation */
 
 /* Default HTML Scroll Behavior - Desktop Preference */
 /* Auto scroll allows JavaScript-controlled smooth scrolling */
 html {
   scroll-behavior: auto; /* Desktop default: JS-controlled scroll */
+  /* Ensure no scrollbars on html element */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Body scrollbar hiding */
+body {
+  /* Ensure no scrollbars on body element */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 /* Mobile Device Detection and Optimization */
@@ -51,6 +80,13 @@ html {
   /* Mobile devices use native smooth scrolling for better performance */
   html {
     scroll-behavior: smooth !important;
+    /* Ensure no scrollbars on mobile */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   /* Enhanced Touch Scrolling Optimization */
@@ -59,6 +95,13 @@ html {
     -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
     overscroll-behavior: contain; /* Prevent scroll chaining */
     touch-action: pan-y; /* Allow vertical touch scrolling only */
+    /* Ensure no scrollbars on mobile body */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -68,12 +111,26 @@ html {
   /* Desktop uses JavaScript-controlled scrolling for custom animations */
   html {
     scroll-behavior: auto !important;
+    /* Ensure no scrollbars on desktop */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   /* Desktop Interaction Optimization */
   /* Prevent unintended scroll behaviors on desktop */
   body {
     overscroll-behavior: none; /* Disable bounce/pull-to-refresh */
+    /* Ensure no scrollbars on desktop body */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -82,5 +139,22 @@ html {
 @media (min-width: 768px) and (max-width: 1024px) and (hover: none) {
   html {
     scroll-behavior: smooth !important;
+    /* Ensure no scrollbars on tablets */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    /* Ensure no scrollbars on tablet body */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
   }
 }
