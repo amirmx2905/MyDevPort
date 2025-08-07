@@ -88,6 +88,8 @@
               :alt="`${cert.title} certification logo`"
               class="relative w-full h-full object-cover rounded-full filter brightness-95 transition-all duration-300 p-1"
               loading="lazy"
+              width="96"
+              height="96"
             />
           </div>
         </div>

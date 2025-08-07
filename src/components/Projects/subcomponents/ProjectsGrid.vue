@@ -127,6 +127,8 @@
               :alt="project.title"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
+              width="384"
+              height="192"
             />
             <!-- Image Overlay -->
             <div
