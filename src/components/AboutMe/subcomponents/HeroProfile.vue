@@ -78,12 +78,12 @@ const downloadCV = () => {
   try {
     // Get the base URL and construct full path
     const baseUrl = import.meta.env.BASE_URL;
-    const cvPath = `${baseUrl}documents/Amir_Flores_CV.pdf`;
+    const cvPath = `${baseUrl}documents/AmirFlores_CV.pdf`;
 
     // Create download link
     const link = document.createElement("a");
     link.href = cvPath;
-    link.download = "Amir_Flores_CV.pdf";
+    link.download = "AmirFlores_CV.pdf";
     link.style.display = "none";
 
     // Add to DOM and trigger download
@@ -99,7 +99,7 @@ const downloadCV = () => {
     try {
       const fallbackPath = `${
         import.meta.env.BASE_URL
-      }documents/Amir_Flores_CV.pdf`;
+      }documents/AmirFlores_CV.pdf`;
       window.open(fallbackPath, "_blank");
     } catch (fallbackError) {
       alert("Error downloading CV. Please contact Amir directly.");
