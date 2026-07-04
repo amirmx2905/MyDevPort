@@ -1,11 +1,13 @@
 export type ExperienceItem = {
   id: string;
   company: string;
-  role: string;
+  position: string;
   duration: string;
   location: string;
+  logo: string;
   type: "full-time" | "part-time" | "internship" | "contract";
   description: string;
+  achievements: string[];
   technologies: string[];
 };
 
