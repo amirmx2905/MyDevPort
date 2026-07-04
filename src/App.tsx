@@ -8,7 +8,7 @@ import ProjectsSection from "./sections/ProjectsSection";
 function App() {
   return (
     <ReactLenis root options={{ lerp: 0.08, smoothWheel: true }}>
-      <main className="min-h-screen bg-zinc-900 text-zinc-100">
+      <main className="min-h-screen bg-background text-foreground">
         <HomeSection />
         <AboutSection />
         <ExperienceSection />

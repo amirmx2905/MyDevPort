@@ -12,11 +12,11 @@ function SectionShell({ id, title, children }: SectionShellProps) {
   return (
     <section
       id={id}
-      className="flex min-h-screen items-center border-b border-white/10 text-zinc-300"
+      className="flex min-h-screen items-center border-b border-border text-body"
     >
       <div className="w-full h-full flex flex-col justify-center">
         {title ? (
-          <h2 className="text-2xl font-semibold text-zinc-100">{title}</h2>
+          <h2 className="text-2xl font-semibold text-foreground">{title}</h2>
         ) : null}
         <div>{children}</div>
       </div>

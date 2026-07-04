@@ -37,7 +37,9 @@ const hexToRGB = (hex: string) => {
 };
 
 const prepColors = (input?: string[]) => {
-  const base = (input && input.length ? input : ["#4F46E5", "#06B6D4", "#E0F2FE"]).slice(0, MAX_COLORS);
+  const base = (
+    input && input.length ? input : ["#4F46E5", "#06B6D4", "#E0F2FE"]
+  ).slice(0, MAX_COLORS);
   const count = base.length;
   const arr: number[][] = [];
   for (let i = 0; i < MAX_COLORS; i += 1) {
@@ -247,7 +249,9 @@ const Ferrofluid = ({
     if (!container) return;
 
     const renderer = new Renderer({
-      dpr: dpr ?? (typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1),
+      dpr:
+        dpr ??
+        (typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1),
       alpha: true,
       antialias: true,
     });
@@ -263,7 +267,13 @@ const Ferrofluid = ({
     const { arr, count, avg } = prepColors(colors);
 
     const uniforms = {
-      iResolution: { value: [gl.drawingBufferWidth, gl.drawingBufferHeight, 1] as [number, number, number] },
+      iResolution: {
+        value: [gl.drawingBufferWidth, gl.drawingBufferHeight, 1] as [
+          number,
+          number,
+          number,
+        ],
+      },
       iMouse: { value: [0, 0] as [number, number] },
       iTime: { value: 0 },
       uColor0: { value: arr[0] },
@@ -302,7 +312,11 @@ const Ferrofluid = ({
     const resize = () => {
       const rect = container.getBoundingClientRect();
       renderer.setSize(rect.width, rect.height);
-      uniforms.iResolution.value = [gl.drawingBufferWidth, gl.drawingBufferHeight, 1];
+      uniforms.iResolution.value = [
+        gl.drawingBufferWidth,
+        gl.drawingBufferHeight,
+        1,
+      ];
     };
 
     resize();
@@ -356,7 +370,8 @@ const Ferrofluid = ({
 
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      if (mouseInteraction) canvas.removeEventListener("pointermove", onPointerMove);
+      if (mouseInteraction)
+        canvas.removeEventListener("pointermove", onPointerMove);
       ro.disconnect();
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
@@ -403,7 +418,9 @@ const Ferrofluid = ({
       className={`ferrofluid-container ${className ?? ""}`}
       style={{
         backgroundColor,
-        ...(mixBlendMode ? { mixBlendMode: mixBlendMode as CSSProperties["mixBlendMode"] } : {}),
+        ...(mixBlendMode
+          ? { mixBlendMode: mixBlendMode as CSSProperties["mixBlendMode"] }
+          : {}),
       }}
     />
   );

@@ -15,7 +15,7 @@ function HomeSection() {
         <Ferrofluid
           className="absolute inset-0"
           colors={["#ffffff", "#ffffff", "#ffffff"]}
-          backgroundColor="#03010A"
+          backgroundColor="var(--hero-bg)"
           speed={0.1}
           scale={3}
           turbulence={0.35}
@@ -31,9 +31,9 @@ function HomeSection() {
           mouseRadius={0.05}
           mouseDampening={0.15}
         />
-        <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-white">
+        <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-heading">
           <div
-            className={`hero-scroll-indicator pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[0.7rem] uppercase tracking-[0.35em] text-white/80 transition-opacity duration-300 ease-out ${
+            className={`hero-scroll-indicator pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[0.7rem] uppercase tracking-[0.35em] text-heading/80 transition-opacity duration-300 ease-out ${
               isScrollHintVisible ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -78,9 +78,9 @@ function HomeSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="hero-fade-up w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/25 bg-white/10 backdrop-blur-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.35)] flex items-center justify-center opacity-0 transition duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:bg-white/15 hover:shadow-[0_10px_35px_rgba(255,255,255,0.16),inset_0_1px_0_rgba(255,255,255,0.4)]"
+                  className="hero-fade-up w-12 h-12 md:w-14 md:h-14 rounded-full border border-glass-border bg-glass-bg backdrop-blur-[22px] shadow-glass flex items-center justify-center opacity-0 transition duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:bg-glass-bg-hover hover:shadow-glass-hover"
                 >
-                  <FaLinkedin className="w-6 h-6 text-white" />
+                  <FaLinkedin className="w-6 h-6 text-heading" />
                 </a>
 
                 <a
@@ -88,9 +88,9 @@ function HomeSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
-                  className="hero-fade-up w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/25 bg-white/10 backdrop-blur-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.35)] flex items-center justify-center opacity-0 transition duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:bg-white/15 hover:shadow-[0_10px_35px_rgba(255,255,255,0.16),inset_0_1px_0_rgba(255,255,255,0.4)]"
+                  className="hero-fade-up w-12 h-12 md:w-14 md:h-14 rounded-full border border-glass-border bg-glass-bg backdrop-blur-[22px] shadow-glass flex items-center justify-center opacity-0 transition duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:bg-glass-bg-hover hover:shadow-glass-hover"
                 >
-                  <FaGithub className="w-6 h-6 text-white" />
+                  <FaGithub className="w-6 h-6 text-heading" />
                 </a>
               </div>
             </div>
