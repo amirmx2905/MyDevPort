@@ -1,11 +1,13 @@
-import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
 import Ferrofluid from "@/components/home/Ferrofluid";
 import SplitText from "@/components/home/SplitText";
+import TiltedCard from "@/components/home/TiltedCard";
 import SectionShell from "@/components/SectionShell";
+import { profile } from "@/data/profileData";
+import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
 import { useScrollHint } from "@/hooks/useScrollHint";
 
 function HomeSection() {
-  const isScrollHintVisible = useScrollHint();
+  const isScrollHintVisible = useScrollHint(1500);
 
   return (
     <SectionShell id="home">
@@ -38,7 +40,7 @@ function HomeSection() {
             <span>Scroll Down</span>
             <FaArrowDown className="scroll-indicator h-5 w-5" />
           </div>
-          <div className="flex flex-col-reverse md:flex-row items-center md:items-center w-full max-w-6xl">
+          <div className="flex flex-col-reverse md:flex-row items-center md:items-center w-full max-w-6xl gap-10">
             <div className="flex-1 md:basis-1/2 flex flex-col justify-center text-center">
               <h1 className="flex flex-wrap items-center justify-center gap-3 text-6xl md:text-7xl tracking-tight leading-tight">
                 <SplitText
@@ -72,7 +74,7 @@ function HomeSection() {
               </h1>
               <div className="hero-button-group mt-8 flex items-center justify-center gap-10 opacity-0">
                 <a
-                  href="https://www.linkedin.com/in/amir-sebasti%C3%A1n-flores-cardona/"
+                  href={profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -82,7 +84,7 @@ function HomeSection() {
                 </a>
 
                 <a
-                  href="https://github.com/amirmx2905"
+                  href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -93,11 +95,22 @@ function HomeSection() {
               </div>
             </div>
             <div className="flex-1 md:basis-1/2 flex items-center justify-center md:justify-center">
-              <img
-                src="/images/profile/photo.webp"
-                alt="Amir Flores"
-                className="w-56 h-56 md:w-80 md:h-80 object-cover rounded-full ring-2 ring-white/20 shadow-lg transition duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
-              />
+              <div className="hero-photo-enter relative flex items-center justify-center opacity-0">
+                <TiltedCard
+                  imageSrc="/images/profile/photo.webp"
+                  altText="Amir Flores"
+                  captionText="Amir Flores • Frontend Engineer"
+                  containerHeight="clamp(18rem, 32vw, 24rem)"
+                  containerWidth="clamp(18rem, 32vw, 24rem)"
+                  imageHeight="clamp(18rem, 32vw, 24rem)"
+                  imageWidth="clamp(18rem, 32vw, 24rem)"
+                  rotateAmplitude={12}
+                  scaleOnHover={1.15}
+                  showMobileWarning={false}
+                  showTooltip={false}
+                  displayOverlayContent={false}
+                />
+              </div>
             </div>
           </div>
         </div>

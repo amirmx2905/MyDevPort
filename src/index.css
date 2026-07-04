@@ -70,13 +70,28 @@
   }
 }
 
+@keyframes hero-photo-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero-fade-up {
   animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 600ms;
+  animation-delay: 500ms;
 }
 
 .hero-button-group {
-  animation: hero-button-group-fade 0.7s ease-out 1.05s forwards;
+  animation: hero-button-group-fade 0.7s ease-out 0.5s forwards;
+}
+
+.hero-photo-enter {
+  animation: hero-photo-enter 0.7s ease-out 1s forwards;
 }
 
 .hero-scroll-indicator {
