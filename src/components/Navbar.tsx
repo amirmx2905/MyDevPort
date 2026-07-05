@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLenis } from "lenis/react";
 
 const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "About Me", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Certifications", href: "#certifications" },
