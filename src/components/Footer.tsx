@@ -27,7 +27,7 @@ function Footer() {
       <div className="mx-auto w-full max-w-6xl px-4 py-10 lg:px-0">
         <div className="grid gap-8 sm:grid-cols-3 sm:items-center">
           {/* Name + role */}
-          <div>
+          <div className="text-center sm:text-left">
             <p className="text-base font-semibold text-heading">
               {profile.name}
             </p>
@@ -35,7 +35,7 @@ function Footer() {
           </div>
 
           {/* Nav links */}
-          <nav className="flex flex-wrap justify-start gap-x-6 gap-y-2 sm:justify-center">
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 sm:justify-center">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -49,7 +49,7 @@ function Footer() {
           </nav>
 
           {/* Social icons */}
-          <div className="flex items-center gap-3 sm:justify-end">
+          <div className="flex items-center justify-center gap-3 sm:justify-end">
             <a
               href={profile.github}
               target="_blank"
