@@ -14,14 +14,16 @@ export type ExperienceItem = {
 export type ProjectItem = {
   id: string;
   title: string;
-  summary: string;
-  details: string;
+  description: string;
+  fullDescription: string;
+  image: string;
+  technologies: string[];
   category: "web" | "mobile" | "desktop";
+  githubUrl?: string;
+  features: string[];
+  challenges?: string[];
   duration: string;
   year: string;
-  technologies: string[];
-  github?: string;
-  demo?: string;
 };
 
 export type CertificationItem = {

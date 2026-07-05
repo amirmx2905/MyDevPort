@@ -112,14 +112,14 @@ function HomeSection() {
                 <Suspense
                   fallback={
                     <img
-                      src="/images/profile/photo.webp"
+                      src="/images/photo.webp"
                       alt="Amir Flores"
                       className="h-[clamp(18rem,32vw,24rem)] w-[clamp(18rem,32vw,24rem)] rounded-3xl border border-white/15 object-cover shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
                     />
                   }
                 >
                   <TiltedCard
-                    imageSrc="/images/profile/photo.webp"
+                    imageSrc="/images/photo.webp"
                     altText="Amir Flores"
                     captionText="Amir Flores • Frontend Engineer"
                     containerHeight="clamp(18rem, 32vw, 24rem)"
