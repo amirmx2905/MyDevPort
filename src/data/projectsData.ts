@@ -115,7 +115,14 @@ export const projects: ProjectItem[] = [
     fullDescription:
       "A comprehensive platform designed for research teams to collaborate on investigations. Features document management, evidence tracking, timeline visualization, secure communication channels, and advanced search capabilities across all research materials.",
     image: import.meta.env.BASE_URL + "images/projects/imgInvestigators.webp",
-    technologies: ["Java", "Kotlin", "Android Studio", "MySQL", "PHP", "REST API"],
+    technologies: [
+      "Java",
+      "Kotlin",
+      "Android Studio",
+      "MySQL",
+      "PHP",
+      "REST API",
+    ],
     category: "mobile",
     features: [
       "Secure document management with version control",
