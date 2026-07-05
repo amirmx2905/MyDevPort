@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+
+@theme inline {
+  --font-sans: "Geist Variable", sans-serif;
+
+  /* Core app tones used across sections */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+
+  /* Home + About exact utility palette */
+  --color-white: var(--white);
+  --color-zinc-950: var(--zinc-950);
+  --color-zinc-300: var(--zinc-300);
+  --color-zinc-400: var(--zinc-400);
+  --color-sky-300: var(--sky-300);
+  --color-sky-500: var(--sky-500);
+  --color-hero-bg: var(--hero-bg);
+
+  /* Existing palette aliases (white / zinc / sky / glass) */
+  --color-heading: var(--heading);
+  --color-body: var(--body);
+  --color-body-soft: var(--body-soft);
+  --color-panel: var(--panel);
+  --color-sky: var(--sky);
+  --color-sky-strong: var(--sky-strong);
+  --color-glass-border: var(--glass-border);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-bg-hover: var(--glass-bg-hover);
+
+  --shadow-glass: var(--shadow-glass);
+  --shadow-glass-hover: var(--shadow-glass-hover);
+  --shadow-panel: var(--shadow-panel);
+}
+
+:root {
+  --background: #18181b;
+  --foreground: #f4f4f5;
+  --border: rgb(255 255 255 / 0.1);
+
+  --white: #ffffff;
+  --zinc-950: #09090b;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --sky-300: #7dd3fc;
+  --sky-500: #0ea5e9;
+  --hero-bg: #03010a;
+
+  --heading: #ffffff;
+  --body: #d4d4d8;
+  --body-soft: #a1a1aa;
+  --panel: rgb(9 9 11 / 0.7);
+
+  --sky: #7dd3fc;
+  --sky-strong: #0ea5e9;
+
+  --glass-border: rgb(255 255 255 / 0.25);
+  --glass-bg: rgb(255 255 255 / 0.1);
+  --glass-bg-hover: rgb(255 255 255 / 0.15);
+
+  --shadow-glass:
+    0 8px 30px rgb(0 0 0 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.35);
+  --shadow-glass-hover:
+    0 10px 35px rgb(255 255 255 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.4);
+  --shadow-panel: 0 30px 80px rgb(0 0 0 / 0.25);
+}
+
+@keyframes fade-up-char {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-button-group-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-photo-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-up {
+  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 500ms;
+}
+
+.hero-button-group {
+  animation: hero-button-group-fade 0.7s ease-out 0.5s forwards;
+}
+
+.hero-photo-enter {
+  animation: hero-photo-enter 0.7s ease-out 1s forwards;
+}
+
+.hero-scroll-indicator {
+  transition: opacity 0.3s ease-out;
+}
+
+.scroll-indicator {
+  animation: scroll-bounce 1.6s ease-in-out infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Geist Variable", sans-serif;
+  }
+}
