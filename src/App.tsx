@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { ReactLenis } from "lenis/react";
 import HomeSection from "./sections/HomeSection";
+import Footer from "./components/Footer";
 
 const AboutSection = lazy(() => import("./sections/AboutSection"));
 const ExperienceSection = lazy(() => import("./sections/ExperienceSection"));
@@ -20,6 +21,7 @@ function App() {
           <ProjectsSection />
           <CertificationsSection />
         </Suspense>
+        <Footer />
       </main>
     </ReactLenis>
   );

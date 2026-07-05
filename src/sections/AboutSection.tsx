@@ -35,16 +35,11 @@ function AboutSection() {
             </div>
 
             <p className="max-w-xl text-base leading-8 text-body">
-              Passionate about solving complex problems with attention to
-              detail. I build experiences that feel refined, usable, and
-              performant while staying aligned with product goals and user
-              needs.
+              {profile.bio}
             </p>
 
             <p className="mt-4 max-w-xl text-base leading-8 text-body-soft">
-              I’m committed to continuous learning, thoughtful collaboration,
-              and producing work that combines strong UI polish with practical
-              frontend engineering.
+              {profile.bioSecondary}
             </p>
 
             <div className="mt-8">

@@ -173,9 +173,3 @@ export const certifications: CertificationItem[] = [
     ],
   },
 ];
-
-export const certificationStatuses = [
-  { value: "all", label: "All" },
-  { value: "completed", label: "Completed" },
-  { value: "in-progress", label: "In Progress" },
-];

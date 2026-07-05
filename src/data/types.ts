@@ -15,13 +15,10 @@ export type ProjectItem = {
   id: string;
   title: string;
   description: string;
-  fullDescription: string;
   image: string;
   technologies: string[];
   category: "web" | "mobile" | "desktop";
   githubUrl?: string;
-  features: string[];
-  challenges?: string[];
   duration: string;
   year: string;
 };
