@@ -91,11 +91,7 @@ function Navbar() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav-menu"
             aria-label="Toggle navigation menu"
-            className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition duration-300 ease-out ${
-              isMenuOpen
-                ? "bg-glass-bg-hover text-heading shadow-glass"
-                : "text-body-soft hover:text-heading"
-            }`}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-body-soft transition-transform duration-150 ease-out hover:text-heading active:scale-90"
           >
             <svg
               aria-hidden="true"
@@ -116,10 +112,10 @@ function Navbar() {
         {isMenuOpen ? (
           <div
             id="mobile-nav-menu"
-            className="mt-2 w-[min(92vw,24rem)] -translate-x-1/2 rounded-2xl border border-glass-border bg-glass-bg p-2 backdrop-blur-[22px] shadow-glass"
+            className="mt-3 w-fit min-w-56 max-w-[80vw] -translate-x-1/2 rounded-2xl border border-glass-border bg-glass-bg p-3 backdrop-blur-[22px] shadow-glass"
             style={{ position: "absolute", left: "50%" }}
           >
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col items-center gap-2">
               {navLinks.map(({ label, href }) => {
                 const id = href.slice(1);
                 const isActive = activeSection === id;
@@ -128,7 +124,7 @@ function Navbar() {
                     key={href}
                     href={href}
                     onClick={(e) => handleClick(e, href)}
-                    className={`inline-flex h-9 items-center rounded-xl px-3 text-sm font-medium transition duration-300 ease-out ${
+                    className={`inline-flex h-11 w-full items-center justify-center rounded-xl px-5 text-center text-sm font-medium transition duration-300 ease-out ${
                       isActive
                         ? "bg-glass-bg-hover text-heading shadow-glass"
                         : "text-body-soft hover:text-heading"
