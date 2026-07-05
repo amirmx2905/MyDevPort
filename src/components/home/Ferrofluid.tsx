@@ -24,6 +24,7 @@ type FerrofluidProps = {
   mouseRadius?: number;
   mouseDampening?: number;
   mixBlendMode?: string;
+  onReady?: () => void;
 };
 
 const MAX_COLORS = 8;
@@ -234,6 +235,7 @@ const Ferrofluid = ({
   mouseRadius = 0.3,
   mouseDampening = 0.15,
   mixBlendMode,
+  onReady,
 }: FerrofluidProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
@@ -311,6 +313,9 @@ const Ferrofluid = ({
     const mesh = new Mesh(gl, { geometry, program });
     meshRef.current = mesh;
 
+    // Signal that ferrofluid is ready
+    onReady?.();
+
     const resize = () => {
       const rect = container.getBoundingClientRect();
       renderer.setSize(rect.width, rect.height);
@@ -326,7 +331,9 @@ const Ferrofluid = ({
     ro.observe(container);
 
     const io = new IntersectionObserver(
-      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
       { threshold: 0.01 },
     );
     io.observe(container);
@@ -421,6 +428,7 @@ const Ferrofluid = ({
     mouseStrength,
     mouseRadius,
     mouseDampening,
+    onReady,
   ]);
 
   return (
