@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useLenis } from "lenis/react";
 import { profile } from "@/data/profileData";
 
 const navLinks = [
@@ -10,6 +11,16 @@ const navLinks = [
 
 function Footer() {
   const year = new Date().getFullYear();
+  const lenis = useLenis();
+
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    const el = document.getElementById(href.slice(1));
+    if (el && lenis) lenis.scrollTo(el, { offset: 0 });
+  };
 
   return (
     <footer className="border-t border-border bg-panel backdrop-blur-xl">
@@ -29,6 +40,7 @@ function Footer() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleClick(e, link.href)}
                 className="text-sm text-body-soft transition-colors duration-200 hover:text-heading"
               >
                 {link.label}

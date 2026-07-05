@@ -1,12 +1,76 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useRef } from "react";
 import SectionShell from "@/components/SectionShell";
 import { profile } from "@/data/profileData";
 import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
 import { useScrollHint } from "@/hooks/useScrollHint";
 
 const Ferrofluid = lazy(() => import("@/components/home/Ferrofluid"));
-const SplitText = lazy(() => import("@/components/home/SplitText"));
-const TiltedCard = lazy(() => import("@/components/home/TiltedCard"));
+
+// ── Lightweight name animation ──────────────────────────────────────────────
+function AnimatedName({
+  text,
+  className,
+}: {
+  text: string;
+  className: string;
+}) {
+  return (
+    <span className={className}>
+      {text.split("").map((char, i) => (
+        <span
+          key={i}
+          style={{
+            display: "inline-block",
+            opacity: 0,
+            animation: "fade-up-char 0.6s cubic-bezier(0.16,1,0.3,1) forwards",
+            animationDelay: `${i * 55}ms`,
+          }}
+        >
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+// ── Lightweight tilt card ───────────────────────────────────────────────────
+function PhotoCard({ src, alt }: { src: string; alt: string }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 24}deg) rotateX(${-y * 24}deg) scale(1.08)`;
+  };
+
+  const handleMouseLeave = () => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.transform =
+      "perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)";
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transition: "transform 0.18s ease-out" }}
+      className="overflow-hidden rounded-3xl border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
+    >
+      <img
+        src={src}
+        alt={alt}
+        className="h-[clamp(18rem,32vw,24rem)] w-[clamp(18rem,32vw,24rem)] object-cover"
+      />
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
 
 function HomeSection() {
   const isScrollHintVisible = useScrollHint(1500);
@@ -47,43 +111,8 @@ function HomeSection() {
           <div className="flex flex-col-reverse md:flex-row items-center md:items-center w-full max-w-6xl gap-10">
             <div className="flex-1 md:basis-1/2 flex flex-col justify-center text-center">
               <h1 className="flex flex-wrap items-center justify-center gap-3 text-6xl md:text-7xl tracking-tight leading-tight">
-                <Suspense
-                  fallback={
-                    <>
-                      <span className="font-extrabold">Amir</span>
-                      <span className="font-light">Flores</span>
-                    </>
-                  }
-                >
-                  <SplitText
-                    text="Amir"
-                    tag="span"
-                    className="font-extrabold"
-                    delay={50}
-                    duration={2}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 24 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-40px"
-                    textAlign="center"
-                  />
-                  <SplitText
-                    text="Flores"
-                    tag="span"
-                    className="font-light"
-                    delay={50}
-                    duration={2}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 24 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-40px"
-                    textAlign="center"
-                  />
-                </Suspense>
+                <AnimatedName text="Amir" className="font-extrabold" />
+                <AnimatedName text="Flores" className="font-light" />
               </h1>
               <div className="hero-button-group mt-8 flex items-center justify-center gap-10 opacity-0">
                 <a
@@ -109,30 +138,7 @@ function HomeSection() {
             </div>
             <div className="flex-1 md:basis-1/2 flex items-center justify-center md:justify-center">
               <div className="hero-photo-enter relative flex items-center justify-center opacity-0">
-                <Suspense
-                  fallback={
-                    <img
-                      src="/images/photo.webp"
-                      alt="Amir Flores"
-                      className="h-[clamp(18rem,32vw,24rem)] w-[clamp(18rem,32vw,24rem)] rounded-3xl border border-white/15 object-cover shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
-                    />
-                  }
-                >
-                  <TiltedCard
-                    imageSrc="/images/photo.webp"
-                    altText="Amir Flores"
-                    captionText="Amir Flores • Frontend Engineer"
-                    containerHeight="clamp(18rem, 32vw, 24rem)"
-                    containerWidth="clamp(18rem, 32vw, 24rem)"
-                    imageHeight="clamp(18rem, 32vw, 24rem)"
-                    imageWidth="clamp(18rem, 32vw, 24rem)"
-                    rotateAmplitude={12}
-                    scaleOnHover={1.15}
-                    showMobileWarning={false}
-                    showTooltip={false}
-                    displayOverlayContent={false}
-                  />
-                </Suspense>
+                <PhotoCard src="/images/photo.webp" alt="Amir Flores" />
               </div>
             </div>
           </div>

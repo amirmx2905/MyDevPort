@@ -66,6 +66,17 @@
   --shadow-panel: 0 30px 80px rgb(0 0 0 / 0.25);
 }
 
+@keyframes fade-up-char {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes hero-fade-up {
   from {
     opacity: 0;
