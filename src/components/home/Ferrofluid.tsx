@@ -243,6 +243,8 @@ const Ferrofluid = ({
   const meshRef = useRef<Mesh | null>(null);
   const mouseTargetRef = useRef<[number, number]>([0, 0]);
   const lastTimeRef = useRef<number>(0);
+  const accTimeRef = useRef<number>(0);
+  const isVisibleRef = useRef<boolean>(true);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -323,6 +325,12 @@ const Ferrofluid = ({
     const ro = new ResizeObserver(resize);
     ro.observe(container);
 
+    const io = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0.01 },
+    );
+    io.observe(container);
+
     const onPointerMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const sc = renderer.dpr || 1;
@@ -340,12 +348,16 @@ const Ferrofluid = ({
 
     const loop = (t: number) => {
       rafRef.current = requestAnimationFrame(loop);
-      uniforms.iTime.value = t * 0.001;
+
+      const prev = lastTimeRef.current;
+      const dt = prev ? (t - prev) * 0.001 : 0;
+      lastTimeRef.current = t;
+
+      const effectivelyPaused = paused || !isVisibleRef.current;
+      if (!effectivelyPaused) accTimeRef.current += dt;
+      uniforms.iTime.value = accTimeRef.current;
 
       if (mouseDampening > 0) {
-        if (!lastTimeRef.current) lastTimeRef.current = t;
-        const dt = (t - lastTimeRef.current) / 1000;
-        lastTimeRef.current = t;
         const tau = Math.max(1e-4, mouseDampening);
         let factor = 1 - Math.exp(-dt / tau);
         if (factor > 1) factor = 1;
@@ -353,11 +365,9 @@ const Ferrofluid = ({
         const cur = uniforms.iMouse.value as [number, number];
         cur[0] += (target[0] - cur[0]) * factor;
         cur[1] += (target[1] - cur[1]) * factor;
-      } else {
-        lastTimeRef.current = t;
       }
 
-      if (!paused && programRef.current && meshRef.current) {
+      if (!effectivelyPaused && programRef.current && meshRef.current) {
         try {
           renderer.render({ scene: meshRef.current });
         } catch (error) {
@@ -373,6 +383,7 @@ const Ferrofluid = ({
       if (mouseInteraction)
         canvas.removeEventListener("pointermove", onPointerMove);
       ro.disconnect();
+      io.disconnect();
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
       }
