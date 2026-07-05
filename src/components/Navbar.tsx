@@ -60,7 +60,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-5 left-1/2 z-50 -translate-x-1/2">
+    <nav className="hero-photo-enter hero-delay-500 fixed top-5 left-1/2 z-50 -translate-x-1/2 opacity-0">
       <ul className="hidden items-center gap-1 rounded-full border border-glass-border bg-glass-bg px-2 py-2 backdrop-blur-[22px] shadow-glass sm:flex">
         {navLinks.map(({ label, href }) => {
           const id = href.slice(1);

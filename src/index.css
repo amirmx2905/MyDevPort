@@ -135,6 +135,10 @@
   animation: hero-photo-enter 0.7s ease-out 1s forwards;
 }
 
+.hero-delay-500 {
+  animation-delay: 500ms;
+}
+
 .hero-scroll-indicator {
   transition: opacity 0.3s ease-out;
 }
