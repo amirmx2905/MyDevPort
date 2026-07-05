@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef } from "react";
+import { Suspense, useRef, useState, lazy } from "react";
 import SectionShell from "@/components/SectionShell";
 import { profile } from "@/data/profileData";
 import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
@@ -74,6 +74,7 @@ function PhotoCard({ src, alt }: { src: string; alt: string }) {
 
 function HomeSection() {
   const isScrollHintVisible = useScrollHint(1500);
+  const [ferrofluidReady, setFerrofluidReady] = useState(false);
 
   return (
     <SectionShell id="home">
@@ -97,8 +98,12 @@ function HomeSection() {
             mouseStrength={0}
             mouseRadius={0.05}
             mouseDampening={0.15}
+            onReady={() => setFerrofluidReady(true)}
           />
         </Suspense>
+        {!ferrofluidReady && (
+          <div className="absolute inset-0 z-20 bg-hero-bg" />
+        )}
         <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-heading">
           <div
             className={`hero-scroll-indicator pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[0.7rem] uppercase tracking-[0.35em] text-heading/80 transition-opacity duration-300 ease-out ${
