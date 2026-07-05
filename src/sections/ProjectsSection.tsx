@@ -17,7 +17,7 @@ function ProjectsSection() {
             <span className="font-extrabold">Featured</span>
             <span className="font-light">Projects</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-body-soft">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-body-soft">
             A selection of projects spanning web and mobile development — from
             full-stack platforms to native apps.
           </p>

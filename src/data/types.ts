@@ -29,9 +29,12 @@ export type ProjectItem = {
 export type CertificationItem = {
   id: string;
   title: string;
-  issuer: string;
-  date: string;
+  description: string;
+  image: string;
   status: "completed" | "in-progress";
-  skills: string[];
+  institution?: string;
+  completionDate?: string;
+  certUrl?: string;
+  skills?: string[];
   credentialUrl?: string;
 };
